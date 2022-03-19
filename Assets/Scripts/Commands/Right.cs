@@ -11,8 +11,8 @@ public class Right : ICommand
         _t = t;
     }
 
-public void Execute(float val)
-{
-    _t.position += new Vector3(0, 0, val);
-}
+    public void Execute(float val)
+    {    
+       _t.position += new Vector3(0, 0, val);
+    }
 }
