@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Backward : ICommand
 {
-    Transform _t;
+    Rigidbody _rb;
 
-    public Backward(Transform t)
+    public Backward(Rigidbody rb)
     {
-        _t = t;
+        _rb = rb;
     }
 
     public void Execute(float val)
     {
-        _t.position += new Vector3(-1 * val, 0, 0);
+        _rb.AddForce(-1 * val, 0, 0);
     }
 }

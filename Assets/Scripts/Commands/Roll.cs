@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Roll : ICommand
 {
-    Transform _t;
+    Rigidbody _rb;
 
-    public Roll(Transform t)
+    public Roll(Rigidbody rb)
     {
-        _t = t;
+        _rb = rb;
     }
 
     public void Execute(float val)
     {
         Debug.Log("Roll: Executed but not implemented");
         //Con rigidbody, mantener direccion y sumarle un boost de distancia
+        //_rb.AddForce(0, val, 0);
+        //Agregar cooldown
     }
 }

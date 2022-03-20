@@ -6,6 +6,9 @@ public class PlayerModel : MonoBehaviour
 {
     int maxHealth, currentHealth;
 
-    float _speed = 0.09f;   
+    float _speed = 5.2f;   
     public float speed { get { return _speed; } }
+
+    float _rollForce = 5f;
+    public float rollForce { get { return _rollForce; } }
 }

@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     Dictionary<KeyCode, ICommand> _commands;
 
+    Rigidbody _rb;
     private PlayerModel _m;
     Keybinds _keybinds;
 
     #region Set up
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
+
         _m = GetComponent<PlayerModel>();
         if (_m == null)
             Debug.Log("Controller: Player missing");
@@ -25,11 +28,11 @@ public class PlayerController : MonoBehaviour
     {
         _commands = new Dictionary<KeyCode, ICommand>();
 
-        _commands.Add(_keybinds.forward, new Forward(transform));
-        _commands.Add(_keybinds.backward, new Backward(transform));
-        _commands.Add(_keybinds.right, new Right(transform));
-        _commands.Add(_keybinds.left, new Left(transform));
-        _commands.Add(_keybinds.roll, new Roll(transform));
+        _commands.Add(_keybinds.forward, new Forward(_rb));
+        _commands.Add(_keybinds.backward, new Backward(_rb));
+        _commands.Add(_keybinds.right, new Right(_rb));
+        _commands.Add(_keybinds.left, new Left(_rb));
+        _commands.Add(_keybinds.roll, new Roll(_rb));
     }
     #endregion
 

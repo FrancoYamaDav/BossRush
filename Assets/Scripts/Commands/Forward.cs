@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Forward : ICommand
 {
-    Transform _t;
+    Rigidbody _rb;
 
-    public Forward(Transform t)
+    public Forward(Rigidbody rb)
     {
-        _t = t;
+        _rb = rb;
     }
 
     public void Execute(float val)
     {
-        _t.position += new Vector3(val, 0, 0);
+        _rb.AddForce(val, 0, 0);
     }
 }

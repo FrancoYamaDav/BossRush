@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Left : ICommand
 {
-    Transform _t;
+    Rigidbody _rb;
 
-    public Left(Transform t)
+    public Left(Rigidbody rb)
     {
-        _t = t;
+        _rb = rb;
     }
 
     public void Execute(float val)
     {
-       _t.position += new Vector3(0, 0, -1 * val);
+        _rb.AddForce(0, 0, -1 * val);
     }
 }
