@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Keybinds
 {
-    public KeyCode forward, backward, right, left, roll;
+    public KeyCode forward, backward, right, left;
+    public KeyCode roll, dash;
+    public KeyCode hitLight, hitHeavy, hitDistance;
     public Keybinds()
     {
         //Quizas hacer un json con "saved config" y "default config", cargarlos segun setting
@@ -14,6 +16,12 @@ public class Keybinds
         backward = KeyCode.S;
         right = KeyCode.D;
         left = KeyCode.A;
-        roll = KeyCode.Space;
+
+        roll = KeyCode.LeftControl;
+        dash = KeyCode.Space;
+
+        hitLight = KeyCode.Mouse0;
+        hitHeavy = KeyCode.Mouse1;
+        hitDistance = KeyCode.Mouse2;
     }
 }

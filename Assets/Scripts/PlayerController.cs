@@ -32,7 +32,13 @@ public class PlayerController : MonoBehaviour
         _commands.Add(_keybinds.backward, new Backward(_rb));
         _commands.Add(_keybinds.right, new Right(_rb));
         _commands.Add(_keybinds.left, new Left(_rb));
+
         _commands.Add(_keybinds.roll, new Roll(_rb));
+        _commands.Add(_keybinds.dash, new Dash(_rb));
+
+        _commands.Add(_keybinds.hitLight, new HitLight());
+        _commands.Add(_keybinds.hitHeavy, new HitHeavy());
+        _commands.Add(_keybinds.hitDistance, new HitDistance());
     }
     #endregion
 

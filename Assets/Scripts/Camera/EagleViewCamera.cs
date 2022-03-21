@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EagleViewCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    PlayerModel target;
+    Vector3 offset;
+
+    private void Awake()
     {
-        
+        offset = new Vector3(0, 10, 0);
+
+        target = FindObjectOfType<PlayerModel>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.position = target.transform.position + offset;
     }
 }

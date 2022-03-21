@@ -13,6 +13,6 @@ public class Right : ICommand
 
     public void Execute(float val)
     {
-        _rb.AddForce(0, 0, val);
+        _rb.AddForce(0, 0, -1 * val);
     }
 }
