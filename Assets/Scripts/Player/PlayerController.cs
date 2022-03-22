@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable, IHealeable
 {
     Dictionary<KeyCode, ICommand> _commands;
 
@@ -63,4 +63,14 @@ public class PlayerController : MonoBehaviour
             _commands[pressedKey].Execute(_m.speed);
     }
     #endregion
+
+    public void ReceiveDamage(int dmgVal)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ReceiveHealing(int healVal)
+    {
+        throw new System.NotImplementedException();
+    }
 }
