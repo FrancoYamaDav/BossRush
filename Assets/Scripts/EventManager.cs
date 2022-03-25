@@ -15,20 +15,23 @@ public class EventManager
 
         //Boss
         Event_Boss_Defeated,
+        
+        //Canvas
+        Event_HUD_PlayerLife,
+        Event_HUD_PlayerStamina,
+
+        Event_HUD_BossLife,
+        
+        //Sound
+        Event_Sound_Trigger,
 
         //Game
         Event_Game_BossDefeated,
         Event_Game_FinalBossDefeated,
         Event_Game_Lose,
-        
-        //Canvas
-        Event_HUD_Life,
-        
-        //Sound
-        Event_Sound_Trigger,
     }
-    
-    //MyA1-P1
+
+    #region SubscribeUnsubscribe
     public static void SubscribeToEvent(EventsType eventType, EventReceiver listener)
     {
         if (_events == null)
@@ -39,7 +42,7 @@ public class EventManager
 
         _events[eventType] += listener;
     }
-    //MyA1-P1
+
     public static void UnsubscribeToEvent(EventsType eventType, EventReceiver listener)
     {
         if (_events != null)
@@ -48,12 +51,14 @@ public class EventManager
                 _events[eventType] -= listener;
         }
     }
-    //MyA1-P1
+    #endregion
+
+    #region TriggerEvent
     public static void TriggerEvent(EventsType eventType)
     {
         TriggerEvent(eventType, null);
     }
-    //MyA1-P1
+
     public static void TriggerEvent(EventsType eventType, params object[] parameters)
     {
         if (_events == null)
@@ -70,4 +75,5 @@ public class EventManager
             }
         }
     }
+    #endregion
 }

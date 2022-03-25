@@ -77,12 +77,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
     #region Damage and Healing
     public void ReceiveDamage(int dmgVal)
     {
-        //Debug.Log("Recibí " + dmgVal + " de daño");
-
         currentHealth -= dmgVal;
-
-        Debug.Log("La vida total es " + currentHealth);
-
+        UpdateHealthBar();
         if (currentHealth <= 0) OnNoLife();
     }
 
@@ -101,16 +97,25 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
 
     public void ReceiveHealing(int healVal)
     {
-        Debug.Log("Mi vida era " + currentHealth);
-        Debug.Log("Recibí " + healVal + " de curación");
-
         var newHealth = currentHealth + healVal;
 
         if (newHealth >= _m.maxHealth)  newHealth = _m.maxHealth;
 
         currentHealth = newHealth;
 
-        Debug.Log("La vida total es " + currentHealth);
+        UpdateHealthBar();
+    }
+
+    void UpdateHealthBar()
+    {
+        float temp = (float)currentHealth / (float)_m.maxHealth;
+        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerLife, temp);
+    }
+
+    void UpdateStaminaBar()
+    {
+        ///float temp = (float)currentStamina / (float)_m.maxStamina;
+        //EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerStamina, temp);
     }
     #endregion
 
