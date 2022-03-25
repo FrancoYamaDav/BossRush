@@ -11,8 +11,6 @@ public class Lava : MonoBehaviour
         if (collisionInterface != null)
         {
             collisionInterface.ReceiveDamage(dmg);
-
-            Debug.Log("Detecté un Idamageable");
         }
     }
 }

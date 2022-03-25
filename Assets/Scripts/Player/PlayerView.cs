@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    int life, stamina;
+    private void Start()
     {
-        
-    }
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_Life, OnLifeUpdate);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void OnLifeUpdate(params object[] param)
+        {
+            var playerLife = (int)param[0];
+            // life = playerLife;
+            // myLife.text = "LIVES: " + life;
+        }
     }
 }

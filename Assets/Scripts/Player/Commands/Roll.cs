@@ -15,7 +15,7 @@ public class Roll : ICommand
     {
         Debug.Log("Roll: Executed but not implemented");
         //Con rigidbody, mantener direccion y sumarle un boost de distancia
-        //_rb.AddForce(0, val, 0);
+        //_rb.AddForce(0, val, 0, ForceMode.Impulse);
         //Agregar cooldown
     }
 }

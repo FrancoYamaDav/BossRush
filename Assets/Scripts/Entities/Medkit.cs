@@ -12,7 +12,6 @@ public class Medkit : BasePickUpItem
         if (collisionInterface != null)
         {
             collisionInterface.ReceiveHealing(healQty);
-            Debug.Log("Detecté un IHealeable");
             DestroyItem();
         }
     }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IKnockeable
 {
-    public void ReceiveKnockable(int knockbackIntensity);
+    public void ReceiveKnockback(float knockbackIntensity);
 }

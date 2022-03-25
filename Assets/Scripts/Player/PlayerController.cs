@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker
+public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker, IKnockeable
 {
     Dictionary<KeyCode, ICommand> _commands;
 
@@ -10,8 +10,21 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker
     private PlayerModel _m;
     Keybinds _keybinds;
 
+    int currentHealth;
+
     #region Set up
     private void Awake()
+    {
+        ComponentChecker();
+
+        currentHealth = _m.maxHealth;
+
+        RefreshKeybinds();
+
+        EventSubscriber();
+    }
+
+    void ComponentChecker()
     {
         _rb = GetComponent<Rigidbody>();
 
@@ -20,10 +33,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker
             Debug.Log("Controller: Player missing");
 
         if (_keybinds == null)
-          _keybinds = new Keybinds();
-
-        RefreshKeybinds();        
+            _keybinds = new Keybinds();
     }
+
+    void EventSubscriber()
+    {
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_LifeModify, OnPlayerLifeModify);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_Death, OnPlayerDeath);
+    }
+
     void RefreshKeybinds()
     {
         _commands = new Dictionary<KeyCode, ICommand>();
@@ -44,11 +62,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker
 
     private void Update()
     {
-        Brain();
+        if (!_m.isDead)  Brain();
     }
 
-    #region InputDetection
-    //Ver si cambiar a futuro
     void Brain()
     {
         foreach (var command in _commands)
@@ -57,28 +73,71 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker
                 command.Value.Execute(_m.speed);
         }
     }
-    void Brain(KeyCode pressedKey)
-    {
-        if (_commands.ContainsKey(pressedKey))
-            _commands[pressedKey].Execute(_m.speed);
-    }
-    #endregion
 
+    #region Damage and Healing
     public void ReceiveDamage(int dmgVal)
     {
-        Debug.Log("Recibí " + dmgVal + " de daño");
+        //Debug.Log("Recibí " + dmgVal + " de daño");
 
-        _m.ModifyHealth(-dmgVal);
+        currentHealth -= dmgVal;
 
-        Debug.Log("La vida total es " + _m.currentHealth);
+        Debug.Log("La vida total es " + currentHealth);
+
+        if (currentHealth <= 0) OnNoLife();
+    }
+
+    public void OnNoLife()
+    {
+        Debug.Log("Player: Me morí");
+        _m.isDead = true;
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Player_Death);
+    }
+
+    public void ReceiveKnockback(float knockbackIntensity)
+    {
+        Debug.Log("Player: Receive Knockback");
+        _rb.AddForce(0, knockbackIntensity, 0, ForceMode.Impulse);
     }
 
     public void ReceiveHealing(int healVal)
     {
+        Debug.Log("Mi vida era " + currentHealth);
         Debug.Log("Recibí " + healVal + " de curación");
 
-        _m.ModifyHealth(healVal);
+        var newHealth = currentHealth + healVal;
 
-        Debug.Log("La vida total es " + _m.currentHealth);
+        if (newHealth >= _m.maxHealth)  newHealth = _m.maxHealth;
+
+        currentHealth = newHealth;
+
+        Debug.Log("La vida total es " + currentHealth);
     }
+    #endregion
+
+    #region  Events
+    void OnPlayerLifeModify(params object[] param)
+    {
+        var newLife = currentHealth + (int)param[0];
+        if (newLife > _m.maxHealth)
+        {
+            newLife = _m.maxHealth;
+        }
+        currentHealth = newLife;
+        //EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_Life, currentHealth);
+    }
+
+    private void OnPlayerDeath(object[] parameterContainer)
+    {
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Game_Lose);
+    }
+    #endregion
+
+    #region Hidden
+    /*
+    void Brain(KeyCode pressedKey)
+    {
+        if (_commands.ContainsKey(pressedKey))
+            _commands[pressedKey].Execute(_m.speed);
+    }*/
+    #endregion
 }
