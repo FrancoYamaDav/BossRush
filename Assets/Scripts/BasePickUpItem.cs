@@ -9,14 +9,17 @@ public abstract class BasePickUpItem : MonoBehaviour
         Debug.Log("BasePickUpItem: Execute Trigerred");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
-        ExecutePickUp();
-        DestroyItem();
+        if(collision.gameObject)
+        {
+           ExecutePickUp();
+           DestroyItem();
+        }
     }
 
-    void DestroyItem()
+    public virtual void DestroyItem()
     {
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

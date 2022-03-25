@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamageable, IHealeable
+public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker
 {
     Dictionary<KeyCode, ICommand> _commands;
 
@@ -66,11 +66,19 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable
 
     public void ReceiveDamage(int dmgVal)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Recibí " + dmgVal + " de daño");
+
+        _m.ModifyHealth(-dmgVal);
+
+        Debug.Log("La vida total es " + _m.currentHealth);
     }
 
     public void ReceiveHealing(int healVal)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Recibí " + healVal + " de curación");
+
+        _m.ModifyHealth(healVal);
+
+        Debug.Log("La vida total es " + _m.currentHealth);
     }
 }

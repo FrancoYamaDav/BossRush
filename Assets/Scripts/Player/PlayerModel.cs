@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerModel : MonoBehaviour
 {
-    int maxHealth, currentHealth;
+    int _maxHealth = 100, _currentHealth = 100;
+
+    public int currentHealth { get { return _currentHealth; } }
+
+    public void ModifyHealth(int val)
+    {
+        _currentHealth += val;
+    }
 
     float _speed = 5.2f;   
     public float speed { get { return _speed; } }
