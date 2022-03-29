@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 2a2ce256f5e66024c99dfe496ef56ee3
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _pezpararigaaaaaaaaaaaaaaaa_lambert2_AlbedoTransparency1: {fileID: 2800000, guid: 58c845f519b41fd4596af4de2889e638, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
