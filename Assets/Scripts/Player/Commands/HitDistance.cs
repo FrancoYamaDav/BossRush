@@ -20,6 +20,6 @@ public class HitDistance : ICommand
     public void Execute(float val = 0)
     {
         deleteLater.Test();
-        Debug.Log("DistanceHit: Executed but not implemented");        
+        //Debug.Log("DistanceHit: Executed but not implemented");        
     }
 }

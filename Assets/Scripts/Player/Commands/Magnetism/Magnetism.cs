@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Magnetism : ICommand
 {
-    public Magnetism()
+    PlayerController _pc;
+    public Magnetism(PlayerController pc)
     {
-        
+        _pc = pc;
     }
 
     public void Execute(float val)
     {
-        Debug.Log("Magnetism: executed but not implemented");
+        if(_pc != null)
+            _pc.isMagnetOn = !_pc.isMagnetOn;
+
+        Debug.Log("Magnetism: " + _pc.isMagnetOn);
     }
 }

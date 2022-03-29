@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
     Vector3 raycastAngle;
 
     int currentHealth, currentStamina;
+    public bool isMagnetOn;
 
     #region Set up
     private void Awake()
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
         //_singleCommands.Add(_keybinds.hitHeavy, new HitHeavy());
         _singleCommands.Add(_keybinds.hitDistance, new HitDistance(this));
 
-        _singleCommands.Add(_keybinds.magnetism, new Magnetism());
+        _singleCommands.Add(_keybinds.magnetism, new Magnetism(this));
     }
     #endregion
 
@@ -174,10 +175,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
             //Debug.Log(lookingAt.collider.name);
 
             IMagnetable desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
-            if (desired != null)
+            if (desired != null && isMagnetOn)
             {
                 Debug.Log("Raycast: Puedo grabear");
-                desired.OnMagnetism();
+                desired.OnMagnetism(this);
             }
         }
     }

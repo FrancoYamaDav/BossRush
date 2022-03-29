@@ -21,7 +21,7 @@ public class CycleWaypoints : MonoBehaviour, IDamageable
 
     void ChangePosition()
     {
-        Debug.Log("CycleWaypoints: Change Position Triggered");
+        //Debug.Log("CycleWaypoints: Change Position Triggered");
 
         if (waypoints != null)
         {
@@ -49,12 +49,22 @@ public class CycleWaypoints : MonoBehaviour, IDamageable
     public void OnNoLife()
     {
         Debug.Log("CycleWaypoints: 0 health left");
+
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        /*
         IElectrified collisionInterface = collision.gameObject.GetComponent<IElectrified>();
         if (collisionInterface != null)
+        {
+            isStunned = true;
+            _rb.useGravity = true;
+            Debug.Log("CycleWaypoints: Me han stuneado");
+        }*/
+
+        if (collision.gameObject.GetComponent<PlayerModel>())
         {
             isStunned = true;
             _rb.useGravity = true;

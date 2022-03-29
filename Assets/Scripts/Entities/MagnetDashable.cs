@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class MagnetDashable : MonoBehaviour, IMagnetable
 {
-    public void OnMagnetism()
+    public void OnMagnetism(PlayerController pc = null)
     {
-        Debug.Log("MagnetDashable: On Grab executed but not implemented");
+        if (pc != null)
+        pc.transform.position = Vector3.MoveTowards(pc.transform.position, transform.position, 40 * Time.deltaTime);
+
+        Debug.Log("MagnetDashable: On Magnetism executed but not implemented");
     }
 }

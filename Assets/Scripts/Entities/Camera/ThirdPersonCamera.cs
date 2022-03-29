@@ -22,7 +22,7 @@ public class ThirdPersonCamera : MonoBehaviour
         if (target != null)
             transform.position = target.transform.position + positionOffset;
 
-        Rotate();
+        //Rotate();
     }
 
     void Rotate()

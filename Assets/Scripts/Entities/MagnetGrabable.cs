@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MagnetGrabable : MonoBehaviour, IMagnetable
 {
-    public void OnMagnetism()
+    public void OnMagnetism(PlayerController pc = null)
     {
-        Debug.Log("Box: On Grab executed but not implemented");
+        if (pc != null)
+            transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, 40 * Time.deltaTime);
     }
 }

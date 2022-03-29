@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IMagnetable
 {
-    public void OnMagnetism();
+    public void OnMagnetism(PlayerController pc = null);
 }

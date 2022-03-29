@@ -19,5 +19,7 @@ public class Projectile : MonoBehaviour
         {
             collisionInterface.ReceiveDamage(dmg);
         }
+
+        Destroy(this.gameObject);
     }
 }
