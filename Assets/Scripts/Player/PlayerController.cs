@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker, IKnockeable
 {
-    Dictionary<KeyCode, ICommand> _commands;
+    Dictionary<KeyCode, ICommand> _constantCommands, _singleCommands;
 
     Rigidbody _rb;
-    private PlayerModel _m;
+    PlayerModel _m;
     Keybinds _keybinds;
 
-    int currentHealth;
+    //IElectrified elect = new Electricity();
+
+    Vector3 raycastAngle;
+
+    int currentHealth, currentStamina;
 
     #region Set up
     private void Awake()
@@ -44,32 +49,46 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
 
     void RefreshKeybinds()
     {
-        _commands = new Dictionary<KeyCode, ICommand>();
 
-        _commands.Add(_keybinds.forward, new Forward(_rb));
-        _commands.Add(_keybinds.backward, new Backward(_rb));
-        _commands.Add(_keybinds.right, new Right(_rb));
-        _commands.Add(_keybinds.left, new Left(_rb));
+        _constantCommands = new Dictionary<KeyCode, ICommand>();
+        _singleCommands = new Dictionary<KeyCode, ICommand>();
 
-        _commands.Add(_keybinds.roll, new Roll(_rb));
-        _commands.Add(_keybinds.dash, new Dash(_rb));
+        _constantCommands.Add(_keybinds.forward, new Forward(_rb));
+        _constantCommands.Add(_keybinds.backward, new Backward(_rb));
+        _constantCommands.Add(_keybinds.right, new Right(_rb));
+        _constantCommands.Add(_keybinds.left, new Left(_rb));
 
-        _commands.Add(_keybinds.hitLight, new HitLight());
-        _commands.Add(_keybinds.hitHeavy, new HitHeavy());
-        _commands.Add(_keybinds.hitDistance, new HitDistance());
+        //_singleCommands.Add(_keybinds.roll, new Roll(_rb));
+        //_singleCommands.Add(_keybinds.dash, new Dash(_rb));
+
+        //_singleCommands.Add(_keybinds.hitLight, new HitLight());
+        //_singleCommands.Add(_keybinds.hitHeavy, new HitHeavy());
+        _singleCommands.Add(_keybinds.hitDistance, new HitDistance(this));
+
+        _singleCommands.Add(_keybinds.magnetism, new Magnetism());
     }
     #endregion
 
     private void Update()
     {
-        if (!_m.isDead)  Brain();
+        if (!_m.isDead)
+        {
+            Brain();
+            Raycast();
+        }
     }
 
     void Brain()
     {
-        foreach (var command in _commands)
+        foreach (var command in _constantCommands)
         {
             if (Input.GetKey(command.Key))
+                command.Value.Execute(_m.speed);
+        }
+
+        foreach (var command in _singleCommands)
+        {
+            if (Input.GetKeyDown(command.Key))
                 command.Value.Execute(_m.speed);
         }
     }
@@ -114,8 +133,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
 
     void UpdateStaminaBar()
     {
-        ///float temp = (float)currentStamina / (float)_m.maxStamina;
-        //EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerStamina, temp);
+        float temp = (float)currentStamina / (float)_m.maxStamina;
+        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerStamina, temp);
     }
     #endregion
 
@@ -145,4 +164,33 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
             _commands[pressedKey].Execute(_m.speed);
     }*/
     #endregion
+
+    void Raycast()
+    {
+        RaycastHit lookingAt;
+
+        if (Physics.Raycast(transform.position, transform.forward, out lookingAt, Mathf.Infinity))
+        {
+            //Debug.Log(lookingAt.collider.name);
+
+            IMagnetable desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
+            if (desired != null)
+            {
+                Debug.Log("Raycast: Puedo grabear");
+                desired.OnMagnetism();
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * 50);
+    }
+
+    public void Test()
+    {       
+        var temp = Instantiate(Resources.Load<Projectile>("Projectile"));
+        temp.transform.position = transform.position + Vector3.forward * 3;
+    }
 }

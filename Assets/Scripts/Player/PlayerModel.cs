@@ -20,6 +20,10 @@ public class PlayerModel : MonoBehaviour
     int _maxHealth = 100;
     public int maxHealth { get { return _maxHealth; } }
 
+
+    int _maxStamina = 100;
+    public int maxStamina { get { return _maxStamina; } }
+
     #region Hidden
     /*    
     public int currentHealth { get { return _currentHealth; } }
@@ -31,7 +35,7 @@ public class PlayerModel : MonoBehaviour
     #endregion
 
     //Floats
-    float _speed = 5.2f;   
+    float _speed = 5f;   
     public float speed { get { return _speed; } }
 
 

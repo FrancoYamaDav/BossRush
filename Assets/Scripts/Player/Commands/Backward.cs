@@ -13,6 +13,6 @@ public class Backward : ICommand
 
     public void Execute(float val)
     {
-        _rb.AddForce(-1 * val, 0, 0);
+        _rb.AddForce(Vector3.forward * -val);
     }
 }

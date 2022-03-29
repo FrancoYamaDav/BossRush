@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Right : ICommand
+public class Magnetism : ICommand
 {
-    Rigidbody _rb;
-
-    public Right(Rigidbody rb)
+    public Magnetism()
     {
-        _rb = rb;
+        
     }
 
     public void Execute(float val)
     {
-        _rb.AddForce(val,0,0);
+        Debug.Log("Magnetism: executed but not implemented");
     }
 }

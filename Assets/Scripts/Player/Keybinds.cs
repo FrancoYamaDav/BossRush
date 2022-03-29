@@ -7,6 +7,7 @@ public class Keybinds
     public KeyCode forward, backward, right, left;
     public KeyCode roll, dash;
     public KeyCode hitLight, hitHeavy, hitDistance;
+    public KeyCode magnetism;
     public Keybinds()
     {
         //Quizas hacer un json con "saved config" y "default config", cargarlos segun setting
@@ -21,7 +22,9 @@ public class Keybinds
         dash = KeyCode.Space;
 
         hitLight = KeyCode.Mouse0;
-        hitHeavy = KeyCode.Mouse1;
-        hitDistance = KeyCode.Mouse2;
+        hitHeavy = KeyCode.Mouse0;
+        hitDistance = KeyCode.Mouse1;
+
+        magnetism = KeyCode.G;
     }
 }

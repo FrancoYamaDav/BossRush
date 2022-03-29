@@ -13,6 +13,6 @@ public class Forward : ICommand
 
     public void Execute(float val)
     {
-        _rb.AddForce(val, 0, 0);
+        _rb.AddForce(Vector3.forward * val);
     }
 }
