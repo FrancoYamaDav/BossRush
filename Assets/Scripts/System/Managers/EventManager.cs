@@ -10,7 +10,6 @@ public class EventManager
     public enum EventsType
     {
         //Player
-        Event_Player_LifeModify,
         Event_Player_Death,
 
         //Boss
@@ -19,6 +18,7 @@ public class EventManager
         //Canvas
         Event_HUD_PlayerLife,
         Event_HUD_PlayerStamina,
+        Event_HUD_PlayerMagnet,
 
         Event_HUD_BossLife,
         
@@ -27,7 +27,6 @@ public class EventManager
 
         //Game
         Event_Game_BossDefeated,
-        Event_Game_FinalBossDefeated,
         Event_Game_Lose,
     }
 

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker, IKnockeable
+public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate
 {
-    Dictionary<KeyCode, ICommand> _constantCommands, _singleCommands;
-
     Rigidbody _rb;
+
     PlayerModel _m;
-    Keybinds _keybinds;
+    PlayerBrain _brain;
 
     //IElectrified elect = new Electricity();
 
-    Vector3 raycastAngle;
+    Vector3 raycastAngle = Vector3.forward;
 
     int currentHealth, currentStamina;
     public bool isMagnetOn;
@@ -24,74 +23,41 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
         ComponentChecker();
 
         currentHealth = _m.maxHealth;
+    }
 
-        RefreshKeybinds();
-
-        EventSubscriber();
+    private void Start()
+    {
+        UpdateManager.Instance.AddToUpdate(this);
     }
 
     void ComponentChecker()
     {
         _rb = GetComponent<Rigidbody>();
+        if (_rb == null)
+            Debug.Log("Controller: RB missing");
 
         _m = GetComponent<PlayerModel>();
         if (_m == null)
             Debug.Log("Controller: Player missing");
 
-        if (_keybinds == null)
-            _keybinds = new Keybinds();
-    }
-
-    void EventSubscriber()
-    {
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_LifeModify, OnPlayerLifeModify);
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_Death, OnPlayerDeath);
-    }
-
-    void RefreshKeybinds()
-    {
-
-        _constantCommands = new Dictionary<KeyCode, ICommand>();
-        _singleCommands = new Dictionary<KeyCode, ICommand>();
-
-        _constantCommands.Add(_keybinds.forward, new Forward(_rb));
-        _constantCommands.Add(_keybinds.backward, new Backward(_rb));
-        _constantCommands.Add(_keybinds.right, new Right(_rb));
-        _constantCommands.Add(_keybinds.left, new Left(_rb));
-
-        //_singleCommands.Add(_keybinds.roll, new Roll(_rb));
-        //_singleCommands.Add(_keybinds.dash, new Dash(_rb));
-
-        //_singleCommands.Add(_keybinds.hitLight, new HitLight());
-        //_singleCommands.Add(_keybinds.hitHeavy, new HitHeavy());
-        _singleCommands.Add(_keybinds.hitDistance, new HitDistance(this));
-
-        _singleCommands.Add(_keybinds.magnetism, new Magnetism(this));
+        _brain = new PlayerBrain(_rb, this, GetComponent<PlayerProyectileSpawner>());
     }
     #endregion
 
-    private void Update()
+    public void OnUpdate()
     {
-        if (!_m.isDead)
-        {
-            Brain();
-            Raycast();
-        }
+        if (_m.isDead)
+            return;
+
+        if (CheckMovement())
+            _brain.Brain();
+
+         Raycast();        
     }
 
-    void Brain()
+    bool CheckMovement()
     {
-        foreach (var command in _constantCommands)
-        {
-            if (Input.GetKey(command.Key))
-                command.Value.Execute(_m.speed);
-        }
-
-        foreach (var command in _singleCommands)
-        {
-            if (Input.GetKeyDown(command.Key))
-                command.Value.Execute(_m.speed);
-        }
+        return true;
     }
 
     #region Damage and Healing
@@ -137,61 +103,47 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IPicker,
         float temp = (float)currentStamina / (float)_m.maxStamina;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerStamina, temp);
     }
-    #endregion
+    #endregion    
 
-    #region  Events
-    void OnPlayerLifeModify(params object[] param)
-    {
-        var newLife = currentHealth + (int)param[0];
-        if (newLife > _m.maxHealth)
-        {
-            newLife = _m.maxHealth;
-        }
-        currentHealth = newLife;
-        //EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_Life, currentHealth);
-    }
-
-    private void OnPlayerDeath(object[] parameterContainer)
-    {
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Game_Lose);
-    }
-    #endregion
-
-    #region Hidden
-    /*
-    void Brain(KeyCode pressedKey)
-    {
-        if (_commands.ContainsKey(pressedKey))
-            _commands[pressedKey].Execute(_m.speed);
-    }*/
-    #endregion
+    #region Raycast
+    float rayDistance = 25;
 
     void Raycast()
     {
+        bool magnetDetected;
+
         RaycastHit lookingAt;
 
-        if (Physics.Raycast(transform.position, transform.forward, out lookingAt, Mathf.Infinity))
+        if (Physics.Raycast(transform.position, raycastAngle, out lookingAt, rayDistance))
         {
             //Debug.Log(lookingAt.collider.name);
 
             IMagnetable desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
-            if (desired != null && isMagnetOn)
+            if (desired != null)
             {
-                Debug.Log("Raycast: Puedo grabear");
-                desired.OnMagnetism(this);
+                magnetDetected = true;
+
+                if (isMagnetOn)
+                  desired.OnMagnetism(this);
             }
+            else
+                magnetDetected = false;
         }
+        else
+            magnetDetected = false;
+
+        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerMagnet, magnetDetected);
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 50);
+        Gizmos.DrawRay(transform.position, raycastAngle * rayDistance);
     }
 
-    public void Test()
-    {       
-        var temp = Instantiate(Resources.Load<Projectile>("Projectile"));
-        temp.transform.position = transform.position + Vector3.forward * 3;
+    public void ChangeRaycastAngle(Vector3 vector)
+    {
+        raycastAngle += vector;
     }
+    #endregion
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDasheable
+public interface IFixedUpdate
 {
-    public void OnMagnetism();
+    void OnFixedUpdate();
 }

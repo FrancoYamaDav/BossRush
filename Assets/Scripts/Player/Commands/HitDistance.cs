@@ -2,24 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitDistance : ICommand
+public class HitDistance : HoldCommand
 {
-    /*Transform _spawnPoint;
-    
-    public HitDistance(Transform t)
+    PlayerProyectileSpawner _ps;
+    public HitDistance(PlayerProyectileSpawner ps)
     {
-        _spawnPoint = t;
-    }*/
-
-    PlayerController deleteLater;
-    public HitDistance(PlayerController pc)
-    {
-        deleteLater = pc;
+        _ps = ps;
+        timeNeeded = 2.5f;
     }
 
-    public void Execute(float val = 0)
+    public override void Execute(float val = 0)
     {
-        deleteLater.Test();
-        //Debug.Log("DistanceHit: Executed but not implemented");        
+        base.Execute(val);
+        Debug.Log("Distance: " + counter);
+    }
+
+    public override void OnExit()
+    {
+        if (counter < 0.50f) counter = 0.50f;        
+        if (counter > 2.50f) counter = 2.50f;        
+
+        if (_ps != null) _ps.Shoot(counter);
+
+        counter = 0;
     }
 }

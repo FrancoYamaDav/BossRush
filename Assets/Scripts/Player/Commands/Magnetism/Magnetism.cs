@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magnetism : ICommand
+public class Magnetism : HoldCommand
 {
     PlayerController _pc;
     public Magnetism(PlayerController pc)
@@ -10,11 +10,15 @@ public class Magnetism : ICommand
         _pc = pc;
     }
 
-    public void Execute(float val)
+    public override void Execute(float val)
     {
-        if(_pc != null)
-            _pc.isMagnetOn = !_pc.isMagnetOn;
+        if (_pc != null)
+            _pc.isMagnetOn = true;
+    }
 
-        Debug.Log("Magnetism: " + _pc.isMagnetOn);
+    public override void OnExit()
+    {
+        if (_pc != null)
+            _pc.isMagnetOn = false;
     }
 }

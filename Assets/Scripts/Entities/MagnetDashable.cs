@@ -7,8 +7,6 @@ public class MagnetDashable : MonoBehaviour, IMagnetable
     public void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
-        pc.transform.position = Vector3.MoveTowards(pc.transform.position, transform.position, 40 * Time.deltaTime);
-
-        Debug.Log("MagnetDashable: On Magnetism executed but not implemented");
+        pc.transform.position = Vector3.MoveTowards(pc.transform.position, transform.position, 75 * Time.deltaTime);
     }
 }

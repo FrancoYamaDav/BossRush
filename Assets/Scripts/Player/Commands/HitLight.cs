@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitLight : ICommand
+public class HitLight : HoldCommand
 {
-    public HitLight()
-    {
+    public HitLight(){ }
 
+    public override void Execute(float val = 0)
+    {
+        base.Execute(val);
+        Debug.Log("Hit: Executed but not implemented " + counter); 
     }
 
-    public void Execute(float val = 0)
+    public override void OnExit()
     {
-        Debug.Log("LightHit: Executed but not implemented");
+        Debug.Log("Hit: Released with " + counter); 
     }
 }
