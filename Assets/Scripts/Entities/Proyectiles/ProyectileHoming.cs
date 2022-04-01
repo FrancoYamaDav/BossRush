@@ -30,7 +30,7 @@ public class ProyectileHoming : BaseProyectile, IUpdate
     protected override void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
-        if (collisionInterface != null)
+        if (collisionInterface != null && !collision.gameObject.GetComponent<TestBossController>())
         {
             collisionInterface.ReceiveDamage(dmg);
         }
