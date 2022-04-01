@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proyectile : MonoBehaviour, IUpdate
+public class Proyectile : BaseProyectile, IUpdate
 {
     PlayerProyectileSpawner _ps; 
 

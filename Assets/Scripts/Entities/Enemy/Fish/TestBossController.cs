@@ -5,6 +5,7 @@ using UnityEngine;
 public class TestBossController : MonoBehaviour, IUpdate, IDamageable
 {
     TestBossModel _bm;
+    TestBossProyectileSpawner _ps;
 
     Rigidbody _rb;
 
@@ -16,22 +17,19 @@ public class TestBossController : MonoBehaviour, IUpdate, IDamageable
     int lastPosition = -1;
 
     //Attack
-    public GameObject shootPos;
-    float timer, cooldown = 5;
-
-    ProyectileHoming p;
+    float timer, cooldown = 7.5f;
 
     private void Awake()
     {
         _bm = GetComponent<TestBossModel>();
+        _ps = GetComponentInChildren<TestBossProyectileSpawner>();
         _rb = GetComponent<Rigidbody>();
-
-        p = Resources.Load<ProyectileHoming>("Homing");
     }
 
     private void Start()
     {
         currentHealth = _bm.maxHealth;
+        UpdateManager.Instance.AddToUpdate(this);
 
         UpdateHealthBar();
         ChangePosition();
@@ -42,17 +40,13 @@ public class TestBossController : MonoBehaviour, IUpdate, IDamageable
         if (_bm.isDead) return;
 
         timer += 1 * Time.deltaTime;
-        if (timer > cooldown) Shoot();
-    }
+        if (timer > cooldown)
+        {
 
-    void Shoot()
-    {
-        var temp = Instantiate(p);
-        temp.transform.localPosition = shootPos.transform.localPosition;
-
-        Debug.Log("Pew");
-        timer = 0;
-    }
+            _ps.Shoot();
+            timer = 0;
+        }
+    }    
 
     #region HealthManagement
     public void ReceiveDamage(int dmgVal)
