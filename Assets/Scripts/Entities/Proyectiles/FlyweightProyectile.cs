@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectileFlyweight : MonoBehaviour
+public class FlyweightProyectile : MonoBehaviour
 {
     public static readonly Flyweight Default = new Flyweight
     {

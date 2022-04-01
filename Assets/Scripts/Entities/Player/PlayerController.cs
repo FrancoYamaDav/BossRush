@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if (_m == null)
             Debug.Log("Controller: Player missing");
 
-        _brain = new PlayerBrain(_rb, this, GetComponent<PlayerProyectileSpawner>());
+        _brain = new PlayerBrain(_rb, this, GetComponent<PlayerProyectileSpawner>(), _m);
     }
     #endregion
 

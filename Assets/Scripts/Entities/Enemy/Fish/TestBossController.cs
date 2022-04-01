@@ -67,7 +67,7 @@ public class TestBossController : MonoBehaviour, IUpdate, IDamageable
     {
         EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 3);
 
-        Debug.Log("CycleWaypoints: 0 health left");
+        //Debug.Log("CycleWaypoints: 0 health left");
 
         EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_Defeated);
     }

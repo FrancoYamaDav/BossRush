@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectileHoming : BaseProyectile, IUpdate
+public class ProyectileHoming : MonoBehaviour, IUpdate
 {
     PlayerController _pc;
     TestBossProyectileSpawner _ps;
@@ -14,7 +14,7 @@ public class ProyectileHoming : BaseProyectile, IUpdate
 
     public void OnUpdate()
     {
-        Debug.Log("Homing: Update Executed");
+        //Debug.Log("Homing: Update Executed");
 
         if (_pc != null)
             Move();

@@ -6,6 +6,7 @@ public class PlayerBrain
 {
     Rigidbody _rb;
 
+    PlayerModel _pm;
     PlayerController _pc;
     PlayerProyectileSpawner _ps;
     Keybinds _keybinds;
@@ -13,9 +14,10 @@ public class PlayerBrain
     Dictionary<KeyCode, ICommand> _moveCommands;
     Dictionary<KeyCode, HoldCommand> _holdCommands;
     
-    public PlayerBrain(Rigidbody rb, PlayerController pc, PlayerProyectileSpawner ps)
+    public PlayerBrain(Rigidbody rb, PlayerController pc, PlayerProyectileSpawner ps, PlayerModel pm)
     {
         _rb = rb;
+        _pm = pm;
         _pc = pc;
         _ps = ps;
         _keybinds = new Keybinds();
@@ -43,13 +45,13 @@ public class PlayerBrain
         foreach (var command in _moveCommands)
         {
             if (Input.GetKey(command.Key))
-                command.Value.Execute(6.5f);
+                command.Value.Execute(_pm.speed);
         }
 
         foreach (var command in _holdCommands)
         {
             if (Input.GetKey(command.Key))
-                command.Value.Execute(6.5f);
+                command.Value.Execute(_pm.speed);
         }
 
         foreach (var command in _holdCommands)

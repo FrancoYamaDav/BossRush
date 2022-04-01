@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proyectile : BaseProyectile, IUpdate
+public class Proyectile : MonoBehaviour, IUpdate
 {
     PlayerProyectileSpawner _ps; 
 
     float _speed;
     int _dmg;
 
-    // Update is called once per frame
     public void OnUpdate()
     {
         transform.position += new Vector3(0, 0, _speed) * Time.deltaTime;

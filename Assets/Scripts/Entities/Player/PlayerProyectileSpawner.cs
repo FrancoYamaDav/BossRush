@@ -23,9 +23,9 @@ public class PlayerProyectileSpawner : MonoBehaviour
     public Proyectile Shoot(float multiplier)
     {
         var p = _pool.SendFromPool().SetSpawner(this)
-                                    .SetSizeTrans(ProyectileFlyweight.Default.sizeTrans * multiplier)
-                                    .SetSpeed(ProyectileFlyweight.Default.speed)
-                                    .SetDamage((int)((float)ProyectileFlyweight.Default.dmg * multiplier));
+                                    .SetSizeTrans(FlyweightProyectile.Default.sizeTrans * multiplier)
+                                    .SetSpeed(FlyweightProyectile.Default.speed)
+                                    .SetDamage((int)((float)FlyweightProyectile.Default.dmg * multiplier));
 
         p.transform.position = this.transform.position + transform.forward * 2;
         
