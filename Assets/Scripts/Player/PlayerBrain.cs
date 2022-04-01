@@ -43,13 +43,13 @@ public class PlayerBrain
         foreach (var command in _moveCommands)
         {
             if (Input.GetKey(command.Key))
-                command.Value.Execute(5);
+                command.Value.Execute(6.5f);
         }
 
         foreach (var command in _holdCommands)
         {
             if (Input.GetKey(command.Key))
-                command.Value.Execute(5);
+                command.Value.Execute(6.5f);
         }
 
         foreach (var command in _holdCommands)

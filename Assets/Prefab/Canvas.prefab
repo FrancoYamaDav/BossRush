@@ -458,8 +458,8 @@ RectTransform:
   m_Father: {fileID: 2971182747630591344}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.017}
-  m_AnchorMax: {x: 0.8, y: 0.2}
+  m_AnchorMin: {x: 0.2, y: 0.02}
+  m_AnchorMax: {x: 0.8, y: 0.09}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -546,8 +546,8 @@ RectTransform:
   m_Father: {fileID: 2971182747630591344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.2}
-  m_AnchorMax: {x: 0.8, y: 0.28124902}
+  m_AnchorMin: {x: 0.2, y: 0.1}
+  m_AnchorMax: {x: 0.8, y: 0.15}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SharpBullet
+  m_text: Tesuto-Hito
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5ff36897b1cc03f48a30afae89f46e96, type: 2}
   m_sharedMaterial: {fileID: -5045635568925988912, guid: 5ff36897b1cc03f48a30afae89f46e96, type: 2}
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.85
+  m_fontSize: 11
   m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 1
