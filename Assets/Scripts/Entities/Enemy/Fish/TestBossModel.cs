@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class TestBossModel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    int _maxHealth = 100;
+    public int maxHealth { get { return _maxHealth; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool isDead = false;
 }

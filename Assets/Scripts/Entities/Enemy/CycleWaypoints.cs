@@ -92,7 +92,7 @@ public class CycleWaypoints : MonoBehaviour, IDamageable
 
         Debug.Log("CycleWaypoints: 0 health left");
 
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Game_BossDefeated);
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_Defeated);
     }
     #endregion
 

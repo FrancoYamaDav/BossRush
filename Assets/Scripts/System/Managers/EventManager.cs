@@ -25,8 +25,9 @@ public class EventManager
         //Sound
         Event_Sound_Trigger,
 
+        Event_Sound_Boss,
+
         //Game
-        Event_Game_BossDefeated,
         Event_Game_Lose,
     }
 

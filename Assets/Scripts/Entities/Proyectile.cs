@@ -32,7 +32,7 @@ public class Proyectile : MonoBehaviour, IUpdate
     {
         _ps.DestroyProyectile(this);
         TurnOff(this);
-        Debug.Log("Proyectile: My damage was " + _dmg);
+        //Debug.Log("Proyectile: My damage was " + _dmg);
     }
     #endregion
 
