@@ -5,31 +5,38 @@ using UnityEngine;
 
 public abstract class BaseProyectile : MonoBehaviour, IUpdate
 {
-    BaseProyectileSpawner _ps;
+    protected BaseProyectileSpawner _ps;
 
-    int dmg = 1;
+    IMove moveType;
 
-    public virtual void OnUpdate(){ }
+    protected float _speed;
+    protected int _dmg = 1;
 
-    #region Impact  
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnUpdate()
+    {
+        moveType.Move();
+    }
+
+    #region Collision
+
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
         if (collisionInterface != null)
         {
-            collisionInterface.ReceiveDamage(dmg);
+            collisionInterface.ReceiveDamage(_dmg);
         }
 
         if (Exception()) OnDeath();
     }
 
-    void OnDeath()
+    protected virtual void OnDeath()
     {
         //_ps.DestroyProyectile(this);
         TurnOff(this);
     }
 
-    bool Exception()
+    protected bool Exception()
     {
         return true;
     }

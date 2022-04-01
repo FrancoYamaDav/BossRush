@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proyectile : MonoBehaviour, IUpdate
+public class Proyectile : BaseProyectile, IUpdate
 {
-    PlayerProyectileSpawner _ps; 
+    PlayerProyectileSpawner _pps;     
 
-    float _speed;
-    int _dmg;
-
-    public void OnUpdate()
+    public override void OnUpdate()
     {
         transform.position += new Vector3(0, 0, _speed) * Time.deltaTime;
     }
 
     #region Impact
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
-        if (collisionInterface != null)
+        if (collisionInterface != null && !collision.gameObject.GetComponent<PlayerController>())
         {
             collisionInterface.ReceiveDamage(_dmg);
         }
@@ -27,9 +24,9 @@ public class Proyectile : MonoBehaviour, IUpdate
             OnDeath();
     }
 
-    void OnDeath()
+    protected override void OnDeath()
     {
-        _ps.DestroyProyectile(this);
+        _pps.DestroyProyectile(this);
         TurnOff(this);
         //Debug.Log("Proyectile: My damage was " + _dmg);
     }
@@ -38,7 +35,7 @@ public class Proyectile : MonoBehaviour, IUpdate
     #region Builder
     public Proyectile SetSpawner(PlayerProyectileSpawner ps)
     {
-        _ps = ps;
+        _pps = ps;
         return this;
     }
 

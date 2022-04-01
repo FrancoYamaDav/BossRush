@@ -6,7 +6,7 @@ public class FlyweightProyectile : MonoBehaviour
 {
     public static readonly Flyweight Default = new Flyweight
     {
-        speed = 5,
+        speed = 7,
         dmg = 20,
         sizeTrans = new Vector3(1,1,1),
     };

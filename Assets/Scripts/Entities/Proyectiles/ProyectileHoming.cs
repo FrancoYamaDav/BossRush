@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProyectileHoming : MonoBehaviour, IUpdate
+public class ProyectileHoming : BaseProyectile, IUpdate
 {
     PlayerController _pc;
-    TestBossProyectileSpawner _ps;
+    TestBossProyectileSpawner _tps;
 
     private void Awake()
     {
         _pc = FindObjectOfType<PlayerController>();    
     }
 
-    public void OnUpdate()
+    public override void OnUpdate()
     {
         //Debug.Log("Homing: Update Executed");
 
@@ -27,7 +27,7 @@ public class ProyectileHoming : MonoBehaviour, IUpdate
 
     #region Impact
     int dmg = 20;
-    private void OnCollisionEnter(Collision collision)
+    protected override void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
         if (collisionInterface != null)
@@ -39,9 +39,9 @@ public class ProyectileHoming : MonoBehaviour, IUpdate
             OnDeath();
     }
 
-    void OnDeath()
+    protected override void OnDeath()
     {
-        _ps.DestroyProyectile(this);
+        _tps.DestroyProyectile(this);
         TurnOff(this);
     }
     #endregion
@@ -63,7 +63,7 @@ public class ProyectileHoming : MonoBehaviour, IUpdate
     #region Builder
     public ProyectileHoming SetSpawner(TestBossProyectileSpawner ps)
     {
-        _ps = ps;
+        _tps = ps;
         return this;
     }
     #endregion
