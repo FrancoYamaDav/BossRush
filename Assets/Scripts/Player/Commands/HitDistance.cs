@@ -14,7 +14,7 @@ public class HitDistance : HoldCommand
     public override void Execute(float val = 0)
     {
         base.Execute(val);
-        Debug.Log("Distance: " + counter);
+        //Debug.Log("Distance: " + counter);
     }
 
     public override void OnExit()
