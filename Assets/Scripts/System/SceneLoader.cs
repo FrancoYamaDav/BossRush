@@ -6,9 +6,20 @@ using TMPro;
 
 public class SceneLoader : MonoBehaviour
 {
-    public GameObject LoadingScreen;
+    public static SceneLoader Instance { get { return _instance; } }
+    private static SceneLoader _instance;
+
+    public GameObject LoadingScreen; 
     public Slider percentegeSlider;
     public TextMeshProUGUI percentegeText;
+
+    private void Awake()
+    {
+        _instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void LoadLevel(string sceneName)
     {
         StartCoroutine(LoadAsynchronus(sceneName));
@@ -26,5 +37,7 @@ public class SceneLoader : MonoBehaviour
             percentegeText.text = "LOADING: " + (progress * 100f).ToString("0.0") + "%";
             yield return null;
         }
+
+        LoadingScreen.SetActive(false);
     }
 }

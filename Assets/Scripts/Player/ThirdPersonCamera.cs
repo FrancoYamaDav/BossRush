@@ -31,7 +31,7 @@ public class ThirdPersonCamera : MonoBehaviour, IFixedUpdate
         if (target != null)
             transform.position = target.transform.position + positionOffset;
         
-        //if (ready) Rotate();
+        if (ready) Rotate();
     }
 
     float minHorizontal, maxHorizontal;

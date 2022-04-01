@@ -5,6 +5,9 @@ using UnityEngine;
 public class SequencePiece : PuzzlePiece
 {
     private SequencePuzzle _reference;
+
+    [SerializeField] Transform activatedPos;
+    [SerializeField] Transform deactivatedPos;
     public SequencePiece SetPuzzleControllerReference(SequencePuzzle reference)
     {
         _reference = reference;
@@ -12,7 +15,7 @@ public class SequencePiece : PuzzlePiece
         return this;
     }
 
-    public override void OnInteract()
+    public override void OnActivated()
     {
         _reference.AddElementToPlayerSequence(this);
 
@@ -21,6 +24,11 @@ public class SequencePiece : PuzzlePiece
 
     private void OnMouseDown()
     {
-        OnInteract();
+        OnActivated();
+    }
+
+    public override void OnDeactivated()
+    {
+        throw new System.NotImplementedException();
     }
 }

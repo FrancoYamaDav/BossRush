@@ -9,5 +9,6 @@ public abstract class PuzzlePiece : MonoBehaviour, IPiece<PuzzleType>, IInteract
     [SerializeField] private PuzzleType puzzleType;
     public int ID { get { return _id; } }
     private int _id;
-    public abstract void OnInteract();
+    public abstract void OnActivated();
+    public abstract void OnDeactivated();
 }
