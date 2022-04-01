@@ -33,6 +33,7 @@ public class PlayerView : MonoBehaviour
 
     void OnMagnetUpdate(params object[] param)
     {
+        if (magnet == null) return;
         magnet.enabled = (bool)param[0];
     }
 }

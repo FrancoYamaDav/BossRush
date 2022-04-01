@@ -25,6 +25,8 @@ public class TestBossView : MonoBehaviour
 
     void PlaySound(params object[] param)
     {
+        if (_as == null) return;
+
         _as.clip = clips[(int)param[0]];
         _as.Play();
     }

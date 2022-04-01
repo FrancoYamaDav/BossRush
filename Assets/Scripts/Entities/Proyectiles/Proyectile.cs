@@ -20,7 +20,7 @@ public class Proyectile : BaseProyectile, IUpdate
             collisionInterface.ReceiveDamage(_dmg);
         }
 
-        if (!(collision.gameObject.layer == 6 || collision.gameObject.GetComponent<PlayerController>()))
+        if (DeathException(collision))
             OnDeath();
     }
 
@@ -28,7 +28,14 @@ public class Proyectile : BaseProyectile, IUpdate
     {
         _pps.DestroyProyectile(this);
         TurnOff(this);
-        //Debug.Log("Proyectile: My damage was " + _dmg);
+    }
+
+    protected override bool DeathException(Collision collision)
+    {
+        if (collision.gameObject.layer == 6 || collision.gameObject.GetComponent<PlayerController>() || collision.gameObject.GetComponent<BaseProyectile>())
+            return false;
+        else
+            return true;
     }
     #endregion
 

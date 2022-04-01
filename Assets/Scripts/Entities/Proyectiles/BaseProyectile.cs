@@ -22,23 +22,30 @@ public abstract class BaseProyectile : MonoBehaviour, IUpdate
     protected virtual void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
-        if (collisionInterface != null)
+        if (DamageException(collisionInterface))
         {
             collisionInterface.ReceiveDamage(_dmg);
         }
 
-        if (Exception()) OnDeath();
+        if (DeathException(collision)) OnDeath();
     }
 
     protected virtual void OnDeath()
     {
-        //_ps.DestroyProyectile(this);
         TurnOff(this);
     }
 
-    protected bool Exception()
+    protected virtual bool DeathException(Collision collision)
     {
         return true;
+    }
+
+    protected virtual bool DamageException(IDamageable collisionInterface)
+    {
+        if (collisionInterface != null)
+            return true;
+        else
+            return false;
     }
     #endregion
 

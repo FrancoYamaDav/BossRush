@@ -8,7 +8,7 @@ public class HitDistance : HoldCommand
     public HitDistance(PlayerProyectileSpawner ps)
     {
         _ps = ps;
-        timeNeeded = 2.5f;
+        timeNeeded = 1.8f;
     }
 
     public override void Execute(float val = 0)
@@ -20,7 +20,7 @@ public class HitDistance : HoldCommand
     public override void OnExit()
     {
         if (counter < 0.50f) counter = 0.50f;        
-        if (counter > 2.50f) counter = 2.50f;        
+        if (counter > timeNeeded) counter = timeNeeded;        
 
         if (_ps != null) _ps.Shoot(counter);
 

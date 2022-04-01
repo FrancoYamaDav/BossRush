@@ -5,6 +5,7 @@ using UnityEngine;
 public class Right : ICommand
 {
     Rigidbody _rb;
+    Vector3 _position;
 
     public Right(Rigidbody rb)
     {
@@ -13,6 +14,7 @@ public class Right : ICommand
 
     public void Execute(float val)
     {
-        _rb.AddForce(val,0,0);
+        _position = new Vector3(val, 0, 0);
+        _rb.AddForce(_position);
     }
 }

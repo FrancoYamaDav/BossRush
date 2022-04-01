@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Forward : ICommand
+public class Backward : ICommand
 {
     Rigidbody _rb;
+    Vector3 _position;
 
-    public Forward(Rigidbody rb)
+    public Backward(Rigidbody rb)
     {
         _rb = rb;
     }
 
     public void Execute(float val)
     {
-        _rb.AddForce(Vector3.forward * val);
+        _position = new Vector3(0.0f, 0.0f, -val);
+        _rb.AddForce(_position);
     }
 }

@@ -14,10 +14,7 @@ public class ProyectileHoming : BaseProyectile, IUpdate
 
     public override void OnUpdate()
     {
-        //Debug.Log("Homing: Update Executed");
-
-        if (_pc != null)
-            Move();
+        if (_pc != null) Move();
     }
 
     public void Move()
@@ -26,16 +23,15 @@ public class ProyectileHoming : BaseProyectile, IUpdate
     }
 
     #region Impact
-    int dmg = 20;
     protected override void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
         if (collisionInterface != null && !collision.gameObject.GetComponent<TestBossController>())
         {
-            collisionInterface.ReceiveDamage(dmg);
+            collisionInterface.ReceiveDamage(_dmg);
         }
 
-        if (!collision.gameObject.GetComponent<TestBossController>())
+        if(DeathException(collision))
             OnDeath();
     }
 
@@ -43,6 +39,14 @@ public class ProyectileHoming : BaseProyectile, IUpdate
     {
         _tps.DestroyProyectile(this);
         TurnOff(this);
+    }
+
+    protected override bool DeathException(Collision collision)
+    {
+        if (!collision.gameObject.GetComponent<TestBossController>())
+            return true;
+        else
+            return false;
     }
     #endregion
 

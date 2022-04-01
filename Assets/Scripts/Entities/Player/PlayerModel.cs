@@ -35,7 +35,7 @@ public class PlayerModel : MonoBehaviour
     #endregion
 
     //Floats
-    float _speed = 5f;   
+    float _speed = 17.5f;   
     public float speed { get { return _speed; } }
 
 
