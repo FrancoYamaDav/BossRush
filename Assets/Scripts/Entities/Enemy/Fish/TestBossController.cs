@@ -2,54 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBossController : MonoBehaviour, IUpdate, IDamageable
+public class TestBossController : BaseBossController, IUpdate, IDamageable
 {
-    TestBossModel _bm;
     TestBossProyectileSpawner _ps;
 
-    Rigidbody _rb;
-
     bool isStunned = false;
-    int currentHealth;
 
     //Movement
     public List<Transform> waypoints = new List<Transform>();
     int lastPosition = -1;
 
     //Attack
-    float timer, cooldown = 7.5f;
+    float timer, cooldown = 4.2f;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _bm = GetComponent<TestBossModel>();
+        base.Awake();
         _ps = GetComponentInChildren<TestBossProyectileSpawner>();
-        _rb = GetComponent<Rigidbody>();
     }
 
-    private void Start()
+    protected override void Start()
     {
-        currentHealth = _bm.maxHealth;
-        UpdateManager.Instance.AddToUpdate(this);
-
-        UpdateHealthBar();
+        base.Start();
         ChangePosition();
     }
 
-    public void OnUpdate()
+    public override void OnUpdate()
     {
-        if (_bm.isDead) return;
+        base.OnUpdate();
 
-        timer += 1 * Time.deltaTime;
-        if (timer > cooldown)
+        if (!isStunned)
         {
-
-            _ps.Shoot();
-            timer = 0;
+            timer += 1 * Time.deltaTime;
+            if (timer > cooldown)
+            {
+               _ps.Shoot();
+               timer = 0;
+            }
         }
     }    
 
     #region HealthManagement
-    public void ReceiveDamage(int dmgVal)
+    public override void ReceiveDamage(int dmgVal)
     {
         if (!isStunned)
             ChangePosition();
@@ -61,21 +55,6 @@ public class TestBossController : MonoBehaviour, IUpdate, IDamageable
 
             EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 2);
         }
-    }
-
-    public void OnNoLife()
-    {
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 3);
-
-        //Debug.Log("CycleWaypoints: 0 health left");
-
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_Defeated);
-    }
-
-    void UpdateHealthBar()
-    {
-        float temp = (float)currentHealth / (float)_bm.maxHealth;
-        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_BossLife, temp);
     }
     #endregion
 
@@ -97,11 +76,17 @@ public class TestBossController : MonoBehaviour, IUpdate, IDamageable
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {        
-        if (collision.gameObject.GetComponent<PlayerModel>())
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        base.OnCollisionEnter(collision);
+
+        var temp = collision.gameObject.GetComponent<PlayerController>();
+        if (temp)
         {
+            if (!temp.isDashing) return;
+
             isStunned = true;
+            timer = 0;
             _rb.useGravity = true;
 
             //Debug.Log("CycleWaypoints: Me han stuneado");

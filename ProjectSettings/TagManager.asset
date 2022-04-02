@@ -12,11 +12,11 @@ TagManager:
   - Water
   - UI
   - Floor
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Structure
+  - Entity
+  - Boss
+  - Player
+  - Magnetable
   - 
   - 
   - 

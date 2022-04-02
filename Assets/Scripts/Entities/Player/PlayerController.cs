@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     Vector3 raycastAngle = Vector3.forward;
 
     int currentHealth, currentStamina;
-    public bool isMagnetOn;
+    public bool isMagnetOn, isDashing;
+    public LayerMask layerMask;
 
     #region Set up
     private void Awake()
@@ -40,16 +41,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if (_m == null)
             Debug.Log("Controller: Player missing");
 
-       //_brain = new PlayerBrain(_rb, this, GetComponent<PlayerProyectileSpawner>(), _m);
+       _brain = new PlayerBrain(_rb, this, GetComponent<PlayerProyectileSpawner>(), _m);
     }
     #endregion
     public void OnUpdate()
     {
         if (_m.isDead)
             return;
-        /*
+        
         if (CheckMovement())
-            _brain.Brain();*/
+            _brain.Brain();
 
          Raycast();        
     }
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     #region Damage and Healing
     public void ReceiveDamage(int dmgVal)
     {
+        //Debug.Log("Player: Received Damage");
         currentHealth -= dmgVal;
         UpdateHealthBar();
         if (currentHealth <= 0) OnNoLife();
@@ -69,8 +71,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public void OnNoLife()
     {
-        Debug.Log("Player: Me morí");
-        _m.isDead = true;
+        //Debug.Log("Player: No life points remaining");
         EventManager.TriggerEvent(EventManager.EventsType.Event_Player_Death);
     }
 
@@ -112,8 +113,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         bool magnetDetected;
 
         RaycastHit lookingAt;
-
-        if (Physics.Raycast(transform.position, raycastAngle, out lookingAt, rayDistance))
+        if (Physics.Raycast(transform.position, raycastAngle, out lookingAt, rayDistance, layerMask))
         {
             //Debug.Log(lookingAt.collider.name);
 
@@ -145,4 +145,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         raycastAngle += vector;
     }
     #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            isDashing = false;
+        }
+    }
 }

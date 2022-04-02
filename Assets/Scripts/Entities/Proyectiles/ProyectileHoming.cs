@@ -9,7 +9,8 @@ public class ProyectileHoming : BaseProyectile, IUpdate
 
     private void Awake()
     {
-        _pc = FindObjectOfType<PlayerController>();    
+        _pc = FindObjectOfType<PlayerController>();
+        _dmg = FlyweightProyectile.Homing.dmg;
     }
 
     public override void OnUpdate()

@@ -27,7 +27,7 @@ public class PlayerProyectileSpawner : MonoBehaviour
                                     .SetSpeed(FlyweightProyectile.Default.speed)
                                     .SetDamage((int)((float)FlyweightProyectile.Default.dmg * multiplier));
 
-        p.transform.position = this.transform.position + transform.forward * 2;
+        p.transform.position = this.transform.position + transform.forward * 3;
         
         //p.transform.rotation = this.transform.rotation;
 
