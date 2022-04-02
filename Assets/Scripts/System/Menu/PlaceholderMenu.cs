@@ -14,4 +14,12 @@ public class PlaceholderMenu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            SceneManager.LoadScene(3);
+        }
+    }
 }

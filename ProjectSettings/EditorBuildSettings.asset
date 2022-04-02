@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 4c558a16a3919474e85de44a3e0ddf1b
   - enabled: 1
+    path: Assets/Scenes/DodgeBossTest.unity
+    guid: f2c9b004dfdc1744fb5c926032f48db6
+  - enabled: 1
     path: Assets/Scenes/Puzzle.unity
     guid: 0e9fb01be4ce7484f8ff13f6d5f1910f
   - enabled: 1
