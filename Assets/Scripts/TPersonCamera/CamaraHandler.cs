@@ -51,7 +51,7 @@ public class CamaraHandler : MonoBehaviour
     public void CamaraHandlerRotation(float delta, float mouseXInput, float mouseYInput)
     {
         lookAngle += (mouseXInput * lookspeed) / delta;
-        pivotAngle -= (mouseYInput * pivotAngle) / delta;
+        pivotAngle -= (mouseYInput * pivotSpeed) / delta;
         pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);
 
         Vector3 rotation = Vector3.zero;
