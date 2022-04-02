@@ -24,11 +24,13 @@ public class PlayerView : MonoBehaviour
 
     void OnLifeUpdate(params object[] param)
     {
+        if (hpSlider == null) return;
         hpSlider.value = (float)param[0];
     }
     void OnStaminaUpdate(params object[] param)
     {
-        hpSlider.value = (float)param[0];
+        if (stSlider == null) return;
+        stSlider.value = (float)param[0];
     }
 
     void OnMagnetUpdate(params object[] param)

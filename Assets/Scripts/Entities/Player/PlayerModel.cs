@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class PlayerModel : MonoBehaviour
 {
-    public bool isDead = false;
-
-    #region Hidden
-    /*
+    //Capaz mover esta variable a otro lado
+    bool _isDead = false;
     public bool isDead { get { return _isDead; } }
-    public void ModifyDead(bool val)
+    public void DeadEvent(params object[] param)
     {
-        Debug.Log("Test");
-        _isDead = val;
+        _isDead = true;
     }
-    //Pasarlo a events*/
-    #endregion
 
+    //Ints
     int _maxHealth = 100;
     public int maxHealth { get { return _maxHealth; } }
 
@@ -24,28 +20,12 @@ public class PlayerModel : MonoBehaviour
     int _maxStamina = 100;
     public int maxStamina { get { return _maxStamina; } }
 
-    #region Hidden
-    /*    
-    public int currentHealth { get { return _currentHealth; } }
-
-    public void ModifyHealth(int val)
-    {
-        _currentHealth += val;
-    }*/
-    #endregion
-
     //Floats
     float _speed = 17.5f;   
     public float speed { get { return _speed; } }
-
-
-    float _rollCd = 4.5f, _dashCd = 3.2f;
-
-    public float rollCd { get { return _rollCd; } }
-    public float dashCd { get { return _dashCd; } }
-
-
-    float _rollForce = 5f, _dashForce = 3f;
-    public float rollForce { get { return _rollForce; } }
-    public float dashForce { get { return _dashForce; } }
+    
+    private void Awake()
+    {
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_Death, DeadEvent);
+    }
 }

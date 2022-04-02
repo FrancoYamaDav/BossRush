@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestBossView : MonoBehaviour
+public class BaseBossView : MonoBehaviour
 {
     public Slider hpSlider;
 
@@ -20,6 +20,7 @@ public class TestBossView : MonoBehaviour
 
     void OnLifeUpdate(params object[] param)
     {
+        if (hpSlider == null) return;
         hpSlider.value = (float)param[0];
     }
 

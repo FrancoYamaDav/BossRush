@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBrain : MonoBehaviour
+public class PlayerBrain
 {
     Rigidbody _rb;
 
@@ -14,6 +14,7 @@ public class PlayerBrain : MonoBehaviour
     Dictionary<KeyCode, ICommand> _moveCommands;
     Dictionary<KeyCode, HoldCommand> _holdCommands;
 
+    /*
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -26,9 +27,8 @@ public class PlayerBrain : MonoBehaviour
     private void Update()
     {      
         Brain();
-    }
-
-    /*
+    }*/
+    
     public PlayerBrain(Rigidbody rb, PlayerController pc, PlayerProyectileSpawner ps, PlayerModel pm)
     {
         _rb = rb;
@@ -37,7 +37,7 @@ public class PlayerBrain : MonoBehaviour
         _ps = ps;
         _keybinds = new Keybinds();
         RefreshKeybinds();
-    }*/
+    }
 
     public void RefreshKeybinds()
     {
