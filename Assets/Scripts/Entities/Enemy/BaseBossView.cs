@@ -20,6 +20,7 @@ public class BaseBossView : MonoBehaviour
 
     void OnLifeUpdate(params object[] param)
     {
+        if (hpSlider == null) return;
         hpSlider.value = (float)param[0];
     }
 

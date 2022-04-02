@@ -67,7 +67,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
             if (temp != lastPosition)
             {
                 transform.position = waypoints[temp].position;
-                lastPosition = Random.Range(0, waypoints.Count);
+                lastPosition = temp;
 
                 EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 0);
             }
