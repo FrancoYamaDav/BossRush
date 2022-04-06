@@ -7,7 +7,7 @@ public abstract class Puzzle : MonoBehaviour, IPuzzle<PuzzleType>
 {
     [SerializeField] protected List<PuzzlePiece> puzzlePieces;
     public PuzzleType GetPuzzleType() => _puzzleType;
-    public int sceneID { get { return GetInstanceID(); } }
+    public int SceneID { get { return GetInstanceID(); } }
     protected int _piecesToBeSolved => puzzlePieces.Count;
 
     protected PuzzleType _puzzleType;

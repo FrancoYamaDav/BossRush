@@ -14,7 +14,7 @@ public class Backward : ICommand
 
     public void Execute(float val)
     {
-        _position = new Vector3(0.0f, 0.0f, -val);
+        _position = new Vector3(0.0f, 0.0f, -val * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime);
         _rb.AddForce(_position);
     }
 }

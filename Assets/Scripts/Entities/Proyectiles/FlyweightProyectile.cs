@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class FlyweightProyectile : MonoBehaviour
 {
-    public static readonly Flyweight Default = new Flyweight
+    public static readonly BulletFlyweight Default = new BulletFlyweight
     {
         speed = 7,
         dmg = 20,
         sizeTrans = new Vector3(1,1,1),
     };
 
-    public static readonly Flyweight Straight = new Flyweight
+    public static readonly BulletFlyweight Straight = new BulletFlyweight
     {
         speed = 7,
         dmg = 20,
         sizeTrans = new Vector3(1, 1, 1),
     };
 
-    public static readonly Flyweight Homing = new Flyweight
+    public static readonly BulletFlyweight Homing = new BulletFlyweight
     {
         speed = 7,
         dmg = 20,

@@ -25,6 +25,6 @@ public class Keybinds
         hitHeavy = KeyCode.Mouse0;
         hitDistance = KeyCode.Mouse1;
 
-        magnetism = KeyCode.G;
+        magnetism = KeyCode.Mouse2;
     }
 }

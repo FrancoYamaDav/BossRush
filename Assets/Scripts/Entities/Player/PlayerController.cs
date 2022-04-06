@@ -5,10 +5,15 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate
 {
-    Rigidbody _rb;
+    [Header("Raycast Properties")]
+    [SerializeField] private Transform rayPivot;
+    [SerializeField] private float rayDistance = 25;
+    public Vector3 moveDirection;
 
-    PlayerModel _m;
-    PlayerBrain _brain;
+    
+    private Rigidbody _rb;
+    private PlayerModel _m;
+    private PlayerBrain _brain;
 
     //IElectrified elect = new Electricity();
 
@@ -22,7 +27,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     private void Awake()
     {
         ComponentChecker();
-
+        Cursor.lockState = CursorLockMode.Locked;
         currentHealth = _m.maxHealth;
     }
 
@@ -46,14 +51,60 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     #endregion
     public void OnUpdate()
     {
-        if (_m.isDead)
-            return;
-        
-        if (CheckMovement())
-            _brain.Brain();
+        if (_m.isDead) return;
 
-         Raycast();        
+        if (CheckMovement())
+        {
+            _brain.Brain();
+        }
+
+        Raycast();
+        
+        Rotation(Time.fixedDeltaTime);
+        Movement();
     }
+    
+    //TODO: Cambiar todo el brain para que se mueva via deltas.
+    #region New Rotattion&Movement
+
+    private void Rotation(float _delta) 
+    {
+        Vector3 targetDir = Vector3.zero;
+        targetDir = rayPivot.forward * Input.GetAxis("Vertical");
+        targetDir += rayPivot.right * Input.GetAxis("Horizontal");
+        targetDir.Normalize();
+        targetDir.y = 0;
+
+        if (targetDir == Vector3.zero)
+        {
+            targetDir = transform.forward;     
+        }
+
+        float rs = 25f;
+        Quaternion tr = Quaternion.LookRotation(targetDir);
+        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rs * _delta);
+
+        transform.rotation = targetRotation;
+
+    }
+    
+    private void Movement()
+    {
+        moveDirection = rayPivot.forward * Input.GetAxis("Vertical");
+        moveDirection += rayPivot.right * Input.GetAxis("Horizontal");
+        moveDirection.Normalize();
+        moveDirection.y = 0;
+
+        float speed = 10f;
+        moveDirection *= speed;
+
+        Vector3 normalVector = new Vector3();
+        Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+        _rb.velocity = projectedVelocity;
+    }
+    
+
+    #endregion
 
     bool CheckMovement()
     {
@@ -106,18 +157,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     #endregion    
 
     #region Raycast
-    float rayDistance = 25;
-
     void Raycast()
     {
         bool magnetDetected;
 
-        RaycastHit lookingAt;
-        if (Physics.Raycast(transform.position, raycastAngle, out lookingAt, rayDistance, layerMask))
+        if (Physics.Raycast(rayPivot.position, rayPivot.forward, out var lookingAt, rayDistance, layerMask))
         {
             //Debug.Log(lookingAt.collider.name);
-
+            
             IMagnetable desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
+            
             if (desired != null)
             {
                 magnetDetected = true;

@@ -43,12 +43,13 @@ public class PlayerBrain
     {
         _moveCommands = new Dictionary<KeyCode, ICommand>();
         _holdCommands = new Dictionary<KeyCode, HoldCommand>();
-
+        /*
         _moveCommands.Add(_keybinds.forward, new Forward(_rb));
         _moveCommands.Add(_keybinds.backward, new Backward(_rb));
         _moveCommands.Add(_keybinds.right, new Right(_rb));
         _moveCommands.Add(_keybinds.left, new Left(_rb));
-
+        */
+        
         //_holdCommands.Add(_keybinds.hitLight, new HitLight());
         _holdCommands.Add(_keybinds.hitDistance, new HitDistance(_ps));
 

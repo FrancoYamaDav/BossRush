@@ -14,7 +14,7 @@ public class Left : ICommand
 
     public void Execute(float val)
     {
-        _position = new Vector3(-val, 0, 0);
+        _position = new Vector3(-val * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime, 0, 0);
         _rb.AddForce(_position);
     }
 }
