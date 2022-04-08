@@ -16,7 +16,7 @@ public class Generator : MagnetChargeable
     }
     public override void OnMagnetism(PlayerController pc = null)
     {
-        if (currentCharge < baseCharge) currentCharge += 1;
+        if (currentCharge < baseCharge) currentCharge += 3;
 
         if (currentCharge >= baseCharge) OnFullCharge();
 

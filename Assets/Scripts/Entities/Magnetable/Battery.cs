@@ -6,8 +6,8 @@ public class Battery : MagnetChargeable, IUpdate
 {
     bool isCharging = false;
 
-    float chargeRate = 0.24f;
-    float waitTime = 18;
+    float chargeRate = 0.24f, dischargeRate = 2.2f;
+    float waitTime = 12;
 
     protected override void Awake()
     {
@@ -45,7 +45,7 @@ public class Battery : MagnetChargeable, IUpdate
         //Que se deje de volver interactuable al acabarse la bateria
         isCharging = false;
 
-        if (currentCharge > 0) currentCharge -= 1.2f;
+        if (currentCharge > 0) currentCharge -= dischargeRate;
 
         if (currentCharge <= 0) NoCharge();
 

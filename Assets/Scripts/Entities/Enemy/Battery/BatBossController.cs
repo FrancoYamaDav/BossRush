@@ -19,7 +19,7 @@ public class BatBossController : BaseBossController
 
     //StunCondition
     public List<Battery> batteries = new List<Battery>();
-    float stunTime = 2.2f;
+    float stunTime = 1.3f;
 
     protected override void Awake()
     {

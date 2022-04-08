@@ -128,8 +128,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public void ReceiveKnockback(float knockbackIntensity)
     {
-        Debug.Log("Player: Receive Knockback");
-        _rb.AddForce(0, knockbackIntensity, 0, ForceMode.Impulse);
+        _rb.AddForce(0, knockbackIntensity, 0, ForceMode.Force);
     }
 
     public void ReceiveHealing(int healVal)
