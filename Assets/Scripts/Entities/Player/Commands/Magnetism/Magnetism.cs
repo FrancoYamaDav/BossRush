@@ -20,5 +20,7 @@ public class Magnetism : HoldCommand
     {
         if (_pc != null)
             _pc.isMagnetOn = false;
+
+        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ShowCharger, false);
     }
 }

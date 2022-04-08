@@ -8,7 +8,7 @@ public class PlayerBrain
 
     PlayerModel _pm;
     PlayerController _pc;
-    PlayerProyectileSpawner _ps;
+    BaseProyectileSpawner _ps;
     Keybinds _keybinds;
 
     Dictionary<KeyCode, ICommand> _moveCommands;
@@ -29,7 +29,7 @@ public class PlayerBrain
         Brain();
     }*/
     
-    public PlayerBrain(Rigidbody rb, PlayerController pc, PlayerProyectileSpawner ps, PlayerModel pm)
+    public PlayerBrain(Rigidbody rb, PlayerController pc, BaseProyectileSpawner ps, PlayerModel pm)
     {
         _rb = rb;
         _pm = pm;
@@ -50,7 +50,7 @@ public class PlayerBrain
         _moveCommands.Add(_keybinds.left, new Left(_rb));
         */
         
-        //_holdCommands.Add(_keybinds.hitLight, new HitLight());
+        //_holdCommands.Add(_keybinds.hitMelee, new HitLight());
         _holdCommands.Add(_keybinds.hitDistance, new HitDistance(_ps));
 
         _holdCommands.Add(_keybinds.magnetism, new Magnetism(_pc));

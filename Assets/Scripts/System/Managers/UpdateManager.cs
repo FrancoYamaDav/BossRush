@@ -30,13 +30,9 @@ public class UpdateManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
             pause = !pause;
 
-        if (pause)
-            pauseUI.SetActive(true);
-        else
-            pauseUI.SetActive(false);
+        if (pauseUI != null) PauseScreen();
 
-        if (pause)
-            return;
+        if (pause) return;
 
         if (_subscribers.Count > 0) AllUpdates();
     }
@@ -62,6 +58,14 @@ public class UpdateManager : MonoBehaviour
             _subscribers.Remove(element);
     }
     #endregion
+
+    void PauseScreen()
+    {
+        if (pause)
+            pauseUI.SetActive(true);
+        else
+            pauseUI.SetActive(false);
+    }
 
     #region FixedUpdate
     void FixedUpdate()

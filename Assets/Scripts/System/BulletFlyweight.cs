@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BulletFlyweight 
 {
-    public float speed;
-    public int dmg;
+    public float speed, lifetime, cooldown;
+    public int dmg, moveID;
     public Vector3 sizeTrans;
+    public string materialPath;
 }
 
 public class PlayerFlyweight

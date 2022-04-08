@@ -6,7 +6,7 @@ public class Keybinds
 {
     public KeyCode forward, backward, right, left;
     public KeyCode roll, dash;
-    public KeyCode hitLight, hitHeavy, hitDistance;
+    public KeyCode hitMelee, hitDistance;
     public KeyCode magnetism;
     public Keybinds()
     {
@@ -21,10 +21,9 @@ public class Keybinds
         roll = KeyCode.LeftControl;
         dash = KeyCode.Space;
 
-        hitLight = KeyCode.Mouse0;
-        hitHeavy = KeyCode.Mouse0;
+        hitMelee = KeyCode.Mouse0;
         hitDistance = KeyCode.Mouse1;
 
-        magnetism = KeyCode.Mouse2;
+        magnetism = KeyCode.G;
     }
 }

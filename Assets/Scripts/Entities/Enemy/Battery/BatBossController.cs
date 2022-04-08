@@ -6,14 +6,28 @@ public class BatBossController : BaseBossController
 {
     public List<Battery> batteries = new List<Battery>();
 
-    bool isStunned = false;
+    BatBossProyectileSpawner _ps;
+    float timer, cooldown = 4.2f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _ps = GetComponent<BatBossProyectileSpawner>();
+    }
+
     public override void OnUpdate()
     {
         base.OnUpdate();
 
-        if (!isStunned)
-            if(CountBatteries()) //Este se podria pasar a algun event o lazo a las baterias
-                StunnedProperties();
+        if(CountBatteries()) //Este se podria pasar a algun event o lazo a las baterias
+              OnStun();
+
+        timer += 1 * Time.deltaTime;
+        if (timer > cooldown)
+        {
+            if (_ps != null) _ps.Shoot();
+            timer = 0;
+        }
     }
 
     bool CountBatteries()
@@ -34,9 +48,9 @@ public class BatBossController : BaseBossController
         return false;
     }
 
-    void StunnedProperties()
+    protected override void OnStun()
     {
-        isStunned = true;
+        base.OnStun();
         _rb.useGravity = true;
         EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 0);
     }

@@ -3,22 +3,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseProyectile : MonoBehaviour, IUpdate
+public class BaseProyectile : MonoBehaviour, IUpdate
 {
-    protected BaseProyectileSpawner _ps;
+    MeshRenderer _mr;
 
-    IMove moveType;
+    BaseProyectileSpawner _ps;
+    GameObject _owner;
 
-    protected float _speed;
-    protected int _dmg = 1;
+    protected IMove _currentMoveType;
+    List<IMove> _moveTypes = new List<IMove>();
+
+    float _speed, _maxLifeTime, currentLifeTime;
+    int _dmg = 1;
+
+    #region SetUp
+    public void SetStats(BaseProyectileSpawner ps, float speed, float lifeTime, int dmg, int moveID, Vector3 sizeTrans, string path)
+    {
+        _ps = ps;
+
+        _speed = speed;
+        _maxLifeTime = lifeTime;
+
+        _dmg = dmg;
+
+        transform.localScale = sizeTrans;
+
+        if (moveID > _moveTypes.Count - 1) moveID = 0;
+        _currentMoveType = _moveTypes[moveID];
+        _currentMoveType.SetTransform(this.transform);
+
+        _mr.material = Resources.Load<Material>(path);
+    }
+
+    private void Awake()
+    {
+        _mr = GetComponent<MeshRenderer>();
+        MoveAdd();
+    }
+
+    void MoveAdd()
+    {
+        _moveTypes.Add(new MoveStraight());
+        _moveTypes.Add(new MoveHoming());
+        _moveTypes.Add(new MoveStill());
+    }
+    #endregion
 
     public virtual void OnUpdate()
     {
-        moveType.Move();
+       if (_currentMoveType != null) _currentMoveType.Move(_speed);
+
+       if (currentLifeTime >= _maxLifeTime)
+            OnDeath();
+
+       currentLifeTime = 1 * Time.deltaTime;
     }
 
     #region Collision
-
     protected virtual void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
@@ -32,6 +73,8 @@ public abstract class BaseProyectile : MonoBehaviour, IUpdate
 
     protected virtual void OnDeath()
     {
+        currentLifeTime = 0;
+        _ps.DestroyProyectile(this);
         TurnOff(this);
     }
 
@@ -42,7 +85,7 @@ public abstract class BaseProyectile : MonoBehaviour, IUpdate
 
     protected virtual bool DamageException(IDamageable collisionInterface)
     {
-        if (collisionInterface != null)
+        if (collisionInterface != null /*|| collisionInterface != _owner*/)
             return true;
         else
             return false;
@@ -62,13 +105,4 @@ public abstract class BaseProyectile : MonoBehaviour, IUpdate
         e.gameObject.SetActive(false);
     }
     #endregion
-
-    #region Builder
-    public BaseProyectile SetSpawner(BaseProyectileSpawner ps)
-    {
-        _ps = ps;
-        return this;
-    }
-    #endregion
-
 }

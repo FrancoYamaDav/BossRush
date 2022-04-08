@@ -7,6 +7,7 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
     protected BaseBossModel _bm;
     protected Rigidbody _rb;
 
+    protected bool isStunned = false;
     protected int currentHealth;
 
     protected virtual void Awake()
@@ -25,7 +26,7 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
 
     public virtual void OnUpdate()
     {
-        if (_bm.isDead) return;
+        if (_bm.isDead || isStunned) return;
     }
 
     #region HealthManagement
@@ -59,5 +60,15 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
         {
             collisionInterface.ReceiveDamage(_contactDmg);
         }
+    }
+
+    protected virtual void OnStun()
+    {
+        isStunned = true;
+    }
+
+    protected virtual void TriggerSound(int val)
+    {
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, val);
     }
 }

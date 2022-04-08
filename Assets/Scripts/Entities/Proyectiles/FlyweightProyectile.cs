@@ -7,21 +7,42 @@ public class FlyweightProyectile : MonoBehaviour
     public static readonly BulletFlyweight Default = new BulletFlyweight
     {
         speed = 7,
-        dmg = 20,
-        sizeTrans = new Vector3(1,1,1),
-    };
+        lifetime = 100,
+        cooldown = 0.8f,
 
-    public static readonly BulletFlyweight Straight = new BulletFlyweight
-    {
-        speed = 7,
         dmg = 20,
+        moveID = 0,
+
         sizeTrans = new Vector3(1, 1, 1),
+
+        materialPath = "Materials/ProyectileStraight",
     };
 
     public static readonly BulletFlyweight Homing = new BulletFlyweight
     {
-        speed = 7,
-        dmg = 20,
+        speed = 3.5f,
+        lifetime = 15,
+        cooldown = 1.5f,
+
+        dmg = 15,
+        moveID = 1,
+
         sizeTrans = new Vector3(1, 1, 1),
+
+        materialPath = "Materials/ProyectileHoming",
+    };
+
+    public static readonly BulletFlyweight Bomb = new BulletFlyweight
+    {
+        speed = 3.5f,
+        lifetime = 5,
+        cooldown = 2f,
+
+        dmg = 30,
+        moveID = 2,
+
+        sizeTrans = new Vector3(2, 2, 2),
+
+        materialPath = "Materials/ProyectileBomb",
     };
 }

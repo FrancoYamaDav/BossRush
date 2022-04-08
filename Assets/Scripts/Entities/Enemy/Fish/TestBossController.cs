@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class TestBossController : BaseBossController, IUpdate, IDamageable
 {
-    TestBossProyectileSpawner _ps;
-
-    bool isStunned = false;
-
     //Movement
     public List<Transform> waypoints = new List<Transform>();
     int lastPosition = -1;
 
     //Attack
     float timer, cooldown = 4.2f;
+    TestBossProyectileSpawner _ps;
 
     protected override void Awake()
     {
@@ -31,15 +28,12 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
     {
         base.OnUpdate();
 
-        if (!isStunned)
+        timer += 1 * Time.deltaTime;
+        if (timer > cooldown)
         {
-            timer += 1 * Time.deltaTime;
-            if (timer > cooldown)
-            {
-               _ps.Shoot();
-               timer = 0;
-            }
-        }
+           _ps.Shoot();
+            timer = 0;
+        }        
     }    
 
     #region HealthManagement
@@ -53,7 +47,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
             UpdateHealthBar();
             if (currentHealth <= 0) OnNoLife();
 
-            EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 2);
+            TriggerSound(2);
         }
     }
     #endregion
@@ -69,7 +63,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
                 transform.position = waypoints[temp].position;
                 lastPosition = temp;
 
-                EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 0);
+                TriggerSound(0);
             }
             else
                 ChangePosition();
@@ -84,14 +78,18 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
         if (temp)
         {
             if (!temp.isDashing) return;
-
-            isStunned = true;
-            timer = 0;
-            _rb.useGravity = true;
-
-            //Debug.Log("CycleWaypoints: Me han stuneado");
-            EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 1);
+            OnStun();            
         }
     }
     #endregion
+
+    protected override void OnStun()
+    {
+        base.OnStun();
+        timer = 0;
+        _rb.useGravity = true;
+
+        TriggerSound(1);
+        //Debug.Log("CycleWaypoints: Me han stuneado");
+    }
 }

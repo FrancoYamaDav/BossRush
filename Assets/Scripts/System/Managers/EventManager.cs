@@ -14,13 +14,19 @@ public class EventManager
 
         //Boss
         Event_Boss_Defeated,
+        Event_Boss_PuzzleCompleted,
         
         //Canvas
         Event_HUD_PlayerLife,
         Event_HUD_PlayerStamina,
         Event_HUD_PlayerMagnet,
+        Event_HUD_PlayerProyectile,
+        Event_HUD_PlayerChargerHide,
 
         Event_HUD_BossLife,
+
+        Event_HUD_ItemCharge,
+        Event_HUD_ShowCharger,
         
         //Sound
         Event_Sound_Trigger,
