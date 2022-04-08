@@ -10,12 +10,12 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
 
     //Attack
     float timer, cooldown = 4.2f;
-    TestBossProyectileSpawner _ps;
+    BaseProyectileSpawner _ps;
 
     protected override void Awake()
     {
         base.Awake();
-        _ps = GetComponentInChildren<TestBossProyectileSpawner>();
+        _ps = GetComponentInChildren<BaseProyectileSpawner>();
     }
 
     protected override void Start()
@@ -72,6 +72,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
 
     protected override void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Hola, colisioné con " + collision.gameObject.name);
         base.OnCollisionEnter(collision);
 
         var temp = collision.gameObject.GetComponent<PlayerController>();

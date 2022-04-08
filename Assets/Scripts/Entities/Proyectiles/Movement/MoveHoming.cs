@@ -6,7 +6,7 @@ public class MoveHoming : IMove
 {
     Transform transform;
 
-    public void Move(float speed, GameObject target = null)
+    public void Move(float speed, Transform target = null)
     {
         if (target == null) return;
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);

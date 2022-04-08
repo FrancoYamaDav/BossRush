@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, raycastAngle * rayDistance);
+        Gizmos.DrawRay(rayPivot.position, rayPivot.forward);
     }
 
     public void ChangeRaycastAngle(Vector3 vector)

@@ -16,6 +16,11 @@ public class FlyweightProyectile : MonoBehaviour
         sizeTrans = new Vector3(1, 1, 1),
 
         materialPath = "Materials/ProyectileStraight",
+
+        explodes = false,
+        gravity = false,
+
+        target = null,
     };
 
     public static readonly BulletFlyweight Homing = new BulletFlyweight
@@ -30,6 +35,11 @@ public class FlyweightProyectile : MonoBehaviour
         sizeTrans = new Vector3(1, 1, 1),
 
         materialPath = "Materials/ProyectileHoming",
+
+        gravity = false,
+
+        explodes = false,
+        target = FindObjectOfType<PlayerController>().transform,
     };
 
     public static readonly BulletFlyweight Bomb = new BulletFlyweight
@@ -38,11 +48,16 @@ public class FlyweightProyectile : MonoBehaviour
         lifetime = 5,
         cooldown = 2f,
 
-        dmg = 30,
+        dmg = 22,
         moveID = 2,
 
         sizeTrans = new Vector3(2, 2, 2),
 
         materialPath = "Materials/ProyectileBomb",
+
+        gravity = true,
+
+        explodes = true,
+        target = null,
     };
 }

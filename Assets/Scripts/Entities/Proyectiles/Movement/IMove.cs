@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IMove
 {
-    public void Move(float speed, GameObject target = null);
+    public void Move(float speed, Transform target = null);
     void SetTransform(Transform t);
 }

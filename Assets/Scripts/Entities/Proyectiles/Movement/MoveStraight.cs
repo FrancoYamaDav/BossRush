@@ -8,7 +8,7 @@ public class MoveStraight : IMove
 
     Vector3 direction = new Vector3(0,0,1);
 
-    public void Move(float speed, GameObject target = null)
+    public void Move(float speed, Transform target = null)
     {
         transform.position += direction * speed * Time.deltaTime;
     }

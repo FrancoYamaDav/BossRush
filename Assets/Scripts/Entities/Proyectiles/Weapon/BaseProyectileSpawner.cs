@@ -16,6 +16,7 @@ public class BaseProyectileSpawner : MonoBehaviour
     protected Transform _proyectileSpawn;
     protected IWeapon currentWeapon;
 
+    #region SetUp
     protected virtual void Awake()
     {
         prefab = Resources.Load<BaseProyectile>("BaseProyectile");     
@@ -26,12 +27,14 @@ public class BaseProyectileSpawner : MonoBehaviour
         if (_proyectileSpawn == null) _proyectileSpawn = this.transform;
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         _pool = new Pool<BaseProyectile>(Factory, BaseProyectile.TurnOn, BaseProyectile.TurnOff, 1, true);
     }
+    #endregion
 
-    public void Shoot(float multiplier = 1)
+    #region Shooting Settings
+    public virtual void Shoot(float multiplier = 1)
     {
         if (!_canShoot) return;
 
@@ -42,10 +45,12 @@ public class BaseProyectileSpawner : MonoBehaviour
 
         var build = new ProyectileBuilder(currentWeapon.GetProyectileStats())
                                                        .SetSpawner(this)
+                                                       .SetOwner(this.gameObject)
                                                        .SetMultiplier(multiplier)
                                                        .SendStats(p);
 
         p.transform.position = _proyectileSpawn.position; 
+        p.transform.rotation = _proyectileSpawn.rotation;
     }
 
     protected IEnumerator ShootCooldown()
@@ -54,6 +59,13 @@ public class BaseProyectileSpawner : MonoBehaviour
         _canShoot = true;
     }
 
+    public void ChangeSpawnPosition(Transform newPos)
+    {
+        _proyectileSpawn = newPos;
+    }
+    #endregion
+
+    #region SpawnOptions
     Vector3 safezone = new Vector3 (-1000, -1000, -1000);
     public BaseProyectile Factory()
     {
@@ -65,5 +77,6 @@ public class BaseProyectileSpawner : MonoBehaviour
     public void DestroyProyectile(BaseProyectile b)
     {
         _pool.ReturnToPool(b);
-    }   
+    }
+    #endregion   
 }

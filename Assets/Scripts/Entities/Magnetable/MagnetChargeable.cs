@@ -7,7 +7,7 @@ public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
     protected MeshRenderer _meshRenderer;
     protected Material chargedMat, unchargedMat;
 
-    protected int baseCharge = 400, currentCharge;
+    protected float baseCharge = 340, currentCharge;
 
     protected bool _isCharged = true;
     public bool isCharged { get { return _isCharged; } }
@@ -16,14 +16,11 @@ public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
     {
         _meshRenderer = GetComponent<MeshRenderer>();
 
-        unchargedMat = Resources.Load<Material>("Materials/Discharged");
-        chargedMat = Resources.Load<Material>("Materials/Neutral");
+        unchargedMat = Resources.Load<Material>("Materials/ChargeableUncharged");
+        chargedMat = Resources.Load<Material>("Materials/ChargeableCharged");
     }
 
-    public virtual void OnMagnetism(PlayerController pc = null)
-    {
-        throw new System.NotImplementedException();
-    }
+    public virtual void OnMagnetism(PlayerController pc = null){ }
 
     protected void ChangeMat(Material mat)
     {

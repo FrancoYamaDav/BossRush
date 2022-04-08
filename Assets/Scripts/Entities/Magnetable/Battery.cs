@@ -2,22 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : MagnetChargeable 
+public class Battery : MagnetChargeable, IUpdate
 {
+    bool isCharging = false;
+
+    float chargeRate = 0.24f;
+    float waitTime = 18;
+
     protected override void Awake()
     {
         base.Awake();
 
-        ResetBattery();
+        Recharged();
+
+        currentCharge = baseCharge;
+    }
+    private void Start()
+    {
+        UpdateManager.Instance.AddToUpdate(this);
+    }
+
+    public void OnUpdate()
+    {
+        if (isCharging)
+        {
+            currentCharge += chargeRate;
+
+            if (currentCharge >= (baseCharge * 3) / 4)
+                Recharged();
+
+            if (currentCharge >= baseCharge) isCharging = false;
+        }
+        /*
+        if (currentCharge <= baseCharge/10)
+            StartCoroutine(RechargeWait());*/
+
+        //Debug.Log(currentCharge);
     }
 
     public override void OnMagnetism(PlayerController pc = null)
     {
         //Que se deje de volver interactuable al acabarse la bateria
+        isCharging = false;
 
-        if (currentCharge > 0) currentCharge -= 1;
+        if (currentCharge > 0) currentCharge -= 1.2f;
 
         if (currentCharge <= 0) NoCharge();
+
+        StartCoroutine(RechargeWait());
 
         UpdateHUD();
     }
@@ -28,9 +60,15 @@ public class Battery : MagnetChargeable
         ChangeMat(unchargedMat);
     }
 
-    void ResetBattery()
+    IEnumerator RechargeWait()
     {
-        currentCharge = baseCharge;
-        ChangeMat(chargedMat);
+        yield return new WaitForSeconds(waitTime);
+        isCharging = true;
     }
+
+    void Recharged()
+    {        
+        ChangeMat(chargedMat);
+        _isCharged = true;
+    }   
 }

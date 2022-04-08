@@ -8,6 +8,12 @@ public class BulletFlyweight
     public int dmg, moveID;
     public Vector3 sizeTrans;
     public string materialPath;
+
+    public bool gravity;
+        
+    //Specifics
+    public bool explodes;
+    public Transform target;
 }
 
 public class PlayerFlyweight
