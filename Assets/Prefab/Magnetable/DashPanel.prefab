@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1196507731652780503}
   - component: {fileID: 1196507731652780497}
   - component: {fileID: 1196507731652780500}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DashPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

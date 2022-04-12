@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1617736216103835471}
   - component: {fileID: 5258048285070237951}
   - component: {fileID: 1113663183382566768}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MagnetWallHeavy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

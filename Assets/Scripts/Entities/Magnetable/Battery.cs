@@ -6,8 +6,8 @@ public class Battery : MagnetChargeable, IUpdate
 {
     bool isCharging = false;
 
-    float chargeRate = 0.24f, dischargeRate = 2.2f;
-    float waitTime = 12;
+    float chargeRate = 0.26f, dischargeRate = 2.2f;
+    float waitTime = 11;
 
     protected override void Awake()
     {

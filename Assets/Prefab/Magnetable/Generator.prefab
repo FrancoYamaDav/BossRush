@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5406770680551090134}
   - component: {fileID: 5406770680551090135}
   - component: {fileID: 5406770680551090132}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5406770680551090129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.41, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.2, y: 1.8, z: 1.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03281e8be66dcb74c9d13d481e0d1470, type: 2}
+  - {fileID: 2100000, guid: 6db4aa89c291f2b45b74502b2332e2f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,3 +108,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd11ce9fb49f8c24fab80f3c5d971f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
