@@ -39,7 +39,7 @@ public class CamaraHandler : MonoBehaviour
         Instance = this;
         myTranform = transform;
         defaultPosition = camaraTransform.localPosition.z;
-        ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
+        //ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
     }
     public void FollowTarget(float delta)
     {

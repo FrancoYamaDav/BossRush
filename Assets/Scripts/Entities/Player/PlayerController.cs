@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,24 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 {
     [Header("Raycast Properties")]
     [SerializeField] private Transform rayPivot;
+    [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayDistance = 25;
     public Vector3 moveDirection;
+
+    [Header("Fall Properties")] 
+    [SerializeField] private float groundDetectionRayStartPoint = 0.5f;
+    [SerializeField] private float minimumDistanceToStartFall = 1f;
+    [SerializeField] private float groundDirectionRayDistance = 0.2f;
+    [SerializeField] private float fallSpeed = 0.2f;
+    [SerializeField] private LayerMask ignoreFallLayers; 
+    
+    [Header("Player Flags")] 
+    public bool isFalling = false;
+    public bool isGrounded = true;    
+    private Transform myTransform; 
+
+    
+    
 
     
     private Rigidbody _rb;
@@ -21,7 +38,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     int currentHealth, currentStamina;
     public bool isMagnetOn, isDashing;
-    public LayerMask layerMask;
 
     #region Set up
     private void Awake()
@@ -29,6 +45,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         ComponentChecker();
         Cursor.lockState = CursorLockMode.Locked;
         currentHealth = _m.maxHealth;
+        myTransform = transform;
+
     }
 
     private void Start()
@@ -61,12 +79,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         Raycast();
         
         Rotation(Time.fixedDeltaTime);
+        HandleFalling(Time.deltaTime, moveDirection);
         Movement();
     }
     
     //TODO: Cambiar todo el brain para que se mueva via deltas.
     #region New Rotattion&Movement
-
+    Vector3 normalVector;
+    Vector3 targetPosition;
     private void Rotation(float _delta) 
     {
         Vector3 targetDir = Vector3.zero;
@@ -77,14 +97,61 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         if (targetDir == Vector3.zero)
         {
-            targetDir = transform.forward;     
+            targetDir = myTransform.forward;     
         }
 
         float rs = 25f;
         Quaternion tr = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, rs * _delta);
+        Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * _delta);
 
-        transform.rotation = targetRotation;
+        myTransform.rotation = targetRotation;
+
+    }
+
+    public void HandleFalling(float delta, Vector3 moveDir)
+    {
+        isGrounded = false;
+        RaycastHit hit;
+        Vector3 origin = transform.position;
+        origin.y += groundDetectionRayStartPoint;
+
+        if (Physics.Raycast(origin, transform.forward, out hit, 0.4f))
+        {
+            moveDirection = Vector3.zero;
+        }
+
+        if (isFalling)
+        {
+            _rb.AddForce(-Vector3.up * fallSpeed);
+            _rb.AddForce(moveDirection * fallSpeed / 10f);
+        }
+
+        Vector3 dir = moveDirection;
+        dir.Normalize();
+        origin += dir * groundDirectionRayDistance;
+
+        targetPosition = myTransform.position;
+
+        if (Physics.Raycast(origin, -Vector3.up, out hit, minimumDistanceToStartFall, ignoreFallLayers))
+        {
+            normalVector = hit.normal;
+            Vector3 tp = hit.point;
+            isGrounded = true;
+            targetPosition.y = tp.y;
+
+            if (isFalling)
+            {
+                isFalling = false;
+            }
+        }
+        else
+        {
+            if (isGrounded)
+            {
+                isGrounded = false;
+            }
+        }
+
 
     }
     
@@ -98,7 +165,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         float speed = 10f;
         moveDirection *= speed;
 
-        Vector3 normalVector = new Vector3();
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         _rb.velocity = projectedVelocity;
     }
@@ -160,9 +226,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     {
         bool magnetDetected;
 
+        Debug.DrawRay(rayPivot.position, rayPivot.forward, Color.magenta );
+        
         if (Physics.Raycast(rayPivot.position, rayPivot.forward, out var lookingAt, rayDistance, layerMask))
         {
             //Debug.Log(lookingAt.collider.name);
+            
             
             IMagnetable desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
             

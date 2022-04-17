@@ -92,13 +92,14 @@ GameObject:
   - component: {fileID: 4398520348709803146}
   - component: {fileID: 4398520348709803147}
   - component: {fileID: 4398520348709803144}
-  - component: {fileID: 4398520348709803150}
   - component: {fileID: 4398520348709803151}
   - component: {fileID: 4398520348709803145}
   - component: {fileID: 4398520348709803253}
   - component: {fileID: 4398520348709803255}
   - component: {fileID: 4398520348709803254}
   - component: {fileID: 3828170568154814439}
+  - component: {fileID: 941620760331907297}
+  - component: {fileID: 2812533210884422717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -171,19 +172,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4398520348709803150
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4398520348709803148}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.95, z: 0.8}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4398520348709803151
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -225,13 +213,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayPivot: {fileID: 0}
-  rayDistance: 25
-  moveDirection: {x: 0, y: 0, z: 0}
-  isMagnetOn: 0
-  isDashing: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 2240
+  rayDistance: 25
+  moveDirection: {x: 0, y: 0, z: 0}
+  groundDetectionRayStartPoint: 0.5
+  minimumDistanceToStartFall: 1
+  groundDirectionRayDistance: 0.2
+  fallSpeed: 0.2
+  ignoreFallLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  isFalling: 0
+  isGrounded: 1
+  isMagnetOn: 0
+  isDashing: 0
 --- !u!114 &4398520348709803255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +271,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _proyectileSpawn: {fileID: 6145100434830384721}
+--- !u!114 &941620760331907297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398520348709803148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76db615e524a19c4990482d75a475543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelPrefab: {fileID: 0}
+  prefabs: []
+--- !u!136 &2812533210884422717
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398520348709803148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.7356755
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.13216227, z: 0}
 --- !u!1 &7137950966341140390
 GameObject:
   m_ObjectHideFlags: 0
