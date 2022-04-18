@@ -50,7 +50,7 @@ public class CamaraHandler : MonoBehaviour
                 Debug.LogWarning($"Target not found, applying {t.name} as default");
             }
         }
-        //ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
+        ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
     }
     public void FollowTarget(float delta)
     {

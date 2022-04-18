@@ -4862,7 +4862,7 @@ PrefabInstance:
     - target: {fileID: 2144994383853919855, guid: cc86f1cadf77df24cada6332ff9cd1f3, type: 3}
       propertyPath: targetTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1231247039}
     - target: {fileID: 2144994384279521048, guid: cc86f1cadf77df24cada6332ff9cd1f3, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3
@@ -5967,6 +5967,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _proyectileSpawn: {fileID: 2021810958}
+--- !u!95 &1737909132 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 189370595027369576, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
+  m_PrefabInstance: {fileID: 4398520347520893493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1737909141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737909129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486a38104d1f7574c976425076dccaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1737909132}
+  canRotate: 1
 --- !u!1 &1760756138
 GameObject:
   m_ObjectHideFlags: 0
@@ -6901,6 +6920,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 280203048}
     m_Modifications:
+    - target: {fileID: 189370595027369576, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 626228998614597153, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.694
+      objectReference: {fileID: 0}
+    - target: {fileID: 941620760331907297, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828170568154814439, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4398520347369494642, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -6969,6 +7004,10 @@ PrefabInstance:
       propertyPath: cameraObject
       value: 
       objectReference: {fileID: 538272069}
+    - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
+      propertyPath: _animatorHandler
+      value: 
+      objectReference: {fileID: 1737909141}
     - target: {fileID: 4398520348709803255, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
       propertyPath: magnet
       value: 

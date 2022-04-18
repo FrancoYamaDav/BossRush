@@ -6,6 +6,8 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate
 {
+    [SerializeField] private AnimatorHandler _animatorHandler;
+    
     [Header("Raycast Properties")]
     [SerializeField] private Transform cameraObject;
     [SerializeField] private LayerMask layerMask;
@@ -74,9 +76,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         Raycast();
         
-        Rotation(Time.fixedDeltaTime);
         HandleFalling(Time.deltaTime, moveDirection);
-        Movement();
+        Movement(Time.fixedDeltaTime);
     }
     
     //TODO: Cambiar todo el brain para que se mueva via deltas.
@@ -151,7 +152,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     }
     
-    private void Movement()
+    private void Movement(float _delta)
     {
         moveDirection = cameraObject.forward * Input.GetAxis("Vertical");
         moveDirection += cameraObject.right * Input.GetAxis("Horizontal");
@@ -163,6 +164,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         _rb.velocity = projectedVelocity;
+
+        float moveAmount = Mathf.Clamp01(Mathf.Abs(moveDirection.x)) + Mathf.Abs(moveDirection.z);
+        
+        _animatorHandler.AnimatorValues(moveAmount, 0);
+
+        if (_animatorHandler.canRotate)
+        {
+            Rotation(_delta);
+        }
+
     }
     
 
