@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 2812533210884422717}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4398520348709803148}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -215,18 +215,18 @@ MonoBehaviour:
   rayPivot: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 2240
+    m_Bits: 4294967295
   rayDistance: 25
   moveDirection: {x: 0, y: 0, z: 0}
   groundDetectionRayStartPoint: 0.5
-  minimumDistanceToStartFall: 1
+  minimumDistanceToStartFall: 0.33
   groundDirectionRayDistance: 0.2
-  fallSpeed: 0.2
+  fallSpeed: 150
   ignoreFallLayers:
     serializedVersion: 2
-    m_Bits: 0
-  isFalling: 0
-  isGrounded: 1
+    m_Bits: 4023
+  isFalling: 1
+  isGrounded: 0
   isMagnetOn: 0
   isDashing: 0
 --- !u!114 &4398520348709803255

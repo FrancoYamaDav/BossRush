@@ -39,6 +39,17 @@ public class CamaraHandler : MonoBehaviour
         Instance = this;
         myTranform = transform;
         defaultPosition = camaraTransform.localPosition.z;
+        
+        if (targetTransform == null) 
+        {
+            var t = GameObject.FindWithTag("Player");
+
+            if (t != null)
+            {
+                targetTransform = t.transform;
+                Debug.LogWarning($"Target not found, applying {t.name} as default");
+            }
+        }
         //ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
     }
     public void FollowTarget(float delta)

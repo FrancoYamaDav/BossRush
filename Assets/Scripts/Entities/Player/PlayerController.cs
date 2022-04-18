@@ -7,7 +7,7 @@ using System.Linq;
 public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate
 {
     [Header("Raycast Properties")]
-    [SerializeField] private Transform rayPivot;
+    [SerializeField] private Transform cameraObject;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayDistance = 25;
     public Vector3 moveDirection;
@@ -23,10 +23,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     public bool isFalling = false;
     public bool isGrounded = true;    
     private Transform myTransform; 
-
-    
-    
-
     
     private Rigidbody _rb;
     private PlayerModel _m;
@@ -90,8 +86,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     private void Rotation(float _delta) 
     {
         Vector3 targetDir = Vector3.zero;
-        targetDir = rayPivot.forward * Input.GetAxis("Vertical");
-        targetDir += rayPivot.right * Input.GetAxis("Horizontal");
+        targetDir = cameraObject.forward * Input.GetAxis("Vertical");
+        targetDir += cameraObject.right * Input.GetAxis("Horizontal");
         targetDir.Normalize();
         targetDir.y = 0;
 
@@ -141,14 +137,14 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
             if (isFalling)
             {
-                isFalling = false;
+                //isFalling = false;
             }
         }
         else
         {
             if (isGrounded)
             {
-                isGrounded = false;
+                //isGrounded = false;
             }
         }
 
@@ -157,8 +153,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     
     private void Movement()
     {
-        moveDirection = rayPivot.forward * Input.GetAxis("Vertical");
-        moveDirection += rayPivot.right * Input.GetAxis("Horizontal");
+        moveDirection = cameraObject.forward * Input.GetAxis("Vertical");
+        moveDirection += cameraObject.right * Input.GetAxis("Horizontal");
         moveDirection.Normalize();
         moveDirection.y = 0;
 
@@ -226,9 +222,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     {
         bool magnetDetected;
 
-        Debug.DrawRay(rayPivot.position, rayPivot.forward, Color.magenta );
+        Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta );
         
-        if (Physics.Raycast(rayPivot.position, rayPivot.forward, out var lookingAt, rayDistance, layerMask))
+        if (Physics.Raycast(cameraObject.position, cameraObject.forward, out var lookingAt, rayDistance, layerMask))
         {
             //Debug.Log(lookingAt.collider.name);
             
@@ -254,7 +250,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(rayPivot.position, rayPivot.forward);
+        Gizmos.DrawRay(cameraObject.position, cameraObject.forward);
     }
 
     public void ChangeRaycastAngle(Vector3 vector)

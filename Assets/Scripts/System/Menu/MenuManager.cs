@@ -12,6 +12,9 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        
+        Cursor.lockState = CursorLockMode.None;
+
     }
 
     private void OnDestroy()

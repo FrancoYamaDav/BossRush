@@ -1201,29 +1201,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 821062740}
     - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
-      propertyPath: fallSpeed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
-      propertyPath: isFalling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
-      propertyPath: isGrounded
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
-      propertyPath: ignoreFallLayers.m_Bits
-      value: 4023
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398520348709803253, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
-      propertyPath: minimumDistanceToStartFall
-      value: 0.33
-      objectReference: {fileID: 0}
+      propertyPath: cameraObject
+      value: 
+      objectReference: {fileID: 821062740}
     - target: {fileID: 4398520348709803255, guid: 1027553ead7c7864daaf7308c9c68655, type: 3}
       propertyPath: magnet
       value: 
