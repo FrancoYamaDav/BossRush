@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetSwingable : MonoBehaviour
+public class MagnetSwingable : MonoBehaviour, IMagnetable
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnMagnetism(PlayerController pc = null)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("Swingable: Magnetism detected but not implemented");
     }
 }

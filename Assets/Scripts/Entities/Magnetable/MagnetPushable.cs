@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetPushable : MonoBehaviour
+public class MagnetPushable : MonoBehaviour, IMagnetable
 {
-    // Start is called before the first frame update
-    void Start()
+    float magnetForce = 40;
+    public void OnMagnetism(PlayerController pc = null)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (pc != null)
+        {
+            if (Vector3.Distance(transform.position, pc.transform.position) >= 2f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, magnetForce * Time.deltaTime);
+            }
+        }
     }
 }

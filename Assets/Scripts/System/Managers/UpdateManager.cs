@@ -22,15 +22,17 @@ public class UpdateManager : MonoBehaviour
         _instance = this;
         _subscribers = new List<IUpdate>();
         _subscribersFix = new List<IFixedUpdate>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     #region Update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            pause = !pause;
+        if (Input.GetKeyDown(KeyCode.Escape)) PauseUnpause();           
 
         if (pauseUI != null) PauseScreen();
+
+        LockCursor();
 
         if (pause) return;
 
@@ -65,6 +67,19 @@ public class UpdateManager : MonoBehaviour
             pauseUI.SetActive(true);
         else
             pauseUI.SetActive(false);
+    }
+
+    void LockCursor()
+    {
+        if (pause)
+            Cursor.lockState = CursorLockMode.Confined;
+        else
+            Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void PauseUnpause()
+    {
+        pause = !pause;
     }
 
     #region FixedUpdate

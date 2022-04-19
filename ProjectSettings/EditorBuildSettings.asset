@@ -12,15 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/DodgeBossTest.unity
     guid: f2c9b004dfdc1744fb5c926032f48db6
   - enabled: 1
-    path: Assets/Scenes/Puzzle.unity
+    path: Assets/Scenes/TestingGrounds/Puzzle.unity
     guid: 0e9fb01be4ce7484f8ff13f6d5f1910f
   - enabled: 1
     path: Assets/Scenes/BatteryBossTest.unity
     guid: 8c05ebb1d5089aa4d9709f0522eeb117
   - enabled: 1
-    path: Assets/Scenes/visualtestscene.unity
+    path: Assets/Scenes/TestingGrounds/visualtestscene.unity
     guid: 695b00da382efb54ba271e96f83d11a9
   - enabled: 1
-    path: Assets/Scenes/Tutorial2.unity
+    path: Assets/Scenes/Tutorial.unity
     guid: 728088a130f115046a4e46dcc4f4eb66
   m_configObjects: {}
