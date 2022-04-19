@@ -17,7 +17,7 @@ public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
         _meshRenderer = GetComponent<MeshRenderer>();
 
         unchargedMat = Resources.Load<Material>("Materials/ChargeableUncharged");
-        chargedMat = Resources.Load<Material>("Materials/ChargeableCharged");
+        chargedMat = _meshRenderer.material;
     }
 
     public virtual void OnMagnetism(PlayerController pc = null){ }
