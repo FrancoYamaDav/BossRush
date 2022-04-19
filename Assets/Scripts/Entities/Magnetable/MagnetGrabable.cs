@@ -21,6 +21,9 @@ public class MagnetGrabable : MonoBehaviour, IMagnetable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isGrabbed) { }
+        if (isGrabbed) 
+        { 
+            Debug.Log("Grabable Item: Grab not implemented"); 
+        }
     }
 }
