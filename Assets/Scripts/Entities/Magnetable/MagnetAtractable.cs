@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetAtractable : MonoBehaviour, IMagnetable
+public class MagnetAtractable : Magnetable
 {
     float magnetForce = 40;
-    public void OnMagnetism(PlayerController pc = null)
+    public override void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
         {
@@ -16,5 +16,5 @@ public class MagnetAtractable : MonoBehaviour, IMagnetable
         }
     }
 
-    public void OnExit(){ }
+    public override void OnExit(){ }
 }

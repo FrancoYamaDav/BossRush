@@ -11,16 +11,14 @@ public class Magnetism : HoldCommand
     }
 
     public override void Execute(float val)
-    {
+    {        
         if (_pc != null)
-            _pc.isMagnetOn = true;
+            _pc.ExecuteMagnetism();
     }
 
     public override void OnExit()
     {
         if (_pc != null)
-            _pc.isMagnetOn = false;
-
-        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ShowCharger, false);
+            _pc.ExecuteExit();       
     }
 }

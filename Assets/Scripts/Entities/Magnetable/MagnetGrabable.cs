@@ -2,27 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetGrabable : MonoBehaviour, IMagnetable
+public class MagnetGrabable : Magnetable
 {
-    float magnetForce = 40;
+    float magnetForce = 50;
+    public bool isGrabbed { get { return isBeingUsed; } }
 
-    bool _isGrabbed = false;
-    public bool isGrabbed { get { return _isGrabbed; } }
-
-    public void OnMagnetism(PlayerController pc = null)
+    public override void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
         { 
             if (Vector3.Distance(transform.position, pc.transform.position) >= 2f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, magnetForce * Time.deltaTime);
-                _isGrabbed = true;
+                transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, magnetForce * Time.deltaTime);              
             }  
         }
+
+        base.OnMagnetism(pc);
     }
 
-    public void OnExit()
+    public override void OnExit()
     {
-        _isGrabbed = false;
+        base.OnExit();
     }
 }

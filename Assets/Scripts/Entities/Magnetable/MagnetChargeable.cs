@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
+public abstract class MagnetChargeable : Magnetable
 {
     protected MeshRenderer _meshRenderer;
     protected Material chargedMat, unchargedMat;
@@ -20,8 +20,6 @@ public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
         chargedMat = _meshRenderer.material;
     }
 
-    public virtual void OnMagnetism(PlayerController pc = null){ }
-
     protected void ChangeMat(Material mat)
     {
         _meshRenderer.material = mat;
@@ -32,5 +30,8 @@ public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ItemCharge, temp);
     }
 
-    public virtual void OnExit(){}   
+    public override void OnExit()
+    {
+        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ShowCharger, false);
+    }   
 }

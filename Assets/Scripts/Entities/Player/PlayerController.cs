@@ -35,11 +35,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     Vector3 raycastAngle = Vector3.forward;
 
     int currentHealth, currentStamina;
-    public bool isMagnetOn, isDashing, isGrabing;
+    public bool isDashing, isGrabing;
     bool isDead;
 
     //testeos
-    IMagnetable desired;
+    Magnetable _desired;
+
 
     #region Set up
     private void Awake()
@@ -239,14 +240,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         {
             //Debug.Log(lookingAt.collider.name);            
             
-            desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
+            _desired = lookingAt.collider.gameObject.GetComponent<Magnetable>();
             
-            if (desired != null)
+            if (_desired != null && _desired.interactable == true)
             {
                 magnetDetected = true;
-
-                if (isMagnetOn)
-                  desired.OnMagnetism(this);
             }
             else
                 magnetDetected = false;
@@ -278,5 +276,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     }
 
     //test
+    public void ExecuteMagnetism()
+    {
+        if (_desired != null) _desired.OnMagnetism(this);
+    }
 
+    public void ExecuteExit()
+    {
+        if (_desired != null) _desired.OnExit();
+    }
 }

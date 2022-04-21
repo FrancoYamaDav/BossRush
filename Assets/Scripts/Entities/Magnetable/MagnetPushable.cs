@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetPushable : MonoBehaviour, IMagnetable
+public class MagnetPushable : Magnetable
 {
-    float magnetForce = 40;
+    float magnetForce = 25;
 
-    public void OnMagnetism(PlayerController pc = null)
+    public override void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
         {
@@ -16,8 +16,5 @@ public class MagnetPushable : MonoBehaviour, IMagnetable
             }
         }
     }
-    public void OnExit()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void OnExit(){}
 }
