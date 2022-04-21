@@ -35,7 +35,11 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     Vector3 raycastAngle = Vector3.forward;
 
     int currentHealth, currentStamina;
-    public bool isMagnetOn, isDashing;
+    public bool isMagnetOn, isDashing, isGrabing;
+    bool isDead;
+
+    //testeos
+    IMagnetable desired;
 
     #region Set up
     private void Awake()
@@ -58,26 +62,26 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if (_rb == null)
             Debug.Log("Controller: RB missing");
 
-        _m = GetComponent<PlayerModel>();
-        if (_m == null)
-            Debug.Log("Controller: Player missing");
+        _m = new PlayerModel();
 
        _brain = new PlayerBrain(_rb, this, GetComponent<BaseProyectileSpawner>(), _m);
+
+        isDead = false;
     }
     #endregion
     public void OnUpdate()
     {
-        if (_m.isDead) return;
+        if (isDead) return;
 
-        if (CheckMovement())
+        if (CanIMove())
         {
             _brain.Brain();
+            Movement(Time.fixedDeltaTime);
         }
 
         Raycast();
         
         HandleFalling(Time.deltaTime, moveDirection);
-        Movement(Time.fixedDeltaTime);
     }
     
     //TODO: Cambiar todo el brain para que se mueva via deltas.
@@ -148,8 +152,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
                 //isGrounded = false;
             }
         }
-
-
     }
     
     private void Movement(float _delta)
@@ -173,15 +175,13 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         {
             Rotation(_delta);
         }
-
-    }
-    
-
+    }  
     #endregion
 
-    bool CheckMovement()
+    bool CanIMove()
     {
-        return true;
+        bool tempBool = true;
+        return tempBool;
     }
 
     #region Damage and Healing
@@ -237,10 +237,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         
         if (Physics.Raycast(cameraObject.position, cameraObject.forward, out var lookingAt, rayDistance, layerMask))
         {
-            //Debug.Log(lookingAt.collider.name);
+            //Debug.Log(lookingAt.collider.name);            
             
-            
-            IMagnetable desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
+            desired = lookingAt.collider.gameObject.GetComponent<IMagnetable>();
             
             if (desired != null)
             {
@@ -277,4 +276,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
             isDashing = false;
         }
     }
+
+    //test
+
 }

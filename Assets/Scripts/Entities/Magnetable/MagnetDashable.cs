@@ -12,4 +12,6 @@ public class MagnetDashable : MonoBehaviour, IMagnetable
            pc.isDashing = true;
         }
     }
+
+    public void OnExit(){ }
 }

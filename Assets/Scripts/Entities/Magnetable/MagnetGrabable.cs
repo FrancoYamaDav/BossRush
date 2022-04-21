@@ -5,7 +5,10 @@ using UnityEngine;
 public class MagnetGrabable : MonoBehaviour, IMagnetable
 {
     float magnetForce = 40;
-    bool isGrabbed = false;
+
+    bool _isGrabbed = false;
+    public bool isGrabbed { get { return _isGrabbed; } }
+
     public void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
@@ -13,17 +16,13 @@ public class MagnetGrabable : MonoBehaviour, IMagnetable
             if (Vector3.Distance(transform.position, pc.transform.position) >= 2f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, magnetForce * Time.deltaTime);
-                isGrabbed = true;
+                _isGrabbed = true;
             }  
         }
     }
-    //Hacer una forma que deje de ser true
 
-    private void OnTriggerEnter(Collider other)
+    public void OnExit()
     {
-        if (isGrabbed) 
-        { 
-            Debug.Log("Grabable Item: Grab not implemented"); 
-        }
+        _isGrabbed = false;
     }
 }

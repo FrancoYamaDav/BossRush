@@ -15,4 +15,6 @@ public class MagnetAtractable : MonoBehaviour, IMagnetable
             }
         }
     }
+
+    public void OnExit(){ }
 }

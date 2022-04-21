@@ -9,6 +9,8 @@ public class Battery : MagnetChargeable, IUpdate
     float chargeRate = 0.26f, dischargeRate = 2.2f;
     float waitTime = 11;
 
+    bool hasCustomCharge;
+
     protected override void Awake()
     {
         base.Awake();
@@ -33,11 +35,6 @@ public class Battery : MagnetChargeable, IUpdate
 
             if (currentCharge >= baseCharge) isCharging = false;
         }
-        /*
-        if (currentCharge <= baseCharge/10)
-            StartCoroutine(RechargeWait());*/
-
-        //Debug.Log(currentCharge);
     }
 
     public override void OnMagnetism(PlayerController pc = null)
@@ -49,7 +46,7 @@ public class Battery : MagnetChargeable, IUpdate
 
         if (currentCharge <= 0) NoCharge();
 
-        StartCoroutine(RechargeWait());
+        if (hasCustomCharge == false) CallCharge();
 
         UpdateHUD();
     }
@@ -71,4 +68,9 @@ public class Battery : MagnetChargeable, IUpdate
         ChangeMat(chargedMat);
         _isCharged = true;
     }   
+
+    void CallCharge()
+    {
+        StartCoroutine(RechargeWait());
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MagnetPushable : MonoBehaviour, IMagnetable
 {
     float magnetForce = 40;
+
     public void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
@@ -14,5 +15,9 @@ public class MagnetPushable : MonoBehaviour, IMagnetable
                 transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, magnetForce * Time.deltaTime);
             }
         }
+    }
+    public void OnExit()
+    {
+        throw new System.NotImplementedException();
     }
 }

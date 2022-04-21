@@ -31,4 +31,6 @@ public abstract class MagnetChargeable : MonoBehaviour, IMagnetable
         float temp = (float)currentCharge / (float)baseCharge;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ItemCharge, temp);
     }
+
+    public virtual void OnExit(){}   
 }

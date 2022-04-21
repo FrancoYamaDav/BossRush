@@ -72,7 +72,7 @@ public class BaseProyectile : MonoBehaviour, IUpdate
        if (currentLifeTime >= _maxLifeTime)
             OnDeath();
 
-       currentLifeTime = 1 * Time.deltaTime;
+       currentLifeTime += 1 * Time.deltaTime;
     }
 
     #region Collision

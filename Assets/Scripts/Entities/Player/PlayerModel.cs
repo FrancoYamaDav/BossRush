@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModel : MonoBehaviour
+public class PlayerModel
 {
+    /*
     //Capaz mover esta variable a otro lado
     bool _isDead = false;
     public bool isDead { get { return _isDead; } }
@@ -11,7 +12,7 @@ public class PlayerModel : MonoBehaviour
     {
         _isDead = true;
     }
-
+    */
     //Ints
     int _maxHealth = 100;
     public int maxHealth { get { return _maxHealth; } }
@@ -22,10 +23,5 @@ public class PlayerModel : MonoBehaviour
 
     //Floats
     float _speed = 17.5f;   
-    public float speed { get { return _speed; } }
-    
-    private void Awake()
-    {
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_Death, DeadEvent);
-    }
+    public float speed { get { return _speed; } }    
 }

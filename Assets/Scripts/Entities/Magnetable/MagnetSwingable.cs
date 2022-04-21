@@ -8,4 +8,6 @@ public class MagnetSwingable : MonoBehaviour, IMagnetable
     {
         Debug.Log("Swingable: Magnetism detected but not implemented");
     }
+
+    public void OnExit(){ }
 }
