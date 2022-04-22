@@ -10,7 +10,7 @@ public class ChargerController : BaseBossController
     Material _defMat, _chargeMat;
 
     [SerializeField] float distance;
-    float stunTime = 0.4f, chargeTime = 3.2f, currentCharge;
+    float stunTime = 0.9f, chargeTime = 3.2f, currentCharge;
     float attackCooldown = 2.4f;
     
     [SerializeField] bool closeRange, readyToAttack = false, isCharging = false;
@@ -50,8 +50,6 @@ public class ChargerController : BaseBossController
             currentCharge = 0;
             _mr.material = _defMat;
         }
-
-        Debug.Log(currentHealth);
     }
 
     void Move()
@@ -115,7 +113,6 @@ public class ChargerController : BaseBossController
     void Attack()
     {
         _mr.material = _defMat;
-        Debug.Log("Ataque");
         readyToAttack = false;
         isCharging = true;
         speed = 3.2f;

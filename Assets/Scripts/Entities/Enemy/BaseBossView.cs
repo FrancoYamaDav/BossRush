@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class BaseBossView : MonoBehaviour
 {
-    public Slider hpSlider;
+    [SerializeField] Slider hpSlider;
+    [SerializeField] Text bossNameHUD;
+    [SerializeField] string bossName;
 
     public List<AudioClip> clips = new List<AudioClip>();
     AudioSource _as;
