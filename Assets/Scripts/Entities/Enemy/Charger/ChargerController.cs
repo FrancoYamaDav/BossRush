@@ -38,13 +38,13 @@ public class ChargerController : BaseBossController
         else return;
 
         if (distance <= 7) closeRange = true;
-        else if (distance > 12) closeRange = false;
+        else if (distance > 16) closeRange = false;
 
         if (closeRange && readyToAttack)
         {
             ChargeAttack();
         }
-        else if (readyToAttack)
+        else
         {
             Move();
             currentCharge = 0;

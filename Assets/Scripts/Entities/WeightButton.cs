@@ -8,9 +8,9 @@ public class WeightButton : MonoBehaviour
     GameObject target;
     IActivable activable;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.GetComponent<MagnetGrabable>())
+        if (collision.gameObject.GetComponent<MagnetPushable>())
         {
             if (target != null)
             {

@@ -9,5 +9,7 @@ public class Delete1 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1)) SceneManager.LoadScene(3);
         if (Input.GetKeyDown(KeyCode.F2)) SceneManager.LoadScene(5);
+        if (Input.GetKeyDown(KeyCode.F3)) SceneManager.LoadScene(6);
+        if (Input.GetKeyDown(KeyCode.F4)) SceneManager.LoadScene(7);
     }
 }
