@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 728088a130f115046a4e46dcc4f4eb66
+  - enabled: 1
+    path: Assets/Scenes/ChargeBoss.unity
+    guid: 4d757361d5ab9894d8f02f7776e66e01
+  - enabled: 1
+    path: Assets/Scenes/StopBoss.unity
+    guid: 63c45db76f096c4469bb4ae4c212da04
   m_configObjects: {}

@@ -66,7 +66,7 @@ public class BaseProyectileSpawner : MonoBehaviour
     #endregion
 
     #region SpawnOptions
-    Vector3 safezone = new Vector3 (-1000, -1000, -1000);
+    protected Vector3 safezone = new Vector3 (-1000, -1000, -1000);
     public BaseProyectile Factory()
     {
         var temp = Instantiate(prefab);

@@ -9,7 +9,7 @@ public class Battery : MagnetChargeable, IUpdate
     float chargeRate = 0.26f, dischargeRate = 2.2f;
     float waitTime = 11;
 
-    bool hasCustomCharge;
+    public bool hasCustomCharge;
 
     protected override void Awake()
     {
@@ -51,26 +51,30 @@ public class Battery : MagnetChargeable, IUpdate
         UpdateHUD();
     }
 
+    #region Charge
     void NoCharge()
     {
         _isCharged = false;
         ChangeMat(unchargedMat);
+        _interactable = false;
+    }   
+
+    void Recharged()
+    {        
+        ChangeMat(chargedMat);
+        _isCharged = true;
+        _interactable = true;
+    }
+    #endregion
+
+    public void CallCharge()
+    {
+        StartCoroutine(RechargeWait());
     }
 
     IEnumerator RechargeWait()
     {
         yield return new WaitForSeconds(waitTime);
         isCharging = true;
-    }
-
-    void Recharged()
-    {        
-        ChangeMat(chargedMat);
-        _isCharged = true;
-    }   
-
-    void CallCharge()
-    {
-        StartCoroutine(RechargeWait());
     }
 }

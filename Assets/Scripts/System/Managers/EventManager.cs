@@ -23,6 +23,8 @@ public class EventManager
         Event_HUD_PlayerProyectile,
         Event_HUD_PlayerChargerHide,
 
+        Event_HUD_PlayerAction,
+
         Event_HUD_BossLife,
 
         Event_HUD_ItemCharge,

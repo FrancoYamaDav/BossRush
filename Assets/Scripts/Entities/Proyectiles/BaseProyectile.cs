@@ -16,8 +16,8 @@ public class BaseProyectile : MonoBehaviour, IUpdate
     List<IMove> _moveTypes = new List<IMove>();
     public List<IMove> moveTypes {get { return _moveTypes; } }
 
-    float _speed, _maxLifeTime, currentLifeTime;
-    int _dmg = 1;
+    protected float _speed, _maxLifeTime, currentLifeTime;
+    protected int _dmg = 1;
 
     //Specifics
     bool _explodes;
@@ -99,7 +99,11 @@ public class BaseProyectile : MonoBehaviour, IUpdate
 
         _ps.DestroyProyectile(this);
         TurnOff(this);
+    }
 
+    public void GetDeath()
+    {
+        OnDeath();
     }
 
     protected virtual bool DeathException(Collision collision)

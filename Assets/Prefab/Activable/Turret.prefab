@@ -402,3 +402,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d655392b3cbe6c48b8d753057eae690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _proyectileSpawn: {fileID: 6111314990492865261}

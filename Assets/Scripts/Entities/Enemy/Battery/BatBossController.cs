@@ -18,13 +18,13 @@ public class BatBossController : BaseBossController
     public List<GameObject> attackWaypoints = new List<GameObject>();
 
     //StunCondition
-    public List<Battery> batteries = new List<Battery>();
-    float stunTime = 1.3f;
+    BatteryManager _bat;
 
     protected override void Awake()
     {
         base.Awake();
         _ps = GetComponent<BombProyectileSpawner>();
+        _bat = GetComponent<BatteryManager>();
 
         RollNewPosition();
     }
@@ -33,10 +33,10 @@ public class BatBossController : BaseBossController
     {
         base.OnUpdate();
 
-        if (CountBatteries() && !isStunned) //Este se podria pasar a algun event o lazo a las baterias
+        if (_bat.CountBatteries() && !isStunned) //Este se podria pasar a algun event o lazo a las baterias
               OnStun();
 
-        if (isStunned && !CountBatteries())
+        if (isStunned && !_bat.CountBatteries())
             StunComeback();
 
         if (isStunned) return;
@@ -81,22 +81,6 @@ public class BatBossController : BaseBossController
     #endregion
 
     #region StunManagement
-    bool CountBatteries()
-    {
-        int temp = 0;
-        foreach (var battery in batteries)
-        {
-            if (battery != null && !battery.isCharged)
-            {
-                temp++;
-            }
-        }
-
-        if (temp == batteries.Count)
-            return true;
-
-        return false;
-    }
 
     protected override void OnStun()
     {

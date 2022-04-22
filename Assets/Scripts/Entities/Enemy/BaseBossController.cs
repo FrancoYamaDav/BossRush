@@ -10,9 +10,11 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
     protected bool isStunned = false;
     protected int currentHealth;
 
+    protected int _contactDmg = 5;
+
     protected virtual void Awake()
     {
-        _bm = GetComponent<BaseBossModel>();
+        _bm = new BaseBossModel();
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -51,8 +53,7 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_BossLife, temp);
     }
     #endregion
-
-    int _contactDmg = 10;
+    
     protected virtual void OnCollisionEnter(Collision collision)
     {
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();

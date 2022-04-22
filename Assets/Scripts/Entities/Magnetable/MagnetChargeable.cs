@@ -12,7 +12,7 @@ public abstract class MagnetChargeable : Magnetable
     protected bool _isCharged = true;
     public bool isCharged { get { return _isCharged; } }
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
 
@@ -26,8 +26,11 @@ public abstract class MagnetChargeable : Magnetable
     }
     protected void UpdateHUD()
     {
-        float temp = (float)currentCharge / (float)baseCharge;
-        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ItemCharge, temp);
+        if (interactable)
+        {
+           float temp = (float)currentCharge / (float)baseCharge;
+           EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ItemCharge, temp);
+        }
     }
 
     public override void OnExit()
