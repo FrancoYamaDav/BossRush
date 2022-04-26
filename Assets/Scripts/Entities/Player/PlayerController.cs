@@ -26,20 +26,20 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     public bool isGrounded = true;    
     private Transform myTransform; 
     
+    //Hidden Variables
     private Rigidbody _rb;
     private PlayerModel _m;
     private PlayerBrain _brain;
 
-    //IElectrified elect = new Electricity();
-
     Vector3 raycastAngle = Vector3.forward;
-
     int currentHealth, currentStamina;
     public bool isDashing, isGrabing;
     bool isDead;
 
-    //testeos
     Magnetable _desired;
+
+    bool _isGrabbing;
+    public bool isGrabbing { get { return _isGrabbing; } }
 
 
     #region Set up
@@ -275,7 +275,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         }
     }
 
-    //test
     public void ExecuteMagnetism()
     {
         if (_desired != null) _desired.OnMagnetism(this);

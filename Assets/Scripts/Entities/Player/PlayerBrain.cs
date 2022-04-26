@@ -13,21 +13,6 @@ public class PlayerBrain
 
     Dictionary<KeyCode, ICommand> _moveCommands;
     Dictionary<KeyCode, HoldCommand> _holdCommands;
-
-    /*
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-        _pc = GetComponent<PlayerController>();
-        _ps = GetComponent<PlayerProyectileSpawner>();
-        _pm = GetComponent<PlayerModel>();
-        _keybinds = new Keybinds();
-        RefreshKeybinds();
-    }
-    private void Update()
-    {      
-        Brain();
-    }*/
     
     public PlayerBrain(Rigidbody rb, PlayerController pc, BaseProyectileSpawner ps, PlayerModel pm)
     {
@@ -52,6 +37,7 @@ public class PlayerBrain
         
         //_holdCommands.Add(_keybinds.hitMelee, new HitLight());
         _holdCommands.Add(_keybinds.hitDistance, new HitDistance(_ps));
+        //_holdCommands.Add(_keybinds.hitDistance, new IsGrabbingObject(new ThrowObject(), new HitDistance(_ps), false);
 
         _holdCommands.Add(_keybinds.magnetism, new Magnetism(_pc));
     }

@@ -9,11 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 4c558a16a3919474e85de44a3e0ddf1b
   - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 76ca3ad51e998b340b6b94a1146c9f3c
+  - enabled: 1
     path: Assets/Scenes/DodgeBossTest.unity
     guid: f2c9b004dfdc1744fb5c926032f48db6
   - enabled: 1
-    path: Assets/Scenes/TestingGrounds/Puzzle.unity
-    guid: 0e9fb01be4ce7484f8ff13f6d5f1910f
+    path: Assets/Scenes/ChargeBoss.unity
+    guid: 4d757361d5ab9894d8f02f7776e66e01
+  - enabled: 1
+    path: Assets/Scenes/StopBoss.unity
+    guid: 63c45db76f096c4469bb4ae4c212da04
   - enabled: 1
     path: Assets/Scenes/BatteryBossTest.unity
     guid: 8c05ebb1d5089aa4d9709f0522eeb117
@@ -21,12 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TestingGrounds/visualtestscene.unity
     guid: 695b00da382efb54ba271e96f83d11a9
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: 728088a130f115046a4e46dcc4f4eb66
-  - enabled: 1
-    path: Assets/Scenes/ChargeBoss.unity
-    guid: 4d757361d5ab9894d8f02f7776e66e01
-  - enabled: 1
-    path: Assets/Scenes/StopBoss.unity
-    guid: 63c45db76f096c4469bb4ae4c212da04
+    path: Assets/Scenes/TestingGrounds/Puzzle.unity
+    guid: 0e9fb01be4ce7484f8ff13f6d5f1910f
   m_configObjects: {}

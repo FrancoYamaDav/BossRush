@@ -10,6 +10,7 @@ public class PlayerGrabZone : MonoBehaviour
         if (temp != null && temp.isGrabbed == true)
         {
             Debug.Log("Grabable Detected");
+            //Player is grabbing = true;
         }
     }
 }

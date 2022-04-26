@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class OnEnterExit : MonoBehaviour
 {
+
+    [SerializeField] int sceneNumber;
+
     private void OnCollisionEnter(Collision collision)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(sceneNumber);
     }
 }
