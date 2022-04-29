@@ -11,6 +11,7 @@ public class EventManager
     {
         //Player
         Event_Player_Death,
+        Event_Player_StaminaChange,
 
         //Boss
         Event_Boss_Defeated,

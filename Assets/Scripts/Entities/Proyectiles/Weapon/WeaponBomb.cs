@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponBomb : IWeapon
 {
-    BulletFlyweight _fw = FlyweightProyectile.Bomb;
+    FlyweightProyectile _fw = ProyectileValues.Bomb;
 
     float _coolDown;
 
@@ -17,7 +17,7 @@ public class WeaponBomb : IWeapon
         return _coolDown;
     }
 
-    public BulletFlyweight GetProyectileStats()
+    public FlyweightProyectile GetProyectileStats()
     {
         return _fw;
     }

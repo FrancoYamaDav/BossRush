@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponHoming : IWeapon
 {
-    BulletFlyweight _fw = FlyweightProyectile.Homing;
+    FlyweightProyectile _fw = ProyectileValues.Homing;
 
     float _coolDown;
 
@@ -17,7 +17,7 @@ public class WeaponHoming : IWeapon
         return _coolDown;
     }
 
-    public BulletFlyweight GetProyectileStats()
+    public FlyweightProyectile GetProyectileStats()
     {
         return _fw;
     }

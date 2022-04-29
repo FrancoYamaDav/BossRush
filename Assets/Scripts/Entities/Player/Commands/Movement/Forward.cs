@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 
-public class Forward : ICommand
-{
-    Rigidbody _rb;
-    Vector3 _position;
-
-    public Forward(Rigidbody rb)
+public class Forward : MoveCommand
+{   
+    public Forward(Rigidbody rb, Transform t)
     {
-        _rb = rb;
+        SetComponents(rb, t);        
     }
 
-    public void Execute(float val)
+    public override void Execute()
     {
-        _position = new Vector3(0.0f, 0.0f, val * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime);  
+        _position = new Vector3(0, 0, _transform.forward.z * speed);
+        //_position = new Vector3(0.0f, 0.0f, speed * Time.deltaTime);  
         _rb.AddForce(_position); 
         //_rb.transform.position += Vector3.forward/10;
     }

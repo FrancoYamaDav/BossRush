@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BaseProyectileSpawner : MonoBehaviour
 {   
@@ -44,13 +45,15 @@ public class BaseProyectileSpawner : MonoBehaviour
         var p = _pool.SendFromPool();
 
         var build = new ProyectileBuilder(currentWeapon.GetProyectileStats())
+                                                       .SetOwner(this.gameObject.GetComponent<IDamageable>())
                                                        .SetSpawner(this)
-                                                       .SetOwner(this.gameObject)
                                                        .SetMultiplier(multiplier)
                                                        .SendStats(p);
 
         p.transform.position = _proyectileSpawn.position; 
-        p.transform.rotation = _proyectileSpawn.rotation;
+
+        if (rotationTransform != null) p.transform.rotation = rotationTransform.rotation;
+        else p.transform.rotation = _proyectileSpawn.rotation;
     }
 
     protected IEnumerator ShootCooldown()
@@ -79,4 +82,11 @@ public class BaseProyectileSpawner : MonoBehaviour
         _pool.ReturnToPool(b);
     }
     #endregion   
+
+    Transform rotationTransform;
+    public BaseProyectileSpawner SetRotation(Transform t)
+    {
+        rotationTransform = t;
+        return this;
+    }
 }

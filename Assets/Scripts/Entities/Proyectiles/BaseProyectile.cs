@@ -10,7 +10,7 @@ public class BaseProyectile : MonoBehaviour, IUpdate
     MeshRenderer _mr;
 
     BaseProyectileSpawner _ps;
-    GameObject _owner;
+    IDamageable _owner;
 
     protected IMove _currentMoveType;
     List<IMove> _moveTypes = new List<IMove>();
@@ -25,7 +25,7 @@ public class BaseProyectile : MonoBehaviour, IUpdate
 
     Transform _target;
     #region SetUp
-    public void SetStats(BaseProyectileSpawner ps, GameObject owner, float speed, float lifeTime, int dmg, int moveID, Vector3 sizeTrans, string path, bool gravity, bool explodes, Transform target = null)
+    public void SetStats(BaseProyectileSpawner ps, IDamageable owner, float speed, float lifeTime, int dmg, int moveID, Vector3 sizeTrans, string path, bool gravity, bool explodes, Transform target = null)
     {
         _ps = ps;
         _owner = owner;
@@ -82,12 +82,25 @@ public class BaseProyectile : MonoBehaviour, IUpdate
 
         IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
 
-        if (DamageException(collisionInterface) && !(collision.gameObject == _owner))
+        if (DamageException(collisionInterface) && !(collision.gameObject.GetComponent<BaseProyectileSpawner>() == _ps))
         {
             collisionInterface.ReceiveDamage(_dmg);
         }
+    }
 
-        if (DeathException(collision)) OnDeath();
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (_explodes) _as.Play();
+
+        IDamageable collisionInterface = other.gameObject.GetComponent<IDamageable>();
+
+        if (DamageException(collisionInterface) && !(other.gameObject.GetComponent<BaseProyectileSpawner>() == _ps))
+        {
+            collisionInterface.ReceiveDamage(_dmg);
+            OnDeath();
+        }
+
+        //if (DeathException(other)) OnDeath();
     }
 
     protected virtual void OnDeath()
@@ -106,8 +119,10 @@ public class BaseProyectile : MonoBehaviour, IUpdate
         OnDeath();
     }
 
-    protected virtual bool DeathException(Collision collision)
+    protected virtual bool DeathException(Collider collision)
     {
+        if (collision.gameObject.GetComponent<BaseProyectileSpawner>() == _ps) return false;
+
         return true;
     }
 
@@ -129,14 +144,14 @@ public class BaseProyectile : MonoBehaviour, IUpdate
         {
             IDamageable collisionInterface = col.gameObject.GetComponent<IDamageable>();
 
-            if (DamageException(collisionInterface) && !(col.gameObject == _owner))
+            if (DamageException(collisionInterface) && !(collisionInterface == _owner))
             {
                 collisionInterface.ReceiveDamage(_dmg);
             }
 
             IKnockeable knockInterface = col.gameObject.GetComponent<IKnockeable>();
 
-            if (knockInterface != null && !(col.gameObject == _owner))
+            if (knockInterface != null && !(collisionInterface == _owner))
             {
                 knockInterface.ReceiveKnockback(_dmg);
             }

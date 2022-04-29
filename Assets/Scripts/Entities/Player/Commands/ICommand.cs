@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface ICommand
 {
-    void Execute(float val = 0);
+    void Execute();
+
+    void OnExit();
 }

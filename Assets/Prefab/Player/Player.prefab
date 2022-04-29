@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 4398520348709803144}
   - component: {fileID: 4398520348709803151}
   - component: {fileID: 4398520348709803253}
-  - component: {fileID: 4398520348709803255}
   - component: {fileID: 4398520348709803254}
   - component: {fileID: 3828170568154814439}
   - component: {fileID: 2812533210884422717}
@@ -218,25 +217,7 @@ MonoBehaviour:
     m_Bits: 4023
   isFalling: 1
   isGrounded: 0
-  isMagnetOn: 0
   isDashing: 0
---- !u!114 &4398520348709803255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4398520348709803148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb2c539a532c3f5408485b776c27c0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSlider: {fileID: 0}
-  stSlider: {fileID: 0}
-  proyectileSlider: {fileID: 0}
-  magnet: {fileID: 0}
-  proSliContainer: {fileID: 0}
 --- !u!114 &4398520348709803254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7137950966341140390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1.7}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4398520348709803146}
@@ -382,8 +363,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1.5, z: 1.1}
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Size: {x: 3.5, y: 1.5, z: 2}
+  m_Center: {x: 0, y: 0.4, z: 0.8}
 --- !u!114 &7178647228280287030
 MonoBehaviour:
   m_ObjectHideFlags: 0

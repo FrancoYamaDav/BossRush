@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Backward : ICommand
+public class Backward : MoveCommand
 {
-    Rigidbody _rb;
-    Vector3 _position;
-
-    public Backward(Rigidbody rb)
+    public Backward(Rigidbody rb, Transform t)
     {
-        _rb = rb;
+        SetComponents(rb, t);
     }
 
-    public void Execute(float val)
-    {        
-        _position = new Vector3(0.0f, 0.0f, -val * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime);
+    public override void Execute()
+    {
+        Debug.Log("Backward: Executed");
+
+        _position = new Vector3(0, 0, _transform.forward.z * -speed);
+        //_position = new Vector3(0.0f, 0.0f, -speed * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime);
         _rb.AddForce(_position);
     }
 }

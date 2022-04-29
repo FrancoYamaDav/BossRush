@@ -5,20 +5,25 @@ using UnityEngine;
 public class Magnetism : HoldCommand
 {
     PlayerController _pc;
+    Magnetable _magnetable;
     public Magnetism(PlayerController pc)
     {
         _pc = pc;
     }
 
-    public override void Execute(float val)
-    {        
-        if (_pc != null)
-            _pc.ExecuteMagnetism();
+    public override void Execute()
+    {
+        if (_pc == null) return;
+        _magnetable = _pc.GetMagnetable();
+
+        if (_magnetable == null) return;
+        _magnetable.OnMagnetism(_pc);
     }
 
     public override void OnExit()
     {
-        if (_pc != null)
-            _pc.ExecuteExit();       
+        if (_pc == null) return;
+        if (_magnetable == null) return;
+        _magnetable.OnExit();
     }
 }

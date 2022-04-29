@@ -6,9 +6,9 @@ public class HitLight : HoldCommand
 {
     public HitLight(){ }
 
-    public override void Execute(float val = 0)
+    public override void Execute()
     {
-        base.Execute(val);
+        base.Execute();
         Debug.Log("Hit: Executed but not implemented " + counter); 
     }
 

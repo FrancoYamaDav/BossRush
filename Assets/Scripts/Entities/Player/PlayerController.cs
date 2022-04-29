@@ -29,27 +29,37 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     //Hidden Variables
     private Rigidbody _rb;
     private PlayerModel _m;
+    PlayerView _view;
     private PlayerBrain _brain;
 
-    Vector3 raycastAngle = Vector3.forward;
-    int currentHealth, currentStamina;
-    public bool isDashing, isGrabing;
-    bool isDead;
+    int _currentHealth, _currentStamina;
+    bool _isDead, _isGrabbing;
+    public bool isDashing;
 
-    Magnetable _desired;
+    Magnetable _currentMagnetable;
 
-    bool _isGrabbing;
+    //Getters
+    public PlayerModel model { get { return _m; } }
+
+    public Rigidbody rb { get { return _rb; } }
+
     public bool isGrabbing { get { return _isGrabbing; } }
+
+    public int currentStamina { get { return _currentStamina;} }
 
 
     #region Set up
     private void Awake()
     {
         ComponentChecker();
-        Cursor.lockState = CursorLockMode.Locked;
-        currentHealth = _m.maxHealth;
+
+        _currentHealth = _m.maxHealth;
+        _currentStamina = _m.maxStamina;
         myTransform = transform;
 
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_StaminaChange, StaminaModify);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
@@ -65,31 +75,38 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         _m = new PlayerModel();
 
-       _brain = new PlayerBrain(_rb, this, GetComponent<BaseProyectileSpawner>(), _m);
+        var temp = Instantiate(Resources.Load<Canvas>("UI/UIPlayer"));
+        _view = new PlayerView(temp);
 
-        isDead = false;
+        _brain = new PlayerBrain(this, cameraObject);
+
+        _isDead = false;        
     }
     #endregion
+
     public void OnUpdate()
     {
-        if (isDead) return;
+        if (_isDead) return;
 
         if (CanIMove())
         {
-            _brain.Brain();
+            _brain.Brain(cameraObject);
             Movement(Time.fixedDeltaTime);
         }
 
         Raycast();
         
         HandleFalling(Time.deltaTime, moveDirection);
+
+        if (_currentStamina < _m.maxStamina)
+            StaminaCharge();
     }
     
     //TODO: Cambiar todo el brain para que se mueva via deltas.
     #region New Rotattion&Movement
     Vector3 normalVector;
     Vector3 targetPosition;
-    private void Rotation(float _delta) 
+    private void Rotation(float _delta)
     {
         Vector3 targetDir = Vector3.zero;
         targetDir = cameraObject.forward * Input.GetAxis("Vertical");
@@ -107,7 +124,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * _delta);
 
         myTransform.rotation = targetRotation;
-
     }
 
     public void HandleFalling(float delta, Vector3 moveDir)
@@ -153,10 +169,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
                 //isGrounded = false;
             }
         }
-    }
-    
+    }    
     private void Movement(float _delta)
     {
+        
         moveDirection = cameraObject.forward * Input.GetAxis("Vertical");
         moveDirection += cameraObject.right * Input.GetAxis("Horizontal");
         moveDirection.Normalize();
@@ -164,10 +180,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         float speed = 10f;
         moveDirection *= speed;
-
+        
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         _rb.velocity = projectedVelocity;
-
+        /*
         float moveAmount = Mathf.Clamp01(Mathf.Abs(moveDirection.x)) + Mathf.Abs(moveDirection.z);
         
         _animatorHandler.AnimatorValues(moveAmount, 0);
@@ -175,7 +191,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if (_animatorHandler.canRotate)
         {
             Rotation(_delta);
-        }
+        }*/
     }  
     #endregion
 
@@ -189,9 +205,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     public void ReceiveDamage(int dmgVal)
     {
         //Debug.Log("Player: Received Damage");
-        currentHealth -= dmgVal;
+        _currentHealth -= dmgVal;
         UpdateHealthBar();
-        if (currentHealth <= 0) OnNoLife();
+        if (_currentHealth <= 0) OnNoLife();
     }
 
     public void OnNoLife()
@@ -207,42 +223,64 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public void ReceiveHealing(int healVal)
     {
-        var newHealth = currentHealth + healVal;
+        var newHealth = _currentHealth + healVal;
 
         if (newHealth >= _m.maxHealth)  newHealth = _m.maxHealth;
 
-        currentHealth = newHealth;
+        _currentHealth = newHealth;
 
         UpdateHealthBar();
     }
 
     void UpdateHealthBar()
     {
-        float temp = (float)currentHealth / (float)_m.maxHealth;
+        float temp = (float)_currentHealth / (float)_m.maxHealth;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerLife, temp);
+    }
+    #endregion
+
+    #region StaminaManagement
+    void StaminaModify(params object[] param)
+    {
+        _currentStamina += (int)param[0];
+        UpdateStaminaBar();
+    }
+
+    float staminaTemp;
+    void StaminaCharge()
+    {
+        staminaTemp += 1.5f * Time.deltaTime;
+
+        if (staminaTemp >= 1)
+        {
+           _currentStamina += (int)staminaTemp;
+            staminaTemp = 0;        
+        }
+
+        UpdateStaminaBar();
     }
 
     void UpdateStaminaBar()
     {
-        float temp = (float)currentStamina / (float)_m.maxStamina;
+        float temp = (float)_currentStamina / (float)_m.maxStamina;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerStamina, temp);
     }
-    #endregion    
+    #endregion
 
     #region Raycast
     void Raycast()
     {
         bool magnetDetected;
 
-        Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta );
+        Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta);
         
         if (Physics.Raycast(cameraObject.position, cameraObject.forward, out var lookingAt, rayDistance, layerMask))
         {
             //Debug.Log(lookingAt.collider.name);            
             
-            _desired = lookingAt.collider.gameObject.GetComponent<Magnetable>();
+            _currentMagnetable = lookingAt.collider.gameObject.GetComponent<Magnetable>();
             
-            if (_desired != null && _desired.interactable == true)
+            if (_currentMagnetable != null && _currentMagnetable.interactable == true)
             {
                 magnetDetected = true;
             }
@@ -260,11 +298,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         Gizmos.color = Color.red;
         Gizmos.DrawRay(cameraObject.position, cameraObject.forward);
     }
-
-    public void ChangeRaycastAngle(Vector3 vector)
-    {
-        raycastAngle += vector;
-    }
     #endregion
 
     private void OnCollisionEnter(Collision collision)
@@ -275,13 +308,23 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         }
     }
 
-    public void ExecuteMagnetism()
+    #region Getters
+
+    public BaseProyectileSpawner GetProyectileSpawner()
     {
-        if (_desired != null) _desired.OnMagnetism(this);
+        return this.gameObject.GetComponent<BaseProyectileSpawner>();
     }
 
-    public void ExecuteExit()
+    public Magnetable GetMagnetable()
     {
-        if (_desired != null) _desired.OnExit();
+        return _currentMagnetable;
     }
+    #endregion
+
+    #region Testing   
+    public void SetGrabbing(bool b)
+    {
+        _isGrabbing = b;
+    }
+    #endregion
 }

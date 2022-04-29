@@ -3,21 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerView : MonoBehaviour
+public class PlayerView
 {
-    public Slider hpSlider, stSlider, proyectileSlider;
-    public Image magnet;
+    Slider hpSlider, stSlider, proyectileSlider;
+    Image magnet;
 
-    public GameObject proSliContainer;
+    /*
     private void Awake()
     {
         SubscribeToEvents();
-    }
-    /*
-    public PlayerView()
-    {
-        SubscribeToEvents();    
     }*/
+    
+    public PlayerView(Canvas pa)
+    {
+        var temp = pa.GetComponentInChildren<UIPlayerAssign>();
+
+        if (temp == null) return;
+
+        hpSlider = temp.hpSlider;
+        stSlider = temp.stSlider;
+        proyectileSlider = temp.proyectileSlider;
+        magnet = temp.magnet;        
+
+        SubscribeToEvents();    
+
+        magnet.enabled = false;
+    }
+    void SubscribeToEvents()
+    {
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerLife, OnLifeUpdate);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerStamina, OnStaminaUpdate);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerProyectile, OnProyectileUpdate);
+
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerMagnet, OnMagnetUpdate);
+
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerChargerHide, HideProyectile);
+    }
 
     #region Updates
     //Sliders
@@ -35,8 +56,8 @@ public class PlayerView : MonoBehaviour
     {
         if (proyectileSlider == null) return;
 
-        //proSliContainer.enabled = true;
-        proSliContainer.SetActive(true);
+        proyectileSlider.gameObject.SetActive(true);
+        //proSliContainer.SetActive(true);
         proyectileSlider.value = (float)param[0];
     }
 
@@ -51,18 +72,7 @@ public class PlayerView : MonoBehaviour
     void HideProyectile(params object[] param)
     {
         if (proyectileSlider == null) return;
-        proSliContainer.SetActive(false);
+        proyectileSlider.gameObject.SetActive(false);
     }
-    #endregion
-
-    void SubscribeToEvents()
-    {
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerLife, OnLifeUpdate);
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerStamina, OnStaminaUpdate);
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerProyectile, OnProyectileUpdate);
-
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerMagnet, OnMagnetUpdate);
-
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerChargerHide, HideProyectile);
-    }
+    #endregion   
 }
