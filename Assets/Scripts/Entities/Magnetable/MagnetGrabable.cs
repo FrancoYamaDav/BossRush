@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MagnetGrabable : Magnetable
 {
-    float magnetForce = 50;
+    float magnetForce = 50, pushForce = 50;
     public bool isGrabbed { get { return isBeingUsed; } }
 
     BoxCollider _bc;
@@ -38,15 +38,22 @@ public class MagnetGrabable : Magnetable
     public void Grabbed(Transform t)
     {
         transform.SetParent(t);
-        _rb.useGravity = false;
+        _rb.constraints = RigidbodyConstraints.FreezePosition;
         _bc.enabled = false;
         _interactable = false;
     }
 
-    public void Throw(float val)
+    public void Throw(float val, Transform t)
     {
+        transform.position = transform.parent.transform.position + new Vector3(0, 3f, 0);
         transform.parent = null;
-        _rb.useGravity = true;
+
+        _rb.constraints = RigidbodyConstraints.None;
+        _rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        _rb.AddForce(t.forward * val * pushForce, ForceMode.Impulse);
+
+        
         _bc.enabled = true;
         _interactable = true;
     }

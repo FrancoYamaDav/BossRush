@@ -32,7 +32,8 @@ public class HitDistance : HoldCommand
 
         if (_ps != null) _ps.SetRotation(_transform).Shoot(counter);
 
-        counter = 0;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerChargerHide);
+
+        base.OnExit();
     }
 }

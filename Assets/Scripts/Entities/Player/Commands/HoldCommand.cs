@@ -11,5 +11,8 @@ public abstract class HoldCommand : ICommand
         if (counter < timeNeeded) counter += 1.2f * Time.deltaTime;
     }
 
-    public virtual void OnExit(){  }
+    public virtual void OnExit()
+    {  
+       counter = 0;
+    }
 }
