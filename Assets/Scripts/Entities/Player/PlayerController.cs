@@ -129,11 +129,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     public void HandleFalling(float delta, Vector3 moveDir)
     {
         isGrounded = false;
-        RaycastHit hit;
         Vector3 origin = transform.position;
         origin.y += groundDetectionRayStartPoint;
 
-        if (Physics.Raycast(origin, transform.forward, out hit, 0.4f))
+        if (Physics.Raycast(origin, transform.forward, out var hit, 0.4f))
         {
             moveDirection = Vector3.zero;
         }
@@ -155,7 +154,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
             normalVector = hit.normal;
             Vector3 tp = hit.point;
             isGrounded = true;
-            targetPosition.y = tp.y;
+            //targetPosition.y = tp.y;
 
             if (isFalling)
             {
