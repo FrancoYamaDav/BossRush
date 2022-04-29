@@ -97,9 +97,10 @@ public class BaseProyectile : MonoBehaviour, IUpdate
         if (DamageException(collisionInterface) && !(other.gameObject.GetComponent<BaseProyectileSpawner>() == _ps))
         {
             collisionInterface.ReceiveDamage(_dmg);
+            OnDeath();
         }
 
-        if (DeathException(other)) OnDeath();
+        //if (DeathException(other)) OnDeath();
     }
 
     protected virtual void OnDeath()

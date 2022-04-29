@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    BulletFlyweight GetProyectileStats();
+    FlyweightProyectile GetProyectileStats();
     float GetCooldown();
 }

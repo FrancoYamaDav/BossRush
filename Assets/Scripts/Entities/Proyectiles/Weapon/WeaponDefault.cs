@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponDefault : IWeapon
 {
-    BulletFlyweight _fw = FlyweightProyectile.Default;
+    FlyweightProyectile _fw = ProyectileValues.Default;
 
     float _coolDown;
 
@@ -17,7 +17,7 @@ public class WeaponDefault : IWeapon
         return _coolDown;
     }
 
-    public BulletFlyweight GetProyectileStats()
+    public FlyweightProyectile GetProyectileStats()
     {
         return _fw;
     }

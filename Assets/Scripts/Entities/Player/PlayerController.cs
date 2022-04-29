@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     //Hidden Variables
     private Rigidbody _rb;
     private PlayerModel _m;
+    PlayerView _view;
     private PlayerBrain _brain;
 
     int currentHealth, currentStamina;
@@ -37,14 +38,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     Magnetable _currentMagnetable;
 
-
     //Getters
     public PlayerModel model { get { return _m; } }
 
     public Rigidbody rb { get { return _rb; } }
 
     public bool isGrabbing { get { return _isGrabbing; } }
-
 
 
     #region Set up
@@ -71,9 +70,12 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         _m = new PlayerModel();
 
+        var temp = Instantiate(Resources.Load<Canvas>("UI/UIPlayer"));
+        _view = new PlayerView(temp);
+
         _brain = new PlayerBrain(this, cameraObject);
 
-        _isDead = false;
+        _isDead = false;        
     }
     #endregion
 
@@ -160,8 +162,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
                 //isGrounded = false;
             }
         }
-    }
-    
+    }    
     private void Movement(float _delta)
     {
         

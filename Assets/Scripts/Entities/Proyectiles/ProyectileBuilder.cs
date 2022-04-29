@@ -6,15 +6,15 @@ public class ProyectileBuilder
 {
     IDamageable _owner;
     BaseProyectileSpawner _ps;
-    BulletFlyweight _fw;
+    FlyweightProyectile _fw;
 
     float _multiplier = 1;
 
     #region Builder
-    public ProyectileBuilder(BulletFlyweight fw)
+    public ProyectileBuilder(FlyweightProyectile fw)
     {
         if (fw != null) _fw = fw;
-        else _fw = FlyweightProyectile.Default;
+        else _fw = ProyectileValues.Default;
     }
 
     public ProyectileBuilder SetSpawner(BaseProyectileSpawner ps)

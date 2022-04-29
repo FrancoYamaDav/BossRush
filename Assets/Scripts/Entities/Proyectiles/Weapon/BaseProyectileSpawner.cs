@@ -45,7 +45,7 @@ public class BaseProyectileSpawner : MonoBehaviour
         var p = _pool.SendFromPool();
 
         var build = new ProyectileBuilder(currentWeapon.GetProyectileStats())
-                                                       .SetOwner((IDamageable)this.gameObject.GetComponent(typeof(IDamageable)))
+                                                       .SetOwner(this.gameObject.GetComponent<IDamageable>())
                                                        .SetSpawner(this)
                                                        .SetMultiplier(multiplier)
                                                        .SendStats(p);
