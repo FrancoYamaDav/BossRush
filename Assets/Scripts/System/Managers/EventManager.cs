@@ -14,7 +14,14 @@ public class EventManager
         Event_Player_StaminaChange,
 
         //Boss
-        Event_Boss_Defeated,
+        Event_Boss_CurrentDefeated,
+
+        Event_Boss_DodgeDefeated,
+        Event_Boss_BatteryDefeated,
+        Event_Boss_ChargerDefeated,
+        Event_Boss_BulletHellDefeated,
+        Event_Boss_WeakpointsDefeated,
+
         Event_Boss_PuzzleCompleted,
         
         //Canvas

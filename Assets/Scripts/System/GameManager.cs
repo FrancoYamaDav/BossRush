@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private void Awake()
     {
-        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Boss_Defeated, OnBossDefeated);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
     }
 
     void OnBossDefeated(params object[] param)

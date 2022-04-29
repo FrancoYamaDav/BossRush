@@ -48,13 +48,13 @@ public class BatBossController : BaseBossController
         {
             if (_ps != null)
             {
-                Shoot();
+                Attack();
             }
             timer = 0;
         }
     }
 
-    void Shoot()
+    protected override void Attack()
     {
         var temp = Random.Range(0, attackWaypoints.Count);
         _ps.ChangeSpawnPosition(attackWaypoints[temp].transform);
@@ -86,13 +86,12 @@ public class BatBossController : BaseBossController
     {
         base.OnStun();
         _rb.useGravity = true;
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 0);
     }
 
-    void StunComeback()
+    protected override void StunComeback()
     {
-        _rb.useGravity = false;
-        isStunned = false;
+        base.StunComeback();
+        _rb.useGravity = false;        
     }
     #endregion
 
@@ -101,18 +100,8 @@ public class BatBossController : BaseBossController
     {
         if (isStunned)
         {
-            currentHealth -= dmgVal;
-            UpdateHealthBar();
-            if (currentHealth <= 0) OnNoLife();
-
-            EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 1);
+            DamageReceived(dmgVal);
         }
-    }
-
-    public override void OnNoLife()
-    {
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 2);
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_Defeated);
     }
     #endregion
 }

@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UIBossAssign : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Slider _hpSlider;
+    public Slider hpSlider { get { return _hpSlider; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] TMP_Text _bossName;
+    public TMP_Text bossName { get { return _bossName; } }
 }

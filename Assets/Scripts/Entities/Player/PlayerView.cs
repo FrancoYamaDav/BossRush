@@ -7,12 +7,6 @@ public class PlayerView
 {
     Slider hpSlider, stSlider, proyectileSlider;
     Image magnet;
-
-    /*
-    private void Awake()
-    {
-        SubscribeToEvents();
-    }*/
     
     public PlayerView(Canvas pa)
     {

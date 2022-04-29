@@ -26,13 +26,13 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
 
     public override void OnUpdate()
     {
-        base.OnUpdate();
+        if (_bm.isDead || isStunned) return;
 
         timer += 1 * Time.deltaTime;
         if (timer > cooldown)
         {
            _ps.Shoot();
-            timer = 0;
+           timer = 0;
         }        
     }    
 

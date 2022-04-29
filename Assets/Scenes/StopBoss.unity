@@ -1325,22 +1325,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1242655564660833101, guid: 6836906f6ddf7d24485e5ed47ef0aba5, type: 3}
   m_PrefabInstance: {fileID: 1489171238}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1489171240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489171239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6cd89626ed69804ba4375ef9bf3f668, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpSlider: {fileID: 4032813474401858457}
-  bossNameHUD: {fileID: 0}
-  bossName: 
-  clips: []
 --- !u!114 &1489171241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,6 +1337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a0a1f26a99ade42a201d93d598ff0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStunned: 0
   distance: 0
   closeRange: 0
   readyToAttack: 0
@@ -1867,17 +1852,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
---- !u!114 &4032813474401858457 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1907547926463861552, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
-  m_PrefabInstance: {fileID: 4032813474401858456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4032813474401858458 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 594409508007200222, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
