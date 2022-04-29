@@ -7,6 +7,16 @@ public class MagnetGrabable : Magnetable
     float magnetForce = 50;
     public bool isGrabbed { get { return isBeingUsed; } }
 
+    BoxCollider _bc;
+    Rigidbody _rb;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _bc = GetComponent<BoxCollider>();
+        _rb = GetComponent<Rigidbody>();
+    }
+
     public override void OnMagnetism(PlayerController pc = null)
     {
         if (pc != null)
@@ -23,5 +33,21 @@ public class MagnetGrabable : Magnetable
     public override void OnExit()
     {
         base.OnExit();
+    }
+
+    public void Grabbed(Transform t)
+    {
+        transform.SetParent(t);
+        _rb.useGravity = false;
+        _bc.enabled = false;
+        _interactable = false;
+    }
+
+    public void Throw(float val)
+    {
+        transform.parent = null;
+        _rb.useGravity = true;
+        _bc.enabled = true;
+        _interactable = true;
     }
 }

@@ -11,6 +11,7 @@ public class PlayerGrabZone : MonoBehaviour
         {
             Debug.Log("Grabable Detected");
             gameObject.GetComponentInParent<PlayerController>().SetGrabbing(true);
+            temp.Grabbed(gameObject.GetComponentInParent<PlayerController>().transform);
         }
     }
 }

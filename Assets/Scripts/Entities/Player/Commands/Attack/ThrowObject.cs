@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowObject : ICommand
+public class ThrowObject : HoldCommand
 {
-    public void Execute()
+    PlayerController _pc;
+
+    public ThrowObject(PlayerController pc)
     {
-        //GrabObject = false;
-        Debug.Log("Throw item");
+        _pc = pc;
     }
 
-    public void OnExit() { }
+    public override void OnExit() 
+    {
+        _pc.SetGrabbing(false);
+        _pc.GetComponentInChildren<MagnetGrabable>().Throw(counter);
+    }
 }

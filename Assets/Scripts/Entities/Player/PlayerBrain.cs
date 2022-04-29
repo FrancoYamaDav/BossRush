@@ -32,7 +32,7 @@ public class PlayerBrain
         _moveCommands.Add(_keybinds.left, new Left(_pc.GetRB(), _cameraTransform));      */ 
         
         //_holdCommands.Add(_keybinds.hitMelee, new HitLight());
-        _commands.Add(_keybinds.hitDistance, new IsGrabbingObject(new ThrowObject(), new HitDistance(_pc.GetProyectileSpawner(), _cameraTransform), _pc) );
+        _commands.Add(_keybinds.hitDistance, new IsGrabbingObject(new ThrowObject(_pc), new HitDistance(_pc.GetProyectileSpawner(), _cameraTransform), _pc) );
 
         _commands.Add(_keybinds.magnetism, new Magnetism(_pc));
     }
