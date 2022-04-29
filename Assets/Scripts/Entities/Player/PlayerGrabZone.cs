@@ -9,9 +9,10 @@ public class PlayerGrabZone : MonoBehaviour
         var temp = other.GetComponent<MagnetGrabable>();
         if (temp != null && temp.isGrabbed == true)
         {
-            Debug.Log("Grabable Detected");
-            gameObject.GetComponentInParent<PlayerController>().SetGrabbing(true);
-            temp.Grabbed(gameObject.GetComponentInParent<PlayerController>().transform);
+            var controlTemp = gameObject.GetComponentInParent<PlayerController>();
+            if (controlTemp == null) return;
+            controlTemp.SetGrabbing(true);
+            temp.Grabbed(controlTemp.transform);
         }
     }
 }

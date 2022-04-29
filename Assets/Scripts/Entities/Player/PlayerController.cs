@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     PlayerView _view;
     private PlayerBrain _brain;
 
-    int currentHealth, currentStamina;
+    int _currentHealth, _currentStamina;
     bool _isDead, _isGrabbing;
     public bool isDashing;
 
@@ -45,14 +45,19 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public bool isGrabbing { get { return _isGrabbing; } }
 
+    public int currentStamina { get { return _currentStamina;} }
+
 
     #region Set up
     private void Awake()
     {
         ComponentChecker();
 
-        currentHealth = _m.maxHealth;
+        _currentHealth = _m.maxHealth;
+        _currentStamina = _m.maxStamina;
         myTransform = transform;
+
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_StaminaChange, StaminaModify);
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -92,13 +97,16 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         Raycast();
         
         HandleFalling(Time.deltaTime, moveDirection);
+
+        if (_currentStamina < _m.maxStamina)
+            StaminaCharge();
     }
     
     //TODO: Cambiar todo el brain para que se mueva via deltas.
     #region New Rotattion&Movement
     Vector3 normalVector;
     Vector3 targetPosition;
-    private void Rotation(float _delta) 
+    private void Rotation(float _delta)
     {
         Vector3 targetDir = Vector3.zero;
         targetDir = cameraObject.forward * Input.GetAxis("Vertical");
@@ -116,7 +124,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * _delta);
 
         myTransform.rotation = targetRotation;
-
     }
 
     public void HandleFalling(float delta, Vector3 moveDir)
@@ -198,9 +205,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     public void ReceiveDamage(int dmgVal)
     {
         //Debug.Log("Player: Received Damage");
-        currentHealth -= dmgVal;
+        _currentHealth -= dmgVal;
         UpdateHealthBar();
-        if (currentHealth <= 0) OnNoLife();
+        if (_currentHealth <= 0) OnNoLife();
     }
 
     public void OnNoLife()
@@ -216,34 +223,56 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public void ReceiveHealing(int healVal)
     {
-        var newHealth = currentHealth + healVal;
+        var newHealth = _currentHealth + healVal;
 
         if (newHealth >= _m.maxHealth)  newHealth = _m.maxHealth;
 
-        currentHealth = newHealth;
+        _currentHealth = newHealth;
 
         UpdateHealthBar();
     }
 
     void UpdateHealthBar()
     {
-        float temp = (float)currentHealth / (float)_m.maxHealth;
+        float temp = (float)_currentHealth / (float)_m.maxHealth;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerLife, temp);
+    }
+    #endregion
+
+    #region StaminaManagement
+    void StaminaModify(params object[] param)
+    {
+        _currentStamina += (int)param[0];
+        UpdateStaminaBar();
+    }
+
+    float staminaTemp;
+    void StaminaCharge()
+    {
+        staminaTemp += 1.5f * Time.deltaTime;
+
+        if (staminaTemp >= 1)
+        {
+           _currentStamina += (int)staminaTemp;
+            staminaTemp = 0;        
+        }
+
+        UpdateStaminaBar();
     }
 
     void UpdateStaminaBar()
     {
-        float temp = (float)currentStamina / (float)_m.maxStamina;
+        float temp = (float)_currentStamina / (float)_m.maxStamina;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerStamina, temp);
     }
-    #endregion    
+    #endregion
 
     #region Raycast
     void Raycast()
     {
         bool magnetDetected;
 
-        Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta );
+        Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta);
         
         if (Physics.Raycast(cameraObject.position, cameraObject.forward, out var lookingAt, rayDistance, layerMask))
         {

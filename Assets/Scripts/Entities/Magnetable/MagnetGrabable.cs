@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MagnetGrabable : Magnetable
 {
-    float magnetForce = 50, pushForce = 50;
+    float magnetForce = 50;
     public bool isGrabbed { get { return isBeingUsed; } }
 
     BoxCollider _bc;
     Rigidbody _rb;
+
+    IDamageable _owner;
 
     protected override void Awake()
     {
@@ -37,7 +39,7 @@ public class MagnetGrabable : Magnetable
 
     public void Grabbed(Transform t)
     {
-        transform.SetParent(t);
+        if(t != null) transform.SetParent(t);
         _rb.constraints = RigidbodyConstraints.FreezePosition;
         _bc.enabled = false;
         _interactable = false;
@@ -51,10 +53,29 @@ public class MagnetGrabable : Magnetable
         _rb.constraints = RigidbodyConstraints.None;
         _rb.constraints = RigidbodyConstraints.FreezeRotation;
 
-        _rb.AddForce(t.forward * val * pushForce, ForceMode.Impulse);
-
+        _rb.AddForce(t.forward * ProyectileValues.Throwable.speed * val, ForceMode.Impulse);
         
         _bc.enabled = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!_interactable)
+        {
+            IDamageable collisionInterface = collision.gameObject.GetComponent<IDamageable>();
+
+            if (collisionInterface != null && !(collision.gameObject.GetComponent<IDamageable>() == _owner))
+            {
+                collisionInterface.ReceiveDamage(ProyectileValues.Throwable.dmg);
+            }
+        }
+
         _interactable = true;
+    }
+
+    public MagnetGrabable SetOwner(IDamageable d)
+    {
+        _owner = d;
+        return this;
     }
 }

@@ -26,7 +26,7 @@ public class ThrowObject : HoldCommand
     public override void OnExit() 
     {
         _pc.SetGrabbing(false);
-        _pc.GetComponentInChildren<MagnetGrabable>().Throw(counter, _transform);
+        _pc.GetComponentInChildren<MagnetGrabable>().SetOwner(_pc).Throw(counter, _transform);
         
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerChargerHide);
         base.OnExit();

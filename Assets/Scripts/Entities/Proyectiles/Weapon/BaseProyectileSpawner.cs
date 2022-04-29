@@ -52,7 +52,7 @@ public class BaseProyectileSpawner : MonoBehaviour
 
         p.transform.position = _proyectileSpawn.position; 
 
-        if(rotationTransform != null) p.transform.rotation = rotationTransform.rotation;
+        if (rotationTransform != null) p.transform.rotation = rotationTransform.rotation;
         else p.transform.rotation = _proyectileSpawn.rotation;
     }
 

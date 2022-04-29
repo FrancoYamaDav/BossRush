@@ -60,4 +60,11 @@ public class ProyectileValues : MonoBehaviour
         explodes = true,
         target = null,
     };
+
+    public static readonly FlyweightProyectile Throwable = new FlyweightProyectile
+    {
+        speed = 50f,
+
+        dmg = 40,
+    };
 }

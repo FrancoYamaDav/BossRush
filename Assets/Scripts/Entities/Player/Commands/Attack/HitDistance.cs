@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class HitDistance : HoldCommand
 {
+    PlayerController _pc;
     BaseProyectileSpawner _ps;
     Transform _transform;
 
-    public HitDistance(BaseProyectileSpawner ps, Transform t)
+    int staminaCost = 25;
+
+    public HitDistance(PlayerController pc, Transform t)
     {
-        _ps = ps;
+        _pc = pc;
+        _ps = _pc.GetProyectileSpawner();
         _transform = t;
         timeNeeded = 1.8f;
     }
 
     public override void Execute()
     {
-        if (_ps == null) return;
-        if (!_ps.canShoot) return;
+        if (!CanIShoot()) return;
 
         base.Execute();
 
@@ -27,13 +30,22 @@ public class HitDistance : HoldCommand
 
     public override void OnExit()
     {
+        if (!CanIShoot()) return;
+
         if (counter < 0.50f) counter = 0.50f;        
         if (counter > timeNeeded) counter = timeNeeded;        
 
         if (_ps != null) _ps.SetRotation(_transform).Shoot(counter);
 
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerChargerHide);
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Player_StaminaChange, -staminaCost);
 
         base.OnExit();
+    }
+
+    bool CanIShoot()
+    {
+        if (_ps == null || _pc.currentStamina < staminaCost || !_ps.canShoot) return false;
+        else return true;
     }
 }

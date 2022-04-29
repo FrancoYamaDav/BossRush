@@ -15,13 +15,15 @@ public class Magnetism : HoldCommand
     {
         if (_pc == null) return;
         _magnetable = _pc.GetMagnetable();
+
+        if (_magnetable == null) return;
         _magnetable.OnMagnetism(_pc);
     }
 
     public override void OnExit()
     {
         if (_pc == null) return;
-
-        _magnetable.OnExit();       
+        if (_magnetable == null) return;
+        _magnetable.OnExit();
     }
 }
