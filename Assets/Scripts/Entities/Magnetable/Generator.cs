@@ -17,12 +17,14 @@ public class Generator : MagnetChargeable
         unchargedMat = _meshRenderer.material;
         chargedMat = Resources.Load<Material>("Materials/ChargeableCharged");
 
+        baseCharge = 140;
+
         currentCharge = 0;
         activated = false;
     }
     public override void OnMagnetism(PlayerController pc = null)
     {
-        if (currentCharge < baseCharge) currentCharge += 4;
+        if (currentCharge < baseCharge) currentCharge += 7;
 
         if (currentCharge >= baseCharge) OnFullCharge();
 
