@@ -53,7 +53,7 @@ public class StopperController : BaseBossController
     #region Health
     public override void ReceiveDamage(int dmgVal)
     {
-        currentHealth -= 15;
+        currentHealth -= 10;
         UpdateHealthBar();
         if (currentHealth <= 0) OnNoLife();
 
