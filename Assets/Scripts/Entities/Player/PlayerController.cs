@@ -31,25 +31,31 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     private PlayerModel _m;
     private PlayerBrain _brain;
 
-    Vector3 raycastAngle = Vector3.forward;
     int currentHealth, currentStamina;
-    public bool isDashing, isGrabing;
-    bool isDead;
+    bool _isDead, _isGrabbing;
+    public bool isDashing;
 
-    Magnetable _desired;
+    Magnetable _currentMagnetable;
 
-    bool _isGrabbing;
+
+    //Getters
+    public PlayerModel model { get { return _m; } }
+
+    public Rigidbody rb { get { return _rb; } }
+
     public bool isGrabbing { get { return _isGrabbing; } }
+
 
 
     #region Set up
     private void Awake()
     {
         ComponentChecker();
-        Cursor.lockState = CursorLockMode.Locked;
+
         currentHealth = _m.maxHealth;
         myTransform = transform;
 
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
@@ -65,18 +71,19 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         _m = new PlayerModel();
 
-       _brain = new PlayerBrain(_rb, this, GetComponent<BaseProyectileSpawner>(), _m);
+        _brain = new PlayerBrain(this, cameraObject);
 
-        isDead = false;
+        _isDead = false;
     }
     #endregion
+
     public void OnUpdate()
     {
-        if (isDead) return;
+        if (_isDead) return;
 
         if (CanIMove())
         {
-            _brain.Brain();
+            _brain.Brain(cameraObject);
             Movement(Time.fixedDeltaTime);
         }
 
@@ -157,6 +164,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     
     private void Movement(float _delta)
     {
+        
         moveDirection = cameraObject.forward * Input.GetAxis("Vertical");
         moveDirection += cameraObject.right * Input.GetAxis("Horizontal");
         moveDirection.Normalize();
@@ -164,10 +172,10 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         float speed = 10f;
         moveDirection *= speed;
-
+        
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         _rb.velocity = projectedVelocity;
-
+        /*
         float moveAmount = Mathf.Clamp01(Mathf.Abs(moveDirection.x)) + Mathf.Abs(moveDirection.z);
         
         _animatorHandler.AnimatorValues(moveAmount, 0);
@@ -175,7 +183,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if (_animatorHandler.canRotate)
         {
             Rotation(_delta);
-        }
+        }*/
     }  
     #endregion
 
@@ -240,9 +248,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         {
             //Debug.Log(lookingAt.collider.name);            
             
-            _desired = lookingAt.collider.gameObject.GetComponent<Magnetable>();
+            _currentMagnetable = lookingAt.collider.gameObject.GetComponent<Magnetable>();
             
-            if (_desired != null && _desired.interactable == true)
+            if (_currentMagnetable != null && _currentMagnetable.interactable == true)
             {
                 magnetDetected = true;
             }
@@ -260,11 +268,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         Gizmos.color = Color.red;
         Gizmos.DrawRay(cameraObject.position, cameraObject.forward);
     }
-
-    public void ChangeRaycastAngle(Vector3 vector)
-    {
-        raycastAngle += vector;
-    }
     #endregion
 
     private void OnCollisionEnter(Collision collision)
@@ -275,13 +278,23 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         }
     }
 
-    public void ExecuteMagnetism()
+    #region Getters
+
+    public BaseProyectileSpawner GetProyectileSpawner()
     {
-        if (_desired != null) _desired.OnMagnetism(this);
+        return this.gameObject.GetComponent<BaseProyectileSpawner>();
     }
 
-    public void ExecuteExit()
+    public Magnetable GetMagnetable()
     {
-        if (_desired != null) _desired.OnExit();
+        return _currentMagnetable;
     }
+    #endregion
+
+    #region Testing   
+    public void SetGrabbing(bool b)
+    {
+        _isGrabbing = b;
+    }
+    #endregion
 }

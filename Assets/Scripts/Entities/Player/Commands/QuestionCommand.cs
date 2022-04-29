@@ -7,9 +7,15 @@ public abstract class QuestionCommand : ICommand
     protected ICommand trueCommand, falseCommand;
     protected bool condition;
 
-    public void Execute(float val = 0)
+    public virtual void Execute()
     {
-        if(condition) trueCommand.Execute(val);
-        else falseCommand.Execute(val);
+        if(condition) trueCommand.Execute();
+        else falseCommand.Execute();
+    }
+
+    public virtual void OnExit()
+    {
+        if (condition) trueCommand.OnExit();
+        else falseCommand.OnExit();
     }
 }

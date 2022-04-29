@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class IsGrabbingObject : QuestionCommand
 {
-    public IsGrabbingObject(ICommand t, ICommand f, bool con)
+    PlayerController _pc;
+    public IsGrabbingObject(ICommand t, ICommand f, PlayerController pc)
     {
         trueCommand = t;
         falseCommand = f;
-        condition = con;
+        _pc = pc;
+    }
+
+    public override void Execute()
+    {
+        condition = _pc.isGrabbing;
+        base.Execute();
     }
 }

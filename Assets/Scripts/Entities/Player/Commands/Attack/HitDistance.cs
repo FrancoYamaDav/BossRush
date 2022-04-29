@@ -5,18 +5,21 @@ using UnityEngine;
 public class HitDistance : HoldCommand
 {
     BaseProyectileSpawner _ps;
-    public HitDistance(BaseProyectileSpawner ps)
+    Transform _transform;
+
+    public HitDistance(BaseProyectileSpawner ps, Transform t)
     {
         _ps = ps;
+        _transform = t;
         timeNeeded = 1.8f;
     }
 
-    public override void Execute(float val = 0)
+    public override void Execute()
     {
         if (_ps == null) return;
         if (!_ps.canShoot) return;
 
-        base.Execute(val);
+        base.Execute();
 
         float temp = (float)counter / (float)timeNeeded;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerProyectile, temp);
@@ -27,7 +30,7 @@ public class HitDistance : HoldCommand
         if (counter < 0.50f) counter = 0.50f;        
         if (counter > timeNeeded) counter = timeNeeded;        
 
-        if (_ps != null) _ps.Shoot(counter);
+        if (_ps != null) _ps.SetRotation(_transform).Shoot(counter);
 
         counter = 0;
         EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_PlayerChargerHide);

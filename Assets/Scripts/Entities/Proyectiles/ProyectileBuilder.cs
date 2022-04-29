@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProyectileBuilder 
 {
-    GameObject _owner;
+    IDamageable _owner;
     BaseProyectileSpawner _ps;
     BulletFlyweight _fw;
 
@@ -22,8 +22,7 @@ public class ProyectileBuilder
         _ps = ps;
         return this;
     }
-
-    public ProyectileBuilder SetOwner(GameObject owner)
+    public ProyectileBuilder SetOwner(IDamageable owner)
     {
         _owner = owner;
         return this;

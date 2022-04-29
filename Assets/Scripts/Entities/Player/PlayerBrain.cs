@@ -4,59 +4,54 @@ using UnityEngine;
 
 public class PlayerBrain
 {
-    Rigidbody _rb;
-
-    PlayerModel _pm;
     PlayerController _pc;
-    BaseProyectileSpawner _ps;
     Keybinds _keybinds;
 
-    Dictionary<KeyCode, ICommand> _moveCommands;
-    Dictionary<KeyCode, HoldCommand> _holdCommands;
+    Transform _cameraTransform;
+
+    Dictionary<KeyCode, ICommand> _commands;
+    Dictionary<KeyCode, MoveCommand> _moveCommands;
     
-    public PlayerBrain(Rigidbody rb, PlayerController pc, BaseProyectileSpawner ps, PlayerModel pm)
-    {
-        _rb = rb;
-        _pm = pm;
+    public PlayerBrain(PlayerController pc, Transform t)
+    {        
         _pc = pc;
-        _ps = ps;
+        _cameraTransform = t;
+
         _keybinds = new Keybinds();
         RefreshKeybinds();
     }
 
     public void RefreshKeybinds()
     {
-        _moveCommands = new Dictionary<KeyCode, ICommand>();
-        _holdCommands = new Dictionary<KeyCode, HoldCommand>();
+        _moveCommands = new Dictionary<KeyCode, MoveCommand>();
+        _commands = new Dictionary<KeyCode, ICommand>();
         /*
-        _moveCommands.Add(_keybinds.forward, new Forward(_rb));
-        _moveCommands.Add(_keybinds.backward, new Backward(_rb));
-        _moveCommands.Add(_keybinds.right, new Right(_rb));
-        _moveCommands.Add(_keybinds.left, new Left(_rb));
-        */
+        _moveCommands.Add(_keybinds.forward, new Forward(_pc.GetRB(), _cameraTransform));
+        _moveCommands.Add(_keybinds.backward, new Backward(_pc.GetRB(), _cameraTransform));
+        _moveCommands.Add(_keybinds.right, new Right(_pc.GetRB(), _cameraTransform));
+        _moveCommands.Add(_keybinds.left, new Left(_pc.GetRB(), _cameraTransform));      */ 
         
         //_holdCommands.Add(_keybinds.hitMelee, new HitLight());
-        _holdCommands.Add(_keybinds.hitDistance, new HitDistance(_ps));
-        //_holdCommands.Add(_keybinds.hitDistance, new IsGrabbingObject(new ThrowObject(), new HitDistance(_ps), false);
+        _commands.Add(_keybinds.hitDistance, new IsGrabbingObject(new ThrowObject(), new HitDistance(_pc.GetProyectileSpawner(), _cameraTransform), _pc) );
 
-        _holdCommands.Add(_keybinds.magnetism, new Magnetism(_pc));
+        _commands.Add(_keybinds.magnetism, new Magnetism(_pc));
     }
 
-    public void Brain()
+    public void Brain(Transform cameraTransform)
     {
         foreach (var command in _moveCommands)
         {
             if (Input.GetKey(command.Key))
-                command.Value.Execute(_pm.speed);
+                command.Value.SetSpeed(_pc.model.speed).Execute();
         }
 
-        foreach (var command in _holdCommands)
+        foreach (var command in _commands)
         {
             if (Input.GetKey(command.Key))
-                command.Value.Execute(_pm.speed);
+                command.Value.Execute();
         }
 
-        foreach (var command in _holdCommands)
+        foreach (var command in _commands)
         {
             if (Input.GetKeyUp(command.Key))
                 command.Value.OnExit();

@@ -22,6 +22,6 @@ public class PlayerModel
     public int maxStamina { get { return _maxStamina; } }
 
     //Floats
-    float _speed = 17.5f;   
+    float _speed = 100f;   
     public float speed { get { return _speed; } }    
 }

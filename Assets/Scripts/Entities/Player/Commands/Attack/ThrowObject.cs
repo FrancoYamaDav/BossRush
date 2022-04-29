@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ThrowObject : ICommand
 {
-    public void Execute(float val = 0)
+    public void Execute()
     {
         //GrabObject = false;
+        Debug.Log("Throw item");
     }
+
+    public void OnExit() { }
 }

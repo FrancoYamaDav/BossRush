@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Left : ICommand
+public class Left : MoveCommand
 {
-    Rigidbody _rb;
-    Vector3 _position;
-
-    public Left(Rigidbody rb)
+    public Left(Rigidbody rb, Transform t)
     {
-        _rb = rb;
+        SetComponents(rb, t);
     }
 
-    public void Execute(float val)
+    public override void Execute()
     {
-        _position = new Vector3(-val * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime, 0, 0);
+        _position = new Vector3(_transform.right.x * -speed, 0, 0);
+        //_position = new Vector3(-speed * EntitiesFlyweightPointer.Player.defaultSpeed * Time.deltaTime, 0, 0);
         _rb.AddForce(_position);
     }
 }

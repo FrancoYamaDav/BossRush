@@ -6,7 +6,7 @@ public abstract class HoldCommand : ICommand
 {
     protected float counter, timeNeeded = 2;
 
-    public virtual void Execute(float val = 0)
+    public virtual void Execute()
     {
         if (counter < timeNeeded) counter += 1.2f * Time.deltaTime;
     }

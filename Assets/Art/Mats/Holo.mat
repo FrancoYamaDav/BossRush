@@ -29,6 +29,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cutoff: 0.5
+    - _NoiseIntensity: -0.6075119
+    - _NoiseScale: 3.52504
     - __dirty: 0
     m_Colors: []
   m_BuildTextureStacks: []
