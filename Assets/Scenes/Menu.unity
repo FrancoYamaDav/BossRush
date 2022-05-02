@@ -1938,12 +1938,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754683678785449471, guid: 92268a7b39600d44abce534e004a138a, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2754683678785449471, guid: 92268a7b39600d44abce534e004a138a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1956641060}
+    - target: {fileID: 2754683678785449471, guid: 92268a7b39600d44abce534e004a138a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Lobby
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92268a7b39600d44abce534e004a138a, type: 3}
 --- !u!1 &1263345047
