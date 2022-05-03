@@ -10,28 +10,28 @@ public class Generator : BaseMagnetChargeable
 
     bool activated;
 
-    protected override void Awake()
+    #region SetUp
+    protected override void SetRenderer()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
 
         unchargedMat = _meshRenderer.material;
         chargedMat = Resources.Load<Material>("Materials/ChargeableCharged");
+    }
 
+    protected override void SetValues()
+    {
         maxCharge = 140;
+        changeValue = 7;
 
         currentCharge = 0;
         activated = false;
+
+        resetCooldown = 5f;
     }
-    public override void OnMagnetism(PlayerController pc = null)
-    {
-        if (currentCharge < maxCharge) currentCharge += 7;
+    #endregion
 
-        if (currentCharge >= maxCharge) OnFullCharge();
-
-        UpdateHUD();
-    }
-
-    void OnFullCharge()
+    protected override void OnFullCharge()
     {
         _isCharged = true;
         ChangeMat(chargedMat);
@@ -44,7 +44,7 @@ public class Generator : BaseMagnetChargeable
                 activable.Activate();
                 activated = true;
                 _interactable = false;
-                StartCoroutine(CoolDown());
+                StartCoroutine(ResetCharge());
             }
         }
     }
@@ -52,16 +52,14 @@ public class Generator : BaseMagnetChargeable
     public override void OnExit()
     {
         currentCharge = 0;
-        EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ShowCharger, false);
+        base.OnExit();
     }
 
-    IEnumerator CoolDown()
+    protected override void ResetValues()
     {
-        yield return new WaitForSeconds(5f);
         activated = false;
         _interactable = true;
         ChangeMat(unchargedMat);
-        StopCoroutine(CoolDown());
     }
 }
 

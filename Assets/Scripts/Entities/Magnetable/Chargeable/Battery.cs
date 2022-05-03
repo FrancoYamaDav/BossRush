@@ -6,19 +6,21 @@ public class Battery : BaseMagnetChargeable, IUpdate
 {
     bool isCharging = false;
 
-    float chargeRate = 0.26f, dischargeRate = 2.2f;
-    float waitTime = 11;
+    float chargeRate = 0.26f;
 
     public bool hasCustomCharge;
 
-    protected override void Awake()
+    protected override void SetValues()
     {
-        base.Awake();
-
         Recharged();
 
+        maxCharge = 340;
         currentCharge = maxCharge;
+
+        resetCooldown = 11;
+        changeValue = 2.2f;
     }
+
     private void Start()
     {
         UpdateManager.Instance.AddToUpdate(this);
@@ -37,44 +39,43 @@ public class Battery : BaseMagnetChargeable, IUpdate
         }
     }
 
-    public override void OnMagnetism(PlayerController pc = null)
+    #region Charge
+    protected override void ChargeChange()
     {
-        //Que se deje de volver interactuable al acabarse la bateria
         isCharging = false;
-
-        if (currentCharge > 0) currentCharge -= dischargeRate;
-
-        if (currentCharge <= 0) NoCharge();
-
-        if (hasCustomCharge == false) CallCharge();
-
-        UpdateHUD();
+        if (currentCharge > 0) currentCharge -= changeValue;
     }
 
-    #region Charge
-    void NoCharge()
+    protected override void OnNoCharge()
     {
         _isCharged = false;
-        ChangeMat(unchargedMat);
         _interactable = false;
+        ChangeMat(unchargedMat);
     }   
 
     void Recharged()
     {        
-        ChangeMat(chargedMat);
         _isCharged = true;
         _interactable = true;
+        ChangeMat(chargedMat);
     }
-    #endregion
+    #endregion    
+
+    public override void OnExit()
+    {
+        base.OnExit();
+
+        if (hasCustomCharge == false) CallCharge();
+    }
 
     public void CallCharge()
     {
-        StartCoroutine(RechargeWait());
+        StartCoroutine(ResetCharge());
     }
 
-    IEnumerator RechargeWait()
+    protected override void ResetValues()
     {
-        yield return new WaitForSeconds(waitTime);
         isCharging = true;
     }
+
 }

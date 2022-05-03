@@ -11,9 +11,4 @@ public class MagnetAtractable : BaseMagnetMove
         magnetForce = 40;
         distanceRequired = 2f;
     }
-
-    public override void OnExit()
-    {
-       base.OnExit();
-    }
 }

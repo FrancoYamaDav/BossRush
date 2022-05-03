@@ -6,6 +6,9 @@ public class BaseMagnetMove : Magnetable
 {
     protected float magnetForce, distanceRequired;
 
+    protected GameObject objectFrom, objectTo;
+    protected Transform transformFrom, transformTo;
+
     public override void OnMagnetism(PlayerController pc = null)
     {
         base.OnMagnetism(pc);
@@ -21,6 +24,6 @@ public class BaseMagnetMove : Magnetable
 
     public override void OnExit() 
     { 
-      base.OnExit();
+       base.OnExit();
     }
 }
