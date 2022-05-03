@@ -12,15 +12,19 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     float timer, cooldown = 4.2f;
     BaseProyectileSpawner _ps;
 
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        _bm = new BaseBossModel();
-        _rb = GetComponent<Rigidbody>();
-
-        var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
-        _view = new DodgeBossView(temp, GetComponent<AudioSource>());
+        base.LoadComponents();
 
         _ps = GetComponentInChildren<BaseProyectileSpawner>();
+
+        stunTime = 3f;
+    }
+
+    protected override void LoadUI()
+    {
+        var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
+        _view = new DodgeBossView(temp, GetComponent<AudioSource>());
     }
 
     protected override void Start()
@@ -64,7 +68,7 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
                 transform.position = waypoints[temp].position;
                 lastPosition = temp;
 
-                TriggerSound(3);
+                TriggerSound(4);
             }
             else
                 ChangePosition();
@@ -85,13 +89,9 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     }
     #endregion
 
-    protected override void OnStun()
+    protected override void StunConfiguration()
     {
-        base.OnStun();
         timer = 0;
         _rb.useGravity = true;
-
-        TriggerSound(0);
-        //Debug.Log("CycleWaypoints: Me han stuneado");
     }
 }

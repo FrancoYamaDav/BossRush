@@ -25,10 +25,9 @@ public class ChargerController : BaseBossController
     //Timer
     float attackCooldown = 3f, stunTime = 1.5f, speedDuration = 2.0f;
 
-
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        base.Awake();
+        base.LoadComponents();
         _target = FindObjectOfType<PlayerController>();
         _mr = GetComponent<MeshRenderer>();
 

@@ -48,6 +48,7 @@ public class BaseBossView
         _as.volume = 0.5f;
         clips.Add(Resources.Load<AudioClip>("Sounds/RobotDeactivate"));
         clips.Add(Resources.Load<AudioClip>("Sounds/ElectricShock"));
+        clips.Add(Resources.Load<AudioClip>("Sounds/Reactivate"));
         clips.Add(Resources.Load<AudioClip>("Sounds/RetroHit"));
 
         ExtendSounds();

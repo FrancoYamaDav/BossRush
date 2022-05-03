@@ -13,12 +13,19 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
 
     protected int _contactDmg = 5;
 
-    protected virtual void Awake()
+    protected float stunTime;
+
+    #region SetUp
+    protected void Awake()
+    {
+        LoadComponents();
+        LoadUI();
+    }
+
+    protected virtual void LoadComponents()
     {
         _rb = GetComponent<Rigidbody>();
         _bm = new BaseBossModel();
-
-        LoadUI();
     }
 
     protected virtual void LoadUI()
@@ -34,6 +41,7 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
 
         UpdateHealthBar();
     }
+    #endregion
 
     public virtual void OnUpdate(){}
 
@@ -85,15 +93,28 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
     #endregion
     
     #region StunManagement
-    protected virtual void OnStun()
+    protected void OnStun()
     {
         isStunned = true;
         TriggerSound(0);
+
+        StunConfiguration();
+        StartCoroutine(StunRecuperation());
+    }
+
+    protected virtual void StunConfiguration(){}
+
+    protected IEnumerator StunRecuperation()
+    {
+        yield return new WaitForSeconds(stunTime);
+        StunComeback();
+        StopCoroutine(StunRecuperation());
     }
 
     protected virtual void StunComeback()
     {
         isStunned = false;
+        TriggerSound(2);
     }
     #endregion   
 

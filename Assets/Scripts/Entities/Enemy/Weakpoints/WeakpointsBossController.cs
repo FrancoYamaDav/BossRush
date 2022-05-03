@@ -17,10 +17,10 @@ public class WeakpointsBossController : BaseBossController
 
     [SerializeField] List<WeakPoints> _weakPoints = new List<WeakPoints>();
 
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        base.Awake();
-        _target = FindObjectOfType<PlayerController>();        
+        base.LoadComponents();
+        _target = FindObjectOfType<PlayerController>();
 
         readyToAttack = true;
     }

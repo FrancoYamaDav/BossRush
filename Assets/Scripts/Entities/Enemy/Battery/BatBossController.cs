@@ -20,9 +20,9 @@ public class BatBossController : BaseBossController
     //StunCondition
     BatteryManager _bat;
 
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        base.Awake();
+        base.LoadComponents();
         _ps = GetComponent<BombProyectileSpawner>();
         _bat = GetComponent<BatteryManager>();
 
@@ -82,9 +82,8 @@ public class BatBossController : BaseBossController
 
     #region StunManagement
 
-    protected override void OnStun()
+    protected override void StunConfiguration()
     {
-        base.OnStun();
         _rb.useGravity = true;
     }
 
