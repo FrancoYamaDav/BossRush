@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : MagnetChargeable, IUpdate
+public class Battery : BaseMagnetChargeable, IUpdate
 {
     bool isCharging = false;
 
@@ -17,7 +17,7 @@ public class Battery : MagnetChargeable, IUpdate
 
         Recharged();
 
-        currentCharge = baseCharge;
+        currentCharge = maxCharge;
     }
     private void Start()
     {
@@ -30,10 +30,10 @@ public class Battery : MagnetChargeable, IUpdate
         {
             currentCharge += chargeRate;
 
-            if (currentCharge >= (baseCharge * 3) / 4)
+            if (currentCharge >= (maxCharge * 3) / 4)
                 Recharged();
 
-            if (currentCharge >= baseCharge) isCharging = false;
+            if (currentCharge >= maxCharge) isCharging = false;
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBossController : BaseBossController, IUpdate, IDamageable
+public class DodgeBossController : BaseBossController, IUpdate, IDamageable
 {
     //Movement
     public List<Transform> waypoints = new List<Transform>();
@@ -14,7 +14,12 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
 
     protected override void Awake()
     {
-        base.Awake();
+        _bm = new BaseBossModel();
+        _rb = GetComponent<Rigidbody>();
+
+        var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
+        _view = new DodgeBossView(temp, GetComponent<AudioSource>());
+
         _ps = GetComponentInChildren<BaseProyectileSpawner>();
     }
 
@@ -47,7 +52,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
             UpdateHealthBar();
             if (currentHealth <= 0) OnNoLife();
 
-            TriggerSound(2);
+            TriggerSound(1);
         }
     }
     #endregion
@@ -63,7 +68,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
                 transform.position = waypoints[temp].position;
                 lastPosition = temp;
 
-                TriggerSound(0);
+                TriggerSound(3);
             }
             else
                 ChangePosition();
@@ -90,7 +95,7 @@ public class TestBossController : BaseBossController, IUpdate, IDamageable
         timer = 0;
         _rb.useGravity = true;
 
-        TriggerSound(1);
+        TriggerSound(0);
         //Debug.Log("CycleWaypoints: Me han stuneado");
     }
 }

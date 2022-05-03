@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MagnetChargeable
+public class Generator : BaseMagnetChargeable
 {
     [SerializeField]
     GameObject target;
@@ -17,16 +17,16 @@ public class Generator : MagnetChargeable
         unchargedMat = _meshRenderer.material;
         chargedMat = Resources.Load<Material>("Materials/ChargeableCharged");
 
-        baseCharge = 140;
+        maxCharge = 140;
 
         currentCharge = 0;
         activated = false;
     }
     public override void OnMagnetism(PlayerController pc = null)
     {
-        if (currentCharge < baseCharge) currentCharge += 7;
+        if (currentCharge < maxCharge) currentCharge += 7;
 
-        if (currentCharge >= baseCharge) OnFullCharge();
+        if (currentCharge >= maxCharge) OnFullCharge();
 
         UpdateHUD();
     }

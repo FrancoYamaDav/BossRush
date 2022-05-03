@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetPushable : Magnetable
+public class BaseMagnetMove : Magnetable
 {
-    float magnetForce = 25;
+    protected float magnetForce, distanceRequired;
 
     public override void OnMagnetism(PlayerController pc = null)
     {
+        base.OnMagnetism(pc);
+
         if (pc != null)
         {
-            if (Vector3.Distance(transform.position, pc.transform.position) >= 2f)
+            if (Vector3.Distance(transform.position, pc.transform.position) >= distanceRequired)
             {
                 transform.position = Vector3.MoveTowards(transform.position, pc.transform.position, magnetForce * Time.deltaTime);
             }
         }
     }
-    public override void OnExit(){}
+
+    public override void OnExit() 
+    { 
+      base.OnExit();
+    }
 }

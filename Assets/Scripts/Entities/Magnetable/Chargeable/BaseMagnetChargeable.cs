@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MagnetChargeable : Magnetable
+public abstract class BaseMagnetChargeable : Magnetable
 {
     protected MeshRenderer _meshRenderer;
     protected Material chargedMat, unchargedMat;
 
-    protected float baseCharge = 340, currentCharge;
+    protected float maxCharge, startingCharge, currentCharge;
+    protected float chargeValue;
 
     protected bool _isCharged = true;
     public bool isCharged { get { return _isCharged; } }
@@ -20,7 +21,24 @@ public abstract class MagnetChargeable : Magnetable
         chargedMat = _meshRenderer.material;
     }
 
-    protected void ChangeMat(Material mat)
+    public override void OnMagnetism(PlayerController pc = null)
+    {
+        base.OnMagnetism(pc);
+
+        Charge();
+
+        if (currentCharge >= maxCharge) OnFullCharge();
+
+        if (currentCharge <= 0) OnNoCharge();
+    }
+
+    protected virtual void Charge(){}
+
+    protected virtual void OnFullCharge(){}
+
+    protected virtual void OnNoCharge(){}
+
+    protected virtual void ChangeMat(Material mat)
     {
         _meshRenderer.material = mat;
     }
@@ -28,7 +46,7 @@ public abstract class MagnetChargeable : Magnetable
     {
         if (interactable)
         {
-           float temp = (float)currentCharge / (float)baseCharge;
+           float temp = (float)currentCharge / (float)maxCharge;
            EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_ItemCharge, temp);
         }
     }

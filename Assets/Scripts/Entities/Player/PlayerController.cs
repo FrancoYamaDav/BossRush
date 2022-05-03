@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         
         Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
         _rb.velocity = projectedVelocity;
-        /*
+        
         float moveAmount = Mathf.Clamp01(Mathf.Abs(moveDirection.x)) + Mathf.Abs(moveDirection.z);
         
         _animatorHandler.AnimatorValues(moveAmount, 0);
@@ -190,7 +190,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if (_animatorHandler.canRotate)
         {
             Rotation(_delta);
-        }*/
+        }
     }  
     #endregion
 

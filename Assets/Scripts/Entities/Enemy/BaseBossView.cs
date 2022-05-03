@@ -6,13 +6,18 @@ using TMPro;
 
 public class BaseBossView
 {
-    Slider hpSlider;
-    TMP_Text bossNameHUD;
-    
-    List<AudioClip> clips = new List<AudioClip>();
-    AudioSource _as;
+    protected Slider hpSlider;
+    protected TMP_Text bossNameHUD;
+
+    protected List<AudioClip> clips = new List<AudioClip>();
+    protected AudioSource _as;
 
     public BaseBossView(Canvas ba, AudioSource a)
+    {
+        SetUp(ba, a);
+    }
+
+    protected void SetUp(Canvas ba, AudioSource a)
     {
         _as = a;
         AddSounds();
@@ -24,13 +29,13 @@ public class BaseBossView
         hpSlider = temp.hpSlider;
         bossNameHUD = temp.bossName;
 
-        if (bossNameHUD != null) bossNameHUD.text = BossValues.Default.bossName;     
+        if (bossNameHUD != null) bossNameHUD.text = BossValues.Default.bossName;
 
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_BossLife, OnLifeUpdate);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Sound_Boss, PlaySound);
     }
 
-    void AddSounds()
+    protected void AddSounds()
     {
         if (_as == null) return;
 
@@ -43,13 +48,13 @@ public class BaseBossView
 
     protected virtual void ExtendSounds(){}
 
-    void OnLifeUpdate(params object[] param)
+    protected void OnLifeUpdate(params object[] param)
     {
         if (hpSlider == null) return;
         hpSlider.value = (float)param[0];
     }
 
-    void PlaySound(params object[] param)
+    protected void PlaySound(params object[] param)
     {
         if (_as == null) return;
 
