@@ -8,6 +8,10 @@ public class DodgeBossView : BaseBossView
     {
         SetUp(ba,a);
     }
+    protected override void ChangeName()
+    {
+        bossNameHUD.text = BossValues.Dodge.bossName;
+    }
 
     protected override void ExtendSounds()
     {

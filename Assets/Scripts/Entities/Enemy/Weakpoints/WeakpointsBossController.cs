@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StopperController : BaseBossController
+public class WeakpointsBossController : BaseBossController
 {
     PlayerController _target;
 
@@ -20,14 +20,19 @@ public class StopperController : BaseBossController
     protected override void Awake()
     {
         base.Awake();
-        _target = FindObjectOfType<PlayerController>();
+        _target = FindObjectOfType<PlayerController>();        
 
         readyToAttack = true;
     }
 
+    protected override void LoadUI()
+    {
+        var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
+        _view = new WeakpointsBossView(temp, GetComponent<AudioSource>());
+    }
+
     public override void OnUpdate()
     {
-        base.Awake();
         if (_target != null) distance = Vector3.Distance(this.transform.position, _target.transform.position);
         else return;
 
@@ -51,23 +56,18 @@ public class StopperController : BaseBossController
     }
 
     #region Health
-    public override void ReceiveDamage(int dmgVal)
+    protected override void DamageReceived(int dmgVal, int alt = 1)
     {
-        currentHealth -= 10;
-        UpdateHealthBar();
-        if (currentHealth <= 0) OnNoLife();
-
-        //EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 2);
+        base.DamageReceived(5, 3);
     }
 
     public void WeakPointDamage(int dmgVal)
     {
         currentHealth -= dmgVal * 2;
-        UpdateHealthBar();
         if (currentHealth <= 0) OnNoLife();
         else StunProperties();
 
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, 2);
+        DamageView();
     }
     #endregion
 
@@ -104,7 +104,7 @@ public class StopperController : BaseBossController
         }
     }
 
-    void Attack()
+    protected override void Attack()
     {
         Debug.Log("Ataque");
         readyToAttack = false;

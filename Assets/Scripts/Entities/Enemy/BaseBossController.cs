@@ -15,9 +15,14 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
 
     protected virtual void Awake()
     {
-        _bm = new BaseBossModel();
         _rb = GetComponent<Rigidbody>();
+        _bm = new BaseBossModel();
 
+        LoadUI();
+    }
+
+    protected virtual void LoadUI()
+    {
         var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
         _view = new BaseBossView(temp, GetComponent<AudioSource>());
     }
@@ -46,18 +51,24 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
     #endregion
 
     #region HealthManagement
-    public virtual void ReceiveDamage(int dmgVal)
+    public void ReceiveDamage(int dmgVal)
     {
         DamageReceived(dmgVal);
     }
 
-    protected virtual void DamageReceived(int dmgVal)
+    protected virtual void DamageReceived(int dmgVal, int alt = 1)
     {
         currentHealth -= dmgVal;
-        UpdateHealthBar();
+
         if (currentHealth <= 0) OnNoLife();
 
-        TriggerSound(1);
+        DamageView(alt);
+    }
+
+    protected virtual void DamageView(int alt = 1)
+    {
+        UpdateHealthBar();
+        TriggerSound(alt);
     }
 
     public virtual void OnNoLife()

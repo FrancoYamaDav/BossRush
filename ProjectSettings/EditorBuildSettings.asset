@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/ChargeBoss.unity
     guid: 4d757361d5ab9894d8f02f7776e66e01
   - enabled: 1
-    path: Assets/Scenes/StopBoss.unity
+    path: Assets/Scenes/WeakpointsBoss.unity
     guid: 63c45db76f096c4469bb4ae4c212da04
   - enabled: 1
     path: Assets/Scenes/BatteryBossTest.unity

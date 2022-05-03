@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: ProyectileCanon
   m_Shader: {fileID: 4800000, guid: c3b600c2c6a221f468ffe468df1a0135, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -73,11 +73,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _power: 2.452941
-    - _scale: 5.529412
+    - _power: 0.4
+    - _scale: 2.45
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.9339623, g: 0.7858383, b: 0.4978195, a: 0}
-    - _Color2: {r: 0.6792453, g: 0.24670699, b: 0.24670699, a: 1}
+    - _Color1: {r: 0.9433962, g: 0.030259816, b: 0.039281663, a: 0}
+    - _Color2: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

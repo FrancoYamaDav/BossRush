@@ -12,6 +12,7 @@ public class BaseBossView
     protected List<AudioClip> clips = new List<AudioClip>();
     protected AudioSource _as;
 
+    #region SetUp
     public BaseBossView(Canvas ba, AudioSource a)
     {
         SetUp(ba, a);
@@ -29,25 +30,33 @@ public class BaseBossView
         hpSlider = temp.hpSlider;
         bossNameHUD = temp.bossName;
 
-        if (bossNameHUD != null) bossNameHUD.text = BossValues.Default.bossName;
+        if (bossNameHUD != null) ChangeName();
 
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_BossLife, OnLifeUpdate);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Sound_Boss, PlaySound);
+    }
+
+    protected virtual void ChangeName()
+    {
+        bossNameHUD.text = BossValues.Default.bossName;
     }
 
     protected void AddSounds()
     {
         if (_as == null) return;
 
-        clips.Add(Resources.Load<AudioClip>("Sounds/ElectricShock"));
-        clips.Add(Resources.Load<AudioClip>("Sounds/MetalHit"));
+        _as.volume = 0.5f;
         clips.Add(Resources.Load<AudioClip>("Sounds/RobotDeactivate"));
+        clips.Add(Resources.Load<AudioClip>("Sounds/ElectricShock"));
+        clips.Add(Resources.Load<AudioClip>("Sounds/RetroHit"));
 
         ExtendSounds();
     }
 
     protected virtual void ExtendSounds(){}
+    #endregion
 
+    #region Events
     protected void OnLifeUpdate(params object[] param)
     {
         if (hpSlider == null) return;
@@ -61,4 +70,5 @@ public class BaseBossView
         _as.clip = clips[(int)param[0]];
         _as.Play();
     }
+    #endregion
 }

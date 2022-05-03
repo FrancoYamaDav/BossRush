@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
+  m_Name: ProyectilePlayer
   m_Shader: {fileID: 4800000, guid: c3b600c2c6a221f468ffe468df1a0135, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -73,11 +73,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _power: 2.452941
+    - _power: 4.89
     - _scale: 5.529412
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.18187076, g: 0.25949988, b: 0.5754717, a: 0}
-    - _Color2: {r: 0.6792453, g: 0.24670699, b: 0.24670699, a: 1}
+    - _Color1: {r: 0.2083222, g: 0.075881094, b: 0.2735849, a: 0}
+    - _Color2: {r: 0.3514952, g: 0.5089193, b: 0.8584906, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

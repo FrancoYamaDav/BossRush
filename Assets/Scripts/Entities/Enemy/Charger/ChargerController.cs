@@ -144,18 +144,14 @@ public class ChargerController : BaseBossController
     #endregion
 
     #region Health
-    public override void ReceiveDamage(int dmgVal)
+    protected override void DamageReceived(int dmgVal, int alt = 1)
     {
         int tempdmg;
 
         if (isStunned) tempdmg = dmgVal;
         else tempdmg = 5;
 
-        currentHealth -= tempdmg;
-        UpdateHealthBar();
-        if (currentHealth <= 0) OnNoLife();
-
-        TriggerSound(2);
+        base.DamageReceived(tempdmg);
     }
 
     public void PenetrationDamage(int dmgVal)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeakPoints : MonoBehaviour,IDamageable
 {
-    [SerializeField] StopperController myController;
+    [SerializeField] WeakpointsBossController myController;
 
     void Awake()
     {

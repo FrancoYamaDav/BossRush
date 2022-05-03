@@ -96,7 +96,7 @@ public class BatBossController : BaseBossController
     #endregion
 
     #region HealthManagement
-    public override void ReceiveDamage(int dmgVal)
+    protected override void DamageReceived(int dmgVal, int alt = 1)
     {
         if (isStunned)
         {

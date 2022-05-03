@@ -39,20 +39,16 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
            _ps.Shoot();
            timer = 0;
         }        
-    }    
+    }
 
     #region HealthManagement
-    public override void ReceiveDamage(int dmgVal)
+    protected override void DamageReceived(int dmgVal, int alt = 1)
     {
         if (!isStunned)
             ChangePosition();
         else
         {
-            currentHealth -= dmgVal;
-            UpdateHealthBar();
-            if (currentHealth <= 0) OnNoLife();
-
-            TriggerSound(1);
+            base.DamageReceived(dmgVal);
         }
     }
     #endregion
