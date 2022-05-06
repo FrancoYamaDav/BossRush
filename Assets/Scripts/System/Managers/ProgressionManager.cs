@@ -5,7 +5,7 @@ using System.IO;
 
 public class ProgressionManager : MonoBehaviour
 {
-    List<bool> progressList = new List<bool>(4);
+    [SerializeField]List<bool> progressList = new List<bool>(4);
 
     ProgressionVariables saveInfo;
     string jsonString;
@@ -17,8 +17,9 @@ public class ProgressionManager : MonoBehaviour
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_LoadFile, Load);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, Save);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
 
-        savePath = Application.dataPath + "/Scripts/System/Managers/SaveData.json";
+        savePath = Application.dataPath + "/SaveData.json";
         jsonString = File.ReadAllText(savePath);
 
         saveInfo = JsonUtility.FromJson<ProgressionVariables>(jsonString);
@@ -28,9 +29,13 @@ public class ProgressionManager : MonoBehaviour
 
     void Load(params object[] param)
     {
-        for (int i = 0; i < progressList.Count; i++)
+        if(progressList.Count <= 0) progressList = saveInfo.bosses;
+        else
         {
-            progressList[i] = saveInfo.bosses[i];
+           for (int i = 0; i < progressList.Count; i++)
+           {
+               progressList[i] = saveInfo.bosses[i];
+           }
         }
     }
 
@@ -54,6 +59,13 @@ public class ProgressionManager : MonoBehaviour
         EventManager.TriggerEvent(EventManager.EventsType.Event_System_SaveFile);
     }
 
+    void Unsubscribe(params object[] param)
+    {
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_LoadFile, Load);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, Save);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
+    }
     public List<bool> GetBoolList()
     {
         return progressList;

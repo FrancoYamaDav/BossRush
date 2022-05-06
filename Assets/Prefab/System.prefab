@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5111342609145963668}
   - component: {fileID: 5111342609145963671}
   - component: {fileID: 4076037645519088901}
+  - component: {fileID: 2081883363293470865}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -59,6 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe8f79c28e2d964a9c7a935227ae4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victory: {fileID: 0}
+  defeat: {fileID: 0}
 --- !u!114 &4076037645519088901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +75,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeSlider: {fileID: 0}
+  chargeContainer: {fileID: 0}
+--- !u!114 &2081883363293470865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111342609145963666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d536c50f8618043bd88237f77e144b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5111342610008898242
 GameObject:
   m_ObjectHideFlags: 0

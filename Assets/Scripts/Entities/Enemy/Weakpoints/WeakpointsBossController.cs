@@ -7,7 +7,7 @@ public class WeakpointsBossController : BaseBossController
     PlayerController _target;
 
     [SerializeField] float distance;
-    float stunTime = 1.5f, chargeTime = 3.2f, currentCharge;
+    float chargeTime = 3.2f, currentCharge;
     float attackCooldown = 3.9f;
 
     [SerializeField] bool closeRange, readyToAttack = false;
@@ -24,6 +24,8 @@ public class WeakpointsBossController : BaseBossController
 
         readyToAttack = true;
         bossNumber = 0;
+
+        stunTime = 1.5f;
     }
 
     protected override void LoadUI()
@@ -59,12 +61,12 @@ public class WeakpointsBossController : BaseBossController
     #region Health
     protected override void DamageReceived(int dmgVal, int alt = 1)
     {
-        base.DamageReceived(5, 3);
+        base.DamageReceived(5, 4);
     }
 
     public void WeakPointDamage(int dmgVal)
     {
-        currentHealth -= dmgVal * 2;
+        currentHealth -= 3000;
         if (currentHealth <= 0) OnNoLife();
         else StunProperties();
 

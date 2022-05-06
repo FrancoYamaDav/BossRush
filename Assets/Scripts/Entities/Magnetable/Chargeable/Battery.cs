@@ -35,7 +35,11 @@ public class Battery : BaseMagnetChargeable, IUpdate
             if (currentCharge >= (maxCharge * 3) / 4)
                 Recharged();
 
-            if (currentCharge >= maxCharge) isCharging = false;
+            if (currentCharge >= maxCharge)
+            {
+                isCharging = false;
+                currentCharge = maxCharge;
+            }
         }
     }
 

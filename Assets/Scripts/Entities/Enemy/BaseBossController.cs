@@ -95,10 +95,11 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
     #endregion
     
     #region StunManagement
-    protected void OnStun()
+    protected virtual void OnStun()
     {
+        if (isStunned == false) TriggerSound(0);
+
         isStunned = true;
-        TriggerSound(0);
 
         StunConfiguration();
         StartCoroutine(StunRecuperation());

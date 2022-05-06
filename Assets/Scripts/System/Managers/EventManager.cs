@@ -35,12 +35,10 @@ public class EventManager
 
         Event_Sound_Boss,
 
-        //Game
-        Event_Game_Lose,
-
-        //Save
+        //System
         Event_System_SaveFile,
         Event_System_LoadFile,
+        Event_System_ChangeScene,
     }
 
     #region SubscribeUnsubscribe
