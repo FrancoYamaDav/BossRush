@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine;
 using System.Linq;
 
 public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate, ISoundable
 {
     [SerializeField] private AnimatorHandler _animatorHandler;
+
+    [SerializeField] private PostProcessVolume myPostProcessVolume;
     
     [Header("Raycast Properties")]
     [SerializeField] private Transform cameraObject;
@@ -211,6 +214,23 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         _view.SetAudioSourceClipBeIndexAndPlay(0);
         UpdateHealthBar();
         if (_currentHealth <= 0) OnNoLife();
+        StartCoroutine(FlashCorruptionScreen(0.1f, 0.1f));
+    }
+
+    IEnumerator FlashCorruptionScreen(float tickRate, float regenTickRate)
+    {
+        var fx = myPostProcessVolume.profile.GetSetting<damagePPSSettings>();
+        
+        if(fx != null)
+        {
+            fx._CorruptionIntensity.value = -1.5f;
+
+            while(fx._CorruptionIntensity < 1)
+            {
+                fx._CorruptionIntensity.value += regenTickRate;
+                yield return new WaitForSeconds(tickRate);
+            }
+        }
     }
 
     public void OnNoLife()
