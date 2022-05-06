@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5382794064808947997
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c58208c3bbda7f47a2198b69f19f508, type: 3}
+  m_Name: damagePPSSettings
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  _CorruptionIntensity:
+    overrideState: 1
+    value: 1
+--- !u!114 &-870872173703622588
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c58208c3bbda7f47a2198b69f19f508, type: 3}
+  m_Name: damagePPSSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  _CorruptionIntensity:
+    overrideState: 0
+    value: 1
+--- !u!114 &-671482414741629507
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c19d97cda3d3640ae595c2031e191f, type: 3}
+  m_Name: healPPSSettings
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  _lifeColorForce:
+    overrideState: 0
+    value: 1
+  _heal_texture:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  _SpeedAndDirection:
+    overrideState: 0
+    value: {x: 0, y: -0.1, z: 0, w: 0}
+  _elipse2Force:
+    overrideState: 0
+    value: 0.5
+  _elipse1W:
+    overrideState: 0
+    value: 1.1
+  _elipse1H:
+    overrideState: 0
+    value: 1
+  _elipse2H:
+    overrideState: 0
+    value: 1
+  _Color:
+    overrideState: 0
+    value: {r: 0.2210751, g: 0.735849, b: 0.2047882, a: 0}
+  _elipse2W:
+    overrideState: 0
+    value: 1.3
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Name: PostProcessVolumen Profile
+  m_EditorClassIdentifier: 
+  settings:
+  - {fileID: -5382794064808947997}
+  - {fileID: -671482414741629507}
+--- !u!114 &5281062318209328851
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c19d97cda3d3640ae595c2031e191f, type: 3}
+  m_Name: healPPSSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  _lifeColorForce:
+    overrideState: 0
+    value: 1
+  _heal_texture:
+    overrideState: 1
+    value: {fileID: 0}
+    defaultState: 1
+  _SpeedAndDirection:
+    overrideState: 0
+    value: {x: 0, y: -0.1, z: 0, w: 0}
+  _elipse2Force:
+    overrideState: 1
+    value: 0.5
+  _elipse1W:
+    overrideState: 1
+    value: 1.1
+  _elipse1H:
+    overrideState: 1
+    value: 1
+  _elipse2H:
+    overrideState: 1
+    value: 1
+  _Color:
+    overrideState: 1
+    value: {r: 0.2210751, g: 0.735849, b: 0.2047882, a: 0}
+  _elipse2W:
+    overrideState: 1
+    value: 1.3

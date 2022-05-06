@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 781483f30b4fec84387ae3671fcbfda7
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _heal_texture: {fileID: 2800000, guid: 7c1e0d8e8a2e5d944ae382419a787d4a, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
