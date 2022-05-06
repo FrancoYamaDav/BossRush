@@ -17,7 +17,7 @@ public class ChargerController : BaseBossController
     float chargeTime = 3.2f, currentCharge;
 
     //Speed
-    float defaultModifier = 1, chargedModifier = 4;
+    float defaultModifier = 1, chargedModifier = 3.2f;
     float currentModifier;
 
     //Timer

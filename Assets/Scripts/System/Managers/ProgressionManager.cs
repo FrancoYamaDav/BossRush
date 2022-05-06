@@ -19,7 +19,7 @@ public class ProgressionManager : MonoBehaviour
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, Save);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
 
-        savePath = Application.dataPath + "/SaveData.json";
+        savePath = Application.streamingAssetsPath + "/SaveData.json";
         jsonString = File.ReadAllText(savePath);
 
         saveInfo = JsonUtility.FromJson<ProgressionVariables>(jsonString);
