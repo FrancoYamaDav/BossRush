@@ -6,13 +6,13 @@ public class ChargerBossView : BaseBossView
 {
     MeshRenderer _mr;
 
-    List<Material> _materials;
+    List<Material> _materials = new List<Material>();
 
     public ChargerBossView(Canvas ba, AudioSource a) : base(ba, a)
     {
         SetUp(ba, a);
 
-       
+        a.volume = 0.2f;
     }
 
     protected override void ChangeName()
@@ -22,12 +22,19 @@ public class ChargerBossView : BaseBossView
 
     protected override void ExtendSounds()
     {
-        //clips.Add(Resources.Load<AudioClip>("Sounds/DashDodge"));
+        clips.Add(Resources.Load<AudioClip>("Sounds/Penetration"));
+        clips.Add(Resources.Load<AudioClip>("Sounds/WoodBlocked"));
+        clips.Add(Resources.Load<AudioClip>("Sounds/ChargeUp"));  //6
+        clips.Add(Resources.Load<AudioClip>("Sounds/ChargeReady")); //7
+        clips.Add(Resources.Load<AudioClip>("Sounds/SismicKick")); //8
     }
 
     public void ChangeMaterial(int i)
     {
-        if (i > _materials.Count) return;
+        if (_mr == null) return;
+
+        if (i > _materials.Count) { return; }
+
         if (_materials[i] == null) return;
 
         _mr.material = _materials[i];

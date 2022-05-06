@@ -11,7 +11,7 @@ public class ChargerController : BaseBossController
     
     [SerializeField] bool canBoost = false, isCharging = false;
 
-    bool speedBoosted = false, hasAttacked = false;
+    [SerializeField] bool speedBoosted = false, hasAttacked = false;
 
     //Charge values
     float chargeTime = 3.2f, currentCharge;
@@ -25,6 +25,7 @@ public class ChargerController : BaseBossController
 
     ChargerBossView _view;
 
+    bool cueView;
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -36,6 +37,7 @@ public class ChargerController : BaseBossController
         canBoost = true;
         speedBoosted = false;
         hasAttacked = false;
+        cueView = false;
 
         bossNumber = 2;
     }
@@ -44,9 +46,15 @@ public class ChargerController : BaseBossController
     {
         var tempCanvas = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
         _view = new ChargerBossView(tempCanvas, GetComponent<AudioSource>());
+    }
 
-        var tempMesh = GetComponent<MeshRenderer>();
-        _view.SetMeshRenderer(tempMesh);    
+    protected override void Start()
+    {
+        base.Start();
+
+        MeshRenderer tempMesh = GetComponent<MeshRenderer>();
+        if (tempMesh == null) Debug.Log("wtf");
+        _view.SetMeshRenderer(tempMesh);
     }
 
     public override void OnUpdate()
@@ -56,7 +64,7 @@ public class ChargerController : BaseBossController
 
         if (isStunned) return;
 
-        if (!isCharging && distance < distanceLimit)
+        if (CanIMove())
         {
             Move();
         }
@@ -65,6 +73,13 @@ public class ChargerController : BaseBossController
         {
            if (canBoost) Attack();
         }
+    }
+
+    bool CanIMove()
+    {
+        if (!isCharging && distance < distanceLimit && !hasAttacked && !isStunned) return true;
+
+        return false;
     }
 
     bool IsClose()
@@ -85,8 +100,7 @@ public class ChargerController : BaseBossController
         isCharging = true;
         currentCharge += 1 * Time.deltaTime;
 
-        //_mr.material = _chargeMat;
-        _view.ChangeMaterial(2);
+        if(!cueView) AttackView();
 
         if (currentCharge >= chargeTime)
         {
@@ -94,14 +108,25 @@ public class ChargerController : BaseBossController
         }
     }
 
+    void AttackView()
+    {
+        //_mr.material = _chargeMat;
+        _view.ChangeMaterial(1);
+        TriggerSound(6);
+        cueView = true;
+    }
+
     void SpeedBoost()
     {
         //_mr.material = _boostMat;
         _view.ChangeMaterial(3);
 
+        TriggerSound(7);
+
         speedBoosted = true;
         canBoost = false;
         isCharging = false;
+        cueView = false;
 
         currentModifier = chargedModifier;
         currentCharge = 0;
@@ -138,7 +163,11 @@ public class ChargerController : BaseBossController
 
                 collisionInterface.ReceiveDamage(tempDmg);
 
-                hasAttacked = true;
+                if(speedBoosted)
+                {
+                   hasAttacked = true;
+                   TriggerSound(8);
+                }
             }
         }
 
@@ -146,7 +175,7 @@ public class ChargerController : BaseBossController
         if (knockInterface != null)
         {
             if (!speedBoosted) knockInterface.ReceiveKnockback(10);
-            else knockInterface.ReceiveKnockback(BossValues.Charger.damage);
+            else knockInterface.ReceiveKnockback(BossValues.Charger.damage * 2);
         }
     }
     #endregion
@@ -160,6 +189,7 @@ public class ChargerController : BaseBossController
         else tempdmg = 5;
 
         base.DamageReceived(tempdmg);
+        TriggerSound(4);
     }
 
     public void PenetrationDamage(int dmgVal)
@@ -170,7 +200,7 @@ public class ChargerController : BaseBossController
         if (currentHealth <= 0) OnNoLife();
         else StunProperties();
 
-        TriggerSound(2);
+        TriggerSound(3);
     }
     #endregion
 
@@ -178,8 +208,9 @@ public class ChargerController : BaseBossController
     void StunProperties()
     {
         //_mr.material = _stunMat;
-        _view.ChangeMaterial(1);
+        _view.ChangeMaterial(2);
         isStunned = true;
+        TriggerSound(0);
         StartCoroutine(StunTime());
     }
 
@@ -188,6 +219,7 @@ public class ChargerController : BaseBossController
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
         currentCharge = 0;
+        TriggerSound(2);
         StopCoroutine(StunTime());
     }
     #endregion

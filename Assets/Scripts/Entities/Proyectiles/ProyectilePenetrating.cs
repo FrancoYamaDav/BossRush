@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProyectilePenetrating : MonoBehaviour
-{
-    protected void OnCollisionEnter(Collision collision)
+{       
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Penetrating: Enter collision");
-        ChargerController desired = collision.gameObject.GetComponent<ChargerController>();
+        ChargerController desired = other.gameObject.GetComponent<ChargerController>();
 
         if (DamageException(desired))
         {
             Debug.Log("Penetrating: Enter Damage");
             desired.PenetrationDamage(70);
+            this.gameObject.SetActive(false);
         }
     }
+
     bool DamageException(ChargerController desired)
     {
         if (desired != null)
