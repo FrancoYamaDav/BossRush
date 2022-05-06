@@ -13,6 +13,8 @@ public class Magnetism : HoldCommand
 
     public override void Execute()
     {
+        _pc.ViewHandler.SetAudioSourceClipBeIndexAndPlay(2);
+        
         if (_pc == null) return;
         _magnetable = _pc.GetMagnetable();
 

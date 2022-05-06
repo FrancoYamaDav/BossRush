@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,16 @@ public class PlayerView
     Slider hpSlider, stSlider, proyectileSlider;
     Image magnet;
     
-    public PlayerView(Canvas pa)
+    protected List<AudioClip> clips = new List<AudioClip>();
+    private AudioSource _audioSource;
+    
+    public PlayerView(Canvas pa, AudioSource audioSource)
     {
         var temp = pa.GetComponentInChildren<UIPlayerAssign>();
+        _audioSource = audioSource;
+        
+
+        AddPlayerSounds();
 
         if (temp == null) return;
 
@@ -23,6 +31,37 @@ public class PlayerView
 
         magnet.enabled = false;
     }
+
+    private void AddPlayerSounds()
+    {
+        if(_audioSource == null) return;
+
+        var playerSounds = Resources.LoadAll("Sounds/Player/", typeof(AudioClip));
+        
+        foreach (var clip in playerSounds)
+        {
+            if (clip == null || playerSounds.Length == 0)
+            {
+                Debug.Log("Empty Directory or file may be corrupt");
+                return;
+            }
+            
+            clips.Add((AudioClip)clip);
+        }
+    }
+    public void StopAudioSource()
+    {
+        _audioSource.Stop();
+    }
+    
+    public void SetAudioSourceClipBeIndexAndPlay(int index)
+    {
+        if (_audioSource.isPlaying) return;
+
+        _audioSource.clip = clips[index];
+        _audioSource.Play();
+    }
+
     void SubscribeToEvents()
     {
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_HUD_PlayerLife, OnLifeUpdate);

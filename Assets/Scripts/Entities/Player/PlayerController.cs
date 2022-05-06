@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     PlayerView _view;
     private PlayerBrain _brain;
 
+    public PlayerView ViewHandler => _view;
+
     float staminaRate = 3f;
     int _currentHealth, _currentStamina;
     bool _isDead, _isGrabbing;
@@ -77,7 +79,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         _m = new PlayerModel();
 
         var temp = Instantiate(Resources.Load<Canvas>("UI/UIPlayer"));
-        _view = new PlayerView(temp);
+        
+        _view = new PlayerView(temp, GetComponent<AudioSource>());
 
         _brain = new PlayerBrain(this, cameraObject);
 
@@ -172,7 +175,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     }    
     private void Movement(float _delta)
     {
-        
         moveDirection = cameraObject.forward * Input.GetAxis("Vertical");
         moveDirection += cameraObject.right * Input.GetAxis("Horizontal");
         moveDirection.Normalize();
@@ -206,6 +208,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     {
         //Debug.Log("Player: Received Damage");
         _currentHealth -= dmgVal;
+        _view.SetAudioSourceClipBeIndexAndPlay(0);
         UpdateHealthBar();
         if (_currentHealth <= 0) OnNoLife();
     }
@@ -213,6 +216,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     public void OnNoLife()
     {
         //Debug.Log("Player: No life points remaining");
+        _isDead = true;
+        _view.SetAudioSourceClipBeIndexAndPlay(5);
         EventManager.TriggerEvent(EventManager.EventsType.Event_Player_Death);
     }
 
@@ -226,6 +231,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         var newHealth = _currentHealth + healVal;
 
         if (newHealth >= _m.maxHealth)  newHealth = _m.maxHealth;
+        
+        _view.SetAudioSourceClipBeIndexAndPlay(1);
 
         _currentHealth = newHealth;
 
