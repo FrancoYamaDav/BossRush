@@ -17,8 +17,9 @@ public class ProgressionManager : MonoBehaviour
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_LoadFile, Load);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, Save);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
 
-        savePath = Application.dataPath + "/Scripts/System/Managers/SaveData.json";
+        savePath = Application.dataPath + "/SaveData.json";
         jsonString = File.ReadAllText(savePath);
 
         saveInfo = JsonUtility.FromJson<ProgressionVariables>(jsonString);
@@ -58,6 +59,13 @@ public class ProgressionManager : MonoBehaviour
         EventManager.TriggerEvent(EventManager.EventsType.Event_System_SaveFile);
     }
 
+    void Unsubscribe(params object[] param)
+    {
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_LoadFile, Load);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, Save);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
+    }
     public List<bool> GetBoolList()
     {
         return progressList;

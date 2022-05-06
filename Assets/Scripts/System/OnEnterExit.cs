@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 public class OnEnterExit : MonoBehaviour
 {
     [SerializeField] int sceneNumber;
-    [SerializeField] GameManager gameManager;
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameManager != null) gameManager.Unsubscribe();
-
+        EventManager.TriggerEvent(EventManager.EventsType.Event_System_ChangeScene);
         StartCoroutine(ChangeLevel());
     }
 

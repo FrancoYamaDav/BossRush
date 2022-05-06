@@ -35,10 +35,10 @@ public class BatBossController : BaseBossController
     {
         base.OnUpdate();
 
-        if (_bat.CountBatteries() && !isStunned) //Este se podria pasar a algun event o lazo a las baterias
+        if (_bat.AreAllBatteriesTurnOff() && !isStunned) //Este se podria pasar a algun event o lazo a las baterias
               OnStun();
 
-        if (isStunned && !_bat.CountBatteries())
+        if (isStunned && _bat.AreAllBatteriesCharged())
             StunComeback();
 
         if (isStunned) return;
@@ -86,12 +86,22 @@ public class BatBossController : BaseBossController
     protected override void StunConfiguration()
     {
         _rb.useGravity = true;
+        timer = 0;
     }
 
     protected override void StunComeback()
     {
         base.StunComeback();
         _rb.useGravity = false;        
+    }
+
+    protected override void OnStun()
+    {
+        if (isStunned == false) TriggerSound(0);
+
+        isStunned = true;
+
+        StunConfiguration();
     }
     #endregion
 
@@ -100,7 +110,8 @@ public class BatBossController : BaseBossController
     {
         if (isStunned)
         {
-            DamageReceived(dmgVal);
+            base.DamageReceived(dmgVal);
+            TriggerSound(1);
         }
     }
     #endregion

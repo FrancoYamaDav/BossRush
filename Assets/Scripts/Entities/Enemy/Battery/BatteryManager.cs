@@ -15,7 +15,7 @@ public class BatteryManager : MonoBehaviour
         }
     }
 
-    public bool CountBatteries()
+    public bool AreAllBatteriesTurnOff()
     {
         int temp = 0;
         foreach (var battery in batteries)
@@ -29,6 +29,25 @@ public class BatteryManager : MonoBehaviour
         if (temp == batteries.Count)
         {
             RechargeBatteries();
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool AreAllBatteriesCharged()
+    {
+        int temp = 0;
+        foreach (var battery in batteries)
+        {
+            if (battery != null && battery.isCharged)
+            {
+                temp++;
+            }
+        }
+
+        if (temp == batteries.Count)
+        {
             return true;
         }
 

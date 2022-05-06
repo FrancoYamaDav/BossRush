@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     {
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_Death, OnPlayerDeath);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
 
         if (victory != null) victory.SetActive(false);
         if (defeat != null) defeat.SetActive(false);
@@ -39,9 +40,10 @@ public class GameManager : MonoBehaviour
         StopCoroutine(ReturnToLobby());
     }
 
-    public void Unsubscribe()
+    void Unsubscribe(params object[] param)
     {
         EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
         EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_Player_Death, OnPlayerDeath);
+        EventManager.UnsubscribeToEvent(EventManager.EventsType.Event_System_ChangeScene, Unsubscribe);
     }
 }
