@@ -5,12 +5,14 @@ using UnityEngine;
 public class DodgeBossController : BaseBossController, IUpdate, IDamageable
 {
     //Movement
-    public List<Transform> waypoints = new List<Transform>();
+    [SerializeField] List<Transform> currentWaypoints = new List<Transform>();
     int lastPosition = -1;
 
     //Attack
     float timer, cooldown = 4.2f;
     [SerializeField] List<BaseProyectileSpawner> spawners = new List<BaseProyectileSpawner>();
+
+    List<List<Transform>> allWaypoints = new List<List<Transform>>();
 
     #region SetUp
     protected override void LoadComponents()
@@ -20,6 +22,28 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
         bossNumber = 3;
 
         stunTime = 7f;
+
+        SetArray();
+    }
+
+    void SetArray()
+    {
+        allWaypoints.Add(GetList(currentWaypoints, 3));
+        allWaypoints.Add(GetList(currentWaypoints, 6));
+        allWaypoints.Add(GetList(currentWaypoints, 9));
+
+        var temp = GetList(currentWaypoints);
+        allWaypoints.Add(temp);
+        currentWaypoints = temp;
+    }
+
+    List<Transform> GetList(List<Transform> baseList, int i = 0)
+    {
+        var temp = new List<Transform>();
+        temp.Add(baseList[i]);
+        temp.Add(baseList[i + 1]);
+        temp.Add(baseList[i + 2]);
+        return temp;
     }
 
     protected override void LoadUI()
@@ -32,7 +56,7 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     {
         base.Start();
         ChangePosition();
-    }
+    }    
     #endregion
 
     public override void OnUpdate()
@@ -70,12 +94,12 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     #region DamageManagement
     void ChangePosition()
     {
-        if (waypoints != null)
+        if (currentWaypoints != null)
         {
-            var temp = Random.Range(0, waypoints.Count);
+            var temp = Random.Range(0, currentWaypoints.Count);
             if (temp != lastPosition)
             {
-                transform.position = waypoints[temp].position;
+                transform.position = currentWaypoints[temp].position;
                 lastPosition = temp;
 
                 TriggerSound(4);
@@ -109,6 +133,7 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     protected override void StunComeback()
     {
         base.StunComeback();
+        //currentWaypoints = allWaypoints[Random.Range(0, allWaypoints.Count)];
         _rb.useGravity = false;
     }
     #endregion

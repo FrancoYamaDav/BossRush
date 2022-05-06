@@ -5,11 +5,9 @@ using UnityEngine;
 public class ChargerController : BaseBossController
 {
     PlayerController _target;
-    MeshRenderer _mr;
-
-    Material _defaultMat, _chargeMat, _boostMat, _stunMat;
 
     [SerializeField] float distance;
+    float distanceLimit = 32;
     
     [SerializeField] bool canBoost = false, isCharging = false;
 
@@ -23,26 +21,32 @@ public class ChargerController : BaseBossController
     float currentModifier;
 
     //Timer
-    float attackCooldown = 3f, stunTime = 1.5f, speedDuration = 2.0f;
+    float attackCooldown = 3f, speedDuration = 2.0f;
+
+    ChargerBossView _view;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         _target = FindObjectOfType<PlayerController>();
-        _mr = GetComponent<MeshRenderer>();
-
-        _defaultMat = _mr.material;
-        _chargeMat = Resources.Load<Material>("Materials/Charging");
-        _stunMat = Resources.Load<Material>("Materials/ProyectileStraight");
-        _boostMat = Resources.Load<Material>("Materials/SpeedBoosted");
 
         currentModifier = defaultModifier;
+        stunTime = 2.0f;
 
         canBoost = true;
         speedBoosted = false;
         hasAttacked = false;
 
         bossNumber = 2;
+    }
+
+    protected override void LoadUI()
+    {
+        var tempCanvas = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
+        _view = new ChargerBossView(tempCanvas, GetComponent<AudioSource>());
+
+        var tempMesh = GetComponent<MeshRenderer>();
+        _view.SetMeshRenderer(tempMesh);    
     }
 
     public override void OnUpdate()
@@ -52,7 +56,7 @@ public class ChargerController : BaseBossController
 
         if (isStunned) return;
 
-        if (!isCharging)
+        if (!isCharging && distance < distanceLimit)
         {
             Move();
         }
@@ -80,7 +84,9 @@ public class ChargerController : BaseBossController
     {
         isCharging = true;
         currentCharge += 1 * Time.deltaTime;
-        _mr.material = _chargeMat;
+
+        //_mr.material = _chargeMat;
+        _view.ChangeMaterial(2);
 
         if (currentCharge >= chargeTime)
         {
@@ -90,7 +96,8 @@ public class ChargerController : BaseBossController
 
     void SpeedBoost()
     {
-        _mr.material = _boostMat;
+        //_mr.material = _boostMat;
+        _view.ChangeMaterial(3);
 
         speedBoosted = true;
         canBoost = false;
@@ -170,7 +177,8 @@ public class ChargerController : BaseBossController
     #region Stun
     void StunProperties()
     {
-        _mr.material = _stunMat;
+        //_mr.material = _stunMat;
+        _view.ChangeMaterial(1);
         isStunned = true;
         StartCoroutine(StunTime());
     }
