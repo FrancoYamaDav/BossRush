@@ -32,10 +32,10 @@ public class HitDistance : HoldCommand
 
     public override void OnExit()
     {
+        if (!CanIShoot()) return;
+        
         _pc.ViewHandler.StopAudioSource();
         _pc.ViewHandler.SetAudioSourceClipBeIndexAndPlay(4);
-        
-        if (!CanIShoot()) return;
 
         if (counter < 0.50f) counter = 0.50f;        
         if (counter > timeNeeded) counter = timeNeeded;        

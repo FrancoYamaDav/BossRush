@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -333,6 +333,8 @@ GameObject:
   - component: {fileID: 143863662}
   - component: {fileID: 143863664}
   - component: {fileID: 143863663}
+  - component: {fileID: 143863665}
+  - component: {fileID: 143863666}
   m_Layer: 0
   m_Name: floor (21)
   m_TagString: Untagged
@@ -352,7 +354,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 130
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &143863663
 MeshRenderer:
@@ -403,6 +405,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143863661}
   m_Mesh: {fileID: -4012576979150249788, guid: fb8bfd1e6ca5b7d4894ce3be60b01604, type: 3}
+--- !u!114 &143863665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143863661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &143863666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143863661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &166096716
 GameObject:
   m_ObjectHideFlags: 0
@@ -4748,6 +4782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6463362449375332935}
+  - component: {fileID: 506407286703074508}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -4755,6 +4790,102 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!82 &506407286703074508
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506407286703074507}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!23 &2494828087899692158
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8498,7 +8629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374399263395
 Transform:
@@ -8512,7 +8643,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374428541255
 Transform:
@@ -8526,7 +8657,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374434889108
 Transform:
@@ -8540,7 +8671,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374531452209
 Transform:
@@ -8554,7 +8685,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374547226519
 Transform:
@@ -8568,7 +8699,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374640806331
 Transform:
@@ -8582,7 +8713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374849212243
 Transform:
@@ -8596,7 +8727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374869514713
 Transform:
@@ -8610,7 +8741,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374872226820
 Transform:
@@ -8624,7 +8755,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627374990780177
 Transform:
@@ -8638,7 +8769,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627375130151890
 Transform:
@@ -8652,7 +8783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627375229035739
 Transform:
@@ -8666,7 +8797,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627375267258948
 Transform:
@@ -8680,7 +8811,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627375638927378
 Transform:
@@ -8694,7 +8825,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627375888659044
 Transform:
@@ -8708,7 +8839,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627376025244858
 Transform:
@@ -8722,7 +8853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627376053552764
 Transform:
@@ -8736,7 +8867,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627376229916995
 Transform:
@@ -8750,7 +8881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3662627376300548279
 Transform:
@@ -8764,7 +8895,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3861509670283239895
 Transform:
@@ -8778,7 +8909,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 47
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509670285663974
 Transform:
@@ -8792,7 +8923,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 56
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670320542539
 Transform:
@@ -8806,7 +8937,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509670361313313
 Transform:
@@ -8820,7 +8951,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 83
+  m_RootOrder: 84
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670392556915
 Transform:
@@ -8834,7 +8965,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509670452534385
 Transform:
@@ -8848,7 +8979,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 76
+  m_RootOrder: 77
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670485004794
 Transform:
@@ -8862,7 +8993,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509670491817777
 Transform:
@@ -8876,7 +9007,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509670611571550
 Transform:
@@ -8890,7 +9021,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 85
+  m_RootOrder: 86
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670621782077
 Transform:
@@ -8904,7 +9035,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509670635455884
 Transform:
@@ -8918,7 +9049,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 89
+  m_RootOrder: 90
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670666825438
 Transform:
@@ -8932,7 +9063,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 59
+  m_RootOrder: 60
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670685691039
 Transform:
@@ -8946,7 +9077,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 51
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670702280952
 Transform:
@@ -8960,7 +9091,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 77
+  m_RootOrder: 78
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670729521976
 Transform:
@@ -8974,7 +9105,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509670735373957
 Transform:
@@ -8988,7 +9119,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509670790137356
 Transform:
@@ -9002,7 +9133,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 78
+  m_RootOrder: 79
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670793312378
 Transform:
@@ -9016,7 +9147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 82
+  m_RootOrder: 83
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670866232064
 Transform:
@@ -9030,7 +9161,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 54
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670874535032
 Transform:
@@ -9044,7 +9175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 63
+  m_RootOrder: 64
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670890742065
 Transform:
@@ -9058,7 +9189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 73
+  m_RootOrder: 74
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670895662661
 Transform:
@@ -9072,7 +9203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 55
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670938082769
 Transform:
@@ -9086,7 +9217,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 64
+  m_RootOrder: 65
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670961881862
 Transform:
@@ -9100,7 +9231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 67
+  m_RootOrder: 68
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670964771603
 Transform:
@@ -9114,7 +9245,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 58
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670965219363
 Transform:
@@ -9128,7 +9259,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 75
+  m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670986408480
 Transform:
@@ -9142,7 +9273,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 90
+  m_RootOrder: 91
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509670995117396
 Transform:
@@ -9156,7 +9287,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 53
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509670997597041
 Transform:
@@ -9170,7 +9301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671022823477
 Transform:
@@ -9184,7 +9315,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 66
+  m_RootOrder: 67
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509671038163508
 Transform:
@@ -9198,7 +9329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671056364370
 Transform:
@@ -9212,7 +9343,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 86
+  m_RootOrder: 87
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671124021929
 Transform:
@@ -9226,7 +9357,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671150446547
 Transform:
@@ -9240,7 +9371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 48
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671155449981
 Transform:
@@ -9254,7 +9385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671156307886
 Transform:
@@ -9268,7 +9399,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 70
+  m_RootOrder: 71
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509671217557656
 Transform:
@@ -9282,7 +9413,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671252814746
 Transform:
@@ -9296,7 +9427,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 49
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671261594166
 Transform:
@@ -9310,7 +9441,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671270363361
 Transform:
@@ -9324,7 +9455,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 84
+  m_RootOrder: 85
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671279244123
 Transform:
@@ -9338,7 +9469,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 45
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671302899459
 Transform:
@@ -9352,7 +9483,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 44
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671343729589
 Transform:
@@ -9366,7 +9497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 65
+  m_RootOrder: 66
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509671360980153
 Transform:
@@ -9380,7 +9511,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 62
+  m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509671362891186
 Transform:
@@ -9394,7 +9525,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671433983742
 Transform:
@@ -9408,7 +9539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 52
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509671437362480
 Transform:
@@ -9422,7 +9553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 50
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671465917699
 Transform:
@@ -9436,7 +9567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671494655641
 Transform:
@@ -9450,7 +9581,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671524148277
 Transform:
@@ -9464,7 +9595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671529603178
 Transform:
@@ -9478,7 +9609,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 81
+  m_RootOrder: 82
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671531143846
 Transform:
@@ -9492,7 +9623,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 88
+  m_RootOrder: 89
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671627886091
 Transform:
@@ -9506,7 +9637,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671632861374
 Transform:
@@ -9520,7 +9651,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 46
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509671673916837
 Transform:
@@ -9534,7 +9665,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 80
+  m_RootOrder: 81
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671673942235
 Transform:
@@ -9548,7 +9679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 79
+  m_RootOrder: 80
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671776192919
 Transform:
@@ -9562,7 +9693,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671850031394
 Transform:
@@ -9576,7 +9707,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 74
+  m_RootOrder: 75
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671858599022
 Transform:
@@ -9590,7 +9721,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671887595585
 Transform:
@@ -9604,7 +9735,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509671894217009
 Transform:
@@ -9618,7 +9749,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 57
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509671895789463
 Transform:
@@ -9632,7 +9763,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 87
+  m_RootOrder: 88
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671913056702
 Transform:
@@ -9646,7 +9777,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 71
+  m_RootOrder: 72
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509671994873834
 Transform:
@@ -9660,7 +9791,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 72
+  m_RootOrder: 73
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!4 &3861509672022400408
 Transform:
@@ -9674,7 +9805,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 60
+  m_RootOrder: 61
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509672041539233
 Transform:
@@ -9688,7 +9819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &3861509672137909543
 Transform:
@@ -9702,7 +9833,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!4 &3861509672166057578
 Transform:
@@ -9716,7 +9847,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 68
+  m_RootOrder: 69
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509672188954368
 Transform:
@@ -9730,7 +9861,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 69
+  m_RootOrder: 70
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509672315952353
 Transform:
@@ -9744,7 +9875,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 61
+  m_RootOrder: 62
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!4 &3861509672334568975
 Transform:
@@ -9758,7 +9889,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!1001 &4032813474401858456
 PrefabInstance:
@@ -9967,6 +10098,8 @@ GameObject:
   - component: {fileID: 3662627374640806331}
   - component: {fileID: 395084920593659422}
   - component: {fileID: 2494828088757174996}
+  - component: {fileID: 4152200785648050946}
+  - component: {fileID: 4152200785648050947}
   m_Layer: 0
   m_Name: floor (18)
   m_TagString: Untagged
@@ -9974,6 +10107,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200785648050946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785648050945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200785648050947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785648050945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152200785790355339
 GameObject:
   m_ObjectHideFlags: 0
@@ -9985,6 +10150,8 @@ GameObject:
   - component: {fileID: 3662627374531452209}
   - component: {fileID: 395084920484958868}
   - component: {fileID: 2494828088916862558}
+  - component: {fileID: 4152200785790355340}
+  - component: {fileID: 4152200785790355341}
   m_Layer: 0
   m_Name: floor (8)
   m_TagString: Untagged
@@ -9992,6 +10159,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200785790355340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785790355339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200785790355341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785790355339}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000007450581, y: 0, z: 0}
 --- !u!1 &4152200785875309869
 GameObject:
   m_ObjectHideFlags: 0
@@ -10003,6 +10202,8 @@ GameObject:
   - component: {fileID: 3662627374547226519}
   - component: {fileID: 395084920433492018}
   - component: {fileID: 2494828088800425208}
+  - component: {fileID: 4152200785875309870}
+  - component: {fileID: 4152200785875309871}
   m_Layer: 0
   m_Name: floor (15)
   m_TagString: Untagged
@@ -10010,6 +10211,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200785875309870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785875309869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200785875309871
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785875309869}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000014901161, y: 0, z: 0}
 --- !u!1 &4152200785922410521
 GameObject:
   m_ObjectHideFlags: 0
@@ -10021,6 +10254,8 @@ GameObject:
   - component: {fileID: 3662627374399263395}
   - component: {fileID: 395084920352906502}
   - component: {fileID: 2494828088516372940}
+  - component: {fileID: 4152200785922410522}
+  - component: {fileID: 4152200785922410523}
   m_Layer: 0
   m_Name: floor (2)
   m_TagString: Untagged
@@ -10028,6 +10263,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200785922410522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785922410521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200785922410523
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200785922410521}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200786029344558
 GameObject:
   m_ObjectHideFlags: 0
@@ -10039,6 +10306,8 @@ GameObject:
   - component: {fileID: 3662627374434889108}
   - component: {fileID: 395084920321417777}
   - component: {fileID: 2494828088417834747}
+  - component: {fileID: 4152200786029344559}
+  - component: {fileID: 4152200786029344560}
   m_Layer: 0
   m_Name: floor (14)
   m_TagString: Untagged
@@ -10046,6 +10315,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786029344559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786029344558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786029344560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786029344558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000014901161, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200786037640189
 GameObject:
   m_ObjectHideFlags: 0
@@ -10057,6 +10358,8 @@ GameObject:
   - component: {fileID: 3662627374428541255}
   - component: {fileID: 395084920313110242}
   - component: {fileID: 2494828088411597352}
+  - component: {fileID: 4152200786037640190}
+  - component: {fileID: 4152200786037640191}
   m_Layer: 0
   m_Name: floor (12)
   m_TagString: Untagged
@@ -10064,6 +10367,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786037640190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786037640189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786037640191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786037640189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000014901161, y: 0, z: 0}
 --- !u!1 &4152200786172872049
 GameObject:
   m_ObjectHideFlags: 0
@@ -10075,6 +10410,8 @@ GameObject:
   - component: {fileID: 3662627374293245899}
   - component: {fileID: 395084920177938542}
   - component: {fileID: 2494828088542700708}
+  - component: {fileID: 4152200786172872050}
+  - component: {fileID: 4152200786172872051}
   m_Layer: 0
   m_Name: floor (10)
   m_TagString: Untagged
@@ -10082,6 +10419,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786172872050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786172872049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786172872051
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786172872049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000007450581, y: 0, z: 0}
 --- !u!1 &4152200786272418046
 GameObject:
   m_ObjectHideFlags: 0
@@ -10093,6 +10462,8 @@ GameObject:
   - component: {fileID: 3662627375267258948}
   - component: {fileID: 395084921084980705}
   - component: {fileID: 2494828088176859435}
+  - component: {fileID: 4152200786272418047}
+  - component: {fileID: 4152200786272418048}
   m_Layer: 0
   m_Name: floor (6)
   m_TagString: Untagged
@@ -10100,6 +10471,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786272418047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786272418046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786272418048
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786272418046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000007450581, y: 0, z: 0}
 --- !u!1 &4152200786301271649
 GameObject:
   m_ObjectHideFlags: 0
@@ -10111,6 +10514,8 @@ GameObject:
   - component: {fileID: 3662627375229035739}
   - component: {fileID: 395084921114913662}
   - component: {fileID: 2494828088139587508}
+  - component: {fileID: 4152200786301271650}
+  - component: {fileID: 4152200786301271651}
   m_Layer: 0
   m_Name: floor (13)
   m_TagString: Untagged
@@ -10118,6 +10523,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786301271650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786301271649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786301271651
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786301271649}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000014901161, y: 0, z: 0}
 --- !u!1 &4152200786407936360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10129,6 +10566,8 @@ GameObject:
   - component: {fileID: 3662627375130151890}
   - component: {fileID: 395084920949441655}
   - component: {fileID: 2494828088309772477}
+  - component: {fileID: 4152200786407936361}
+  - component: {fileID: 4152200786407936362}
   m_Layer: 0
   m_Name: floor (16)
   m_TagString: Untagged
@@ -10136,6 +10575,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786407936361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786407936360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786407936362
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786407936360}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152200786513903019
 GameObject:
   m_ObjectHideFlags: 0
@@ -10147,6 +10618,8 @@ GameObject:
   - component: {fileID: 3662627374990780177}
   - component: {fileID: 395084920809941172}
   - component: {fileID: 2494828087899692158}
+  - component: {fileID: 4152200786513903020}
+  - component: {fileID: 4152200786513903021}
   m_Layer: 0
   m_Name: floor (5)
   m_TagString: Untagged
@@ -10154,6 +10627,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786513903020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786513903019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786513903021
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786513903019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152200786647082473
 GameObject:
   m_ObjectHideFlags: 0
@@ -10165,6 +10670,8 @@ GameObject:
   - component: {fileID: 3662627374849212243}
   - component: {fileID: 395084920668369142}
   - component: {fileID: 2494828088028677180}
+  - component: {fileID: 4152200786647082474}
+  - component: {fileID: 4152200786647082475}
   m_Layer: 0
   m_Name: floor (17)
   m_TagString: Untagged
@@ -10172,6 +10679,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786647082474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786647082473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786647082475
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786647082473}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200786661102435
 GameObject:
   m_ObjectHideFlags: 0
@@ -10183,6 +10722,8 @@ GameObject:
   - component: {fileID: 3662627374869514713}
   - component: {fileID: 395084920687887996}
   - component: {fileID: 2494828088046121654}
+  - component: {fileID: 4152200786661102436}
+  - component: {fileID: 4152200786661102437}
   m_Layer: 0
   m_Name: floor (7)
   m_TagString: Untagged
@@ -10190,6 +10731,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786661102436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786661102435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786661102437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786661102435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000007450581, y: 0, z: 0}
 --- !u!1 &4152200786665879230
 GameObject:
   m_ObjectHideFlags: 0
@@ -10201,6 +10774,8 @@ GameObject:
   - component: {fileID: 3662627374872226820}
   - component: {fileID: 395084920691516321}
   - component: {fileID: 2494828088051799915}
+  - component: {fileID: 4152200786665879231}
+  - component: {fileID: 4152200786665879232}
   m_Layer: 0
   m_Name: floor (19)
   m_TagString: Untagged
@@ -10208,6 +10783,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786665879231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786665879230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786665879232
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786665879230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152200786964906664
 GameObject:
   m_ObjectHideFlags: 0
@@ -10219,6 +10826,8 @@ GameObject:
   - component: {fileID: 3662627375638927378}
   - component: {fileID: 395084919377450935}
   - component: {fileID: 2494828089889760125}
+  - component: {fileID: 4152200786964906665}
+  - component: {fileID: 4152200786964906666}
   m_Layer: 0
   m_Name: floor (11)
   m_TagString: Untagged
@@ -10226,6 +10835,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200786964906665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786964906664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200786964906666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200786964906664}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000014901161, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200787289603065
 GameObject:
   m_ObjectHideFlags: 0
@@ -10237,6 +10878,8 @@ GameObject:
   - component: {fileID: 3662627376229916995}
   - component: {fileID: 395084920101351142}
   - component: {fileID: 2494828089273604652}
+  - component: {fileID: 4152200787289603066}
+  - component: {fileID: 4152200787289603067}
   m_Layer: 0
   m_Name: floor (4)
   m_TagString: Untagged
@@ -10244,6 +10887,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200787289603066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787289603065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200787289603067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787289603065}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200787376978445
 GameObject:
   m_ObjectHideFlags: 0
@@ -10255,6 +10930,8 @@ GameObject:
   - component: {fileID: 3662627376300548279}
   - component: {fileID: 395084920039206674}
   - component: {fileID: 2494828089211362264}
+  - component: {fileID: 4152200787376978446}
+  - component: {fileID: 4152200787376978447}
   m_Layer: 0
   m_Name: floor (1)
   m_TagString: Untagged
@@ -10262,6 +10939,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200787376978446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787376978445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200787376978447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787376978445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4152200787599776966
 GameObject:
   m_ObjectHideFlags: 0
@@ -10273,6 +10982,8 @@ GameObject:
   - component: {fileID: 3662627376053552764}
   - component: {fileID: 395084919724050905}
   - component: {fileID: 2494828088963431699}
+  - component: {fileID: 4152200787599776967}
+  - component: {fileID: 4152200787599776968}
   m_Layer: 0
   m_Name: floor (20)
   m_TagString: Untagged
@@ -10280,6 +10991,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200787599776967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787599776966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200787599776968
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787599776966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200787619696128
 GameObject:
   m_ObjectHideFlags: 0
@@ -10291,6 +11034,8 @@ GameObject:
   - component: {fileID: 3662627376025244858}
   - component: {fileID: 395084919762852639}
   - component: {fileID: 2494828088933019605}
+  - component: {fileID: 4152200787619696129}
+  - component: {fileID: 4152200787619696130}
   m_Layer: 0
   m_Name: floor (9)
   m_TagString: Untagged
@@ -10298,6 +11043,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200787619696129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787619696128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200787619696130
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787619696128}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0.000000007450581, y: 0, z: -0.000000014901161}
 --- !u!1 &4152200787764095198
 GameObject:
   m_ObjectHideFlags: 0
@@ -10309,6 +11086,8 @@ GameObject:
   - component: {fileID: 3662627375888659044}
   - component: {fileID: 395084919626923457}
   - component: {fileID: 2494828089065408779}
+  - component: {fileID: 4152200787764095199}
+  - component: {fileID: 4152200787764095200}
   m_Layer: 0
   m_Name: floor (3)
   m_TagString: Untagged
@@ -10316,6 +11095,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4152200787764095199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787764095198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b914eb204a2cc438f4ec0621a98ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  metalicFootstepSoundsEffect:
+  - {fileID: 8300000, guid: 04e769a6317e028468e1438622b5b65d, type: 3}
+  - {fileID: 8300000, guid: 7925d5ca1496d4e4394409d85138cac8, type: 3}
+  - {fileID: 8300000, guid: 54181cdc77c23354ab511119216e5cd6, type: 3}
+  - {fileID: 8300000, guid: c9accd67cd09b9f48bc8583e4a0b1bc2, type: 3}
+  _audioSource: {fileID: 506407286703074508}
+--- !u!65 &4152200787764095200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152200787764095198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19292071, y: 0.00754266, z: 0.19292071}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4529783648534243906
 GameObject:
   m_ObjectHideFlags: 0
@@ -13986,6 +14797,7 @@ Transform:
   m_LocalPosition: {x: -10.61, y: 0, z: 2.14}
   m_LocalScale: {x: 40, y: 40, z: 40}
   m_Children:
+  - {fileID: 3662627375130151890}
   - {fileID: 3662627376300548279}
   - {fileID: 3662627374399263395}
   - {fileID: 3662627375888659044}
@@ -14005,7 +14817,7 @@ Transform:
   - {fileID: 3662627374872226820}
   - {fileID: 3662627374640806331}
   - {fileID: 3662627374849212243}
-  - {fileID: 3662627375130151890}
+  - {fileID: 143863662}
   - {fileID: 3861509671261594166}
   - {fileID: 3861509671776192919}
   - {fileID: 3861509671887595585}
@@ -14116,7 +14928,6 @@ Transform:
   - {fileID: 6673009317716806089}
   - {fileID: 6673009319259500757}
   - {fileID: 6673009317800377544}
-  - {fileID: 143863662}
   - {fileID: 192088979}
   - {fileID: 565244114}
   m_Father: {fileID: 1350494175}
@@ -14134,7 +14945,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 127
+  m_RootOrder: 128
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009317756032352
 Transform:
@@ -14148,7 +14959,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 121
+  m_RootOrder: 122
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009317775740469
 Transform:
@@ -14162,7 +14973,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 108
+  m_RootOrder: 109
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009317800377544
 Transform:
@@ -14176,7 +14987,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 129
+  m_RootOrder: 130
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009317800487906
 Transform:
@@ -14190,7 +15001,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 114
+  m_RootOrder: 115
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009317953226458
 Transform:
@@ -14204,7 +15015,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 122
+  m_RootOrder: 123
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318160273043
 Transform:
@@ -14218,7 +15029,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 112
+  m_RootOrder: 113
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318199436175
 Transform:
@@ -14232,7 +15043,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 126
+  m_RootOrder: 127
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318347834278
 Transform:
@@ -14246,7 +15057,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 106
+  m_RootOrder: 107
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318468532075
 Transform:
@@ -14260,7 +15071,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 118
+  m_RootOrder: 119
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318585187032
 Transform:
@@ -14274,7 +15085,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 120
+  m_RootOrder: 121
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318598569449
 Transform:
@@ -14288,7 +15099,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 111
+  m_RootOrder: 112
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318629614217
 Transform:
@@ -14302,7 +15113,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 103
+  m_RootOrder: 104
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318631215285
 Transform:
@@ -14316,7 +15127,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 93
+  m_RootOrder: 94
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318669472693
 Transform:
@@ -14330,7 +15141,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 115
+  m_RootOrder: 116
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318695686234
 Transform:
@@ -14344,7 +15155,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 102
+  m_RootOrder: 103
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318710207148
 Transform:
@@ -14358,7 +15169,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 94
+  m_RootOrder: 95
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318820355427
 Transform:
@@ -14372,7 +15183,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 99
+  m_RootOrder: 100
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318828124414
 Transform:
@@ -14386,7 +15197,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 91
+  m_RootOrder: 92
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318829868286
 Transform:
@@ -14400,7 +15211,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 125
+  m_RootOrder: 126
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318848784093
 Transform:
@@ -14414,7 +15225,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 100
+  m_RootOrder: 101
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318959479744
 Transform:
@@ -14428,7 +15239,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 107
+  m_RootOrder: 108
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009318979433621
 Transform:
@@ -14442,7 +15253,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 105
+  m_RootOrder: 106
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319071926514
 Transform:
@@ -14456,7 +15267,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 95
+  m_RootOrder: 96
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319092969269
 Transform:
@@ -14470,7 +15281,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 98
+  m_RootOrder: 99
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319155751106
 Transform:
@@ -14484,7 +15295,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 123
+  m_RootOrder: 124
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319206091567
 Transform:
@@ -14498,7 +15309,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 109
+  m_RootOrder: 110
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319206364979
 Transform:
@@ -14512,7 +15323,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 92
+  m_RootOrder: 93
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319259500757
 Transform:
@@ -14526,7 +15337,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 128
+  m_RootOrder: 129
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319260114187
 Transform:
@@ -14540,7 +15351,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 104
+  m_RootOrder: 105
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319278229694
 Transform:
@@ -14554,7 +15365,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 101
+  m_RootOrder: 102
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319324129886
 Transform:
@@ -14568,7 +15379,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 113
+  m_RootOrder: 114
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319326150188
 Transform:
@@ -14582,7 +15393,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 117
+  m_RootOrder: 118
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319333904983
 Transform:
@@ -14596,7 +15407,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 124
+  m_RootOrder: 125
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319365877081
 Transform:
@@ -14610,7 +15421,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 97
+  m_RootOrder: 98
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319457406661
 Transform:
@@ -14624,7 +15435,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 116
+  m_RootOrder: 117
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319459752728
 Transform:
@@ -14638,7 +15449,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 119
+  m_RootOrder: 120
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319568518669
 Transform:
@@ -14652,7 +15463,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 110
+  m_RootOrder: 111
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!4 &6673009319637918356
 Transform:
@@ -14666,7 +15477,7 @@ Transform:
   m_LocalScale: {x: 0.91064996, y: 0.91064996, z: 0.91064996}
   m_Children: []
   m_Father: {fileID: 6463362449375332935}
-  m_RootOrder: 96
+  m_RootOrder: 97
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!33 &7724958739427843088
 MeshFilter:

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate
+public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate, ISoundable
 {
     [SerializeField] private AnimatorHandler _animatorHandler;
     
@@ -334,4 +334,9 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         _isGrabbing = b;
     }
     #endregion
+
+    public bool ShouldPlaySound()
+    {
+        return (rb.velocity.x > 0.5f || rb.velocity.z > 0.5f);
+    }
 }
