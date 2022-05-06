@@ -224,7 +224,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
         if(fx != null)
         {
             fx._CorruptionIntensity.value = -1.5f;
-
+            
+            Debug.Log("FX");
             while(fx._CorruptionIntensity < 1)
             {
                 fx._CorruptionIntensity.value += regenTickRate;
