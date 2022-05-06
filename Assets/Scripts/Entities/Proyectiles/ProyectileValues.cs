@@ -6,7 +6,7 @@ public class ProyectileValues : MonoBehaviour
 {
     public static readonly FlyweightProyectile Default = new FlyweightProyectile
     {
-        speed = 7,
+        speed = 15,
         lifetime = 12,
         cooldown = 0.8f,
 
