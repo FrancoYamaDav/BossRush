@@ -15,7 +15,7 @@ public class ProyectileValues : MonoBehaviour
 
         sizeTrans = new Vector3(1, 1, 1),
 
-        materialPath = "Materials/ProyectileStraight",
+        materialPath = "Materials/ProyectilePlayer",
 
         explodes = false,
         gravity = false,
