@@ -18,7 +18,7 @@ public class BossValues : MonoBehaviour
     {
         bossName = "The Charger",
 
-        damage = 35,
+        damage = 28,
         speed = 4.2f,
     };
 

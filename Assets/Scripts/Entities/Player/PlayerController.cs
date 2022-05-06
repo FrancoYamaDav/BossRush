@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     [SerializeField] private float groundDetectionRayStartPoint = 0.5f;
     [SerializeField] private float minimumDistanceToStartFall = 1f;
     [SerializeField] private float groundDirectionRayDistance = 0.2f;
-    [SerializeField] private float fallSpeed = 0.2f;
+    [SerializeField] private float fallSpeed = 0.5f;
     [SerializeField] private LayerMask ignoreFallLayers; 
     
     [Header("Player Flags")] 
