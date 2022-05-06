@@ -5,7 +5,7 @@ using System.IO;
 
 public class ProgressionManager : MonoBehaviour
 {
-    List<bool> progressList = new List<bool>(4);
+    [SerializeField]List<bool> progressList = new List<bool>(4);
 
     ProgressionVariables saveInfo;
     string jsonString;
@@ -28,9 +28,13 @@ public class ProgressionManager : MonoBehaviour
 
     void Load(params object[] param)
     {
-        for (int i = 0; i < progressList.Count; i++)
+        if(progressList.Count <= 0) progressList = saveInfo.bosses;
+        else
         {
-            progressList[i] = saveInfo.bosses[i];
+           for (int i = 0; i < progressList.Count; i++)
+           {
+               progressList[i] = saveInfo.bosses[i];
+           }
         }
     }
 
