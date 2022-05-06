@@ -5,7 +5,7 @@ using System.IO;
 
 public class ProgressionManager : MonoBehaviour
 {
-    [SerializeField] List<bool> progressList = new List<bool>();
+    List<bool> progressList = new List<bool>(4);
 
     ProgressionVariables saveInfo;
     string jsonString;
@@ -15,16 +15,18 @@ public class ProgressionManager : MonoBehaviour
     private void Awake()
     {
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, OnBossDefeated);
-        //EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, );
-        //EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_LoadFile, );
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_LoadFile, Load);
+        EventManager.SubscribeToEvent(EventManager.EventsType.Event_System_SaveFile, Save);
 
         savePath = Application.dataPath + "/Scripts/System/Managers/SaveData.json";
         jsonString = File.ReadAllText(savePath);
 
         saveInfo = JsonUtility.FromJson<ProgressionVariables>(jsonString);
+
+        EventManager.TriggerEvent(EventManager.EventsType.Event_System_LoadFile);
     }
 
-    void Load()
+    void Load(params object[] param)
     {
         for (int i = 0; i < progressList.Count; i++)
         {
@@ -32,7 +34,7 @@ public class ProgressionManager : MonoBehaviour
         }
     }
 
-    void Save()
+    void Save(params object[] param)
     {
         for (int i = 0; i < progressList.Count; i++)
         {
@@ -49,6 +51,7 @@ public class ProgressionManager : MonoBehaviour
         if (progressList[(int)param[0]] == null) return;
 
         progressList[(int)param[0]] = true;
+        EventManager.TriggerEvent(EventManager.EventsType.Event_System_SaveFile);
     }
 
     public List<bool> GetBoolList()
@@ -61,7 +64,5 @@ public class ProgressionManager : MonoBehaviour
 [System.Serializable]
 public class ProgressionVariables
 {
-    public bool bossWeakpoints, bossBattery, bossCharger, bossDodger;
-
     public List<bool> bosses = new List<bool>(4);
 }

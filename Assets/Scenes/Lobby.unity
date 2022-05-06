@@ -2545,7 +2545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d536c50f8618043bd88237f77e144b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressList: 
+  progressList: 00000000
 --- !u!114 &522651353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2574,7 +2574,6 @@ MonoBehaviour:
   - {fileID: 592084603}
   - {fileID: 1522359518}
   player: {fileID: 1006316165}
-  temp: 01010101
 --- !u!1 &537661105
 GameObject:
   m_ObjectHideFlags: 0

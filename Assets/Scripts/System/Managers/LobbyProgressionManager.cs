@@ -13,8 +13,6 @@ public class LobbyProgressionManager : MonoBehaviour
 
     ProgressionManager man;
 
-    [SerializeField] List<bool> temp = new List<bool>();
-
     private void Awake()
     {
         man = GetComponent<ProgressionManager>();
@@ -27,7 +25,7 @@ public class LobbyProgressionManager : MonoBehaviour
 
     void CheckValues()
     {        
-        //var temp = man.GetBoolList();
+        var temp = man.GetBoolList();
         
         for (int i = 0; i < temp.Count; i++)
         {
