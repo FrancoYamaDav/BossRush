@@ -26,6 +26,8 @@ public class BatBossController : BaseBossController
         _ps = GetComponent<BombProyectileSpawner>();
         _bat = GetComponent<BatteryManager>();
 
+        bossNumber = 1;
+
         RollNewPosition();
     }
 
@@ -81,7 +83,6 @@ public class BatBossController : BaseBossController
     #endregion
 
     #region StunManagement
-
     protected override void StunConfiguration()
     {
         _rb.useGravity = true;

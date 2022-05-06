@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     }
 
     void OnBossDefeated(params object[] param)
-    {        
-        SceneManager.LoadScene(0);
+    {     
+        
+        //SceneManager.LoadScene(0);
     }
 }

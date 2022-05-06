@@ -15,9 +15,9 @@ public class HomingProyectileSpawner : BaseProyectileSpawner
 
         if (_proyectileSpawn == null) _proyectileSpawn = this.transform;
     }
-    protected override void Start()
+
+    protected void SetTransform(Transform t)
     {
-        base.Start();
-        target = FindObjectOfType<PlayerController>().transform;
+        target = t;
     }
 }

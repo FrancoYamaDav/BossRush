@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     PlayerView _view;
     private PlayerBrain _brain;
 
+    float staminaRate = 3f;
     int _currentHealth, _currentStamina;
     bool _isDead, _isGrabbing;
     public bool isDashing;
@@ -248,7 +249,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     float staminaTemp;
     void StaminaCharge()
     {
-        staminaTemp += 1.5f * Time.deltaTime;
+        staminaTemp += staminaRate * Time.deltaTime;
 
         if (staminaTemp >= 1)
         {
@@ -299,14 +300,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     }
     #endregion
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == 6)
-        {
-            isDashing = false;
-        }
-    }
-
     #region Getters
 
     public BaseProyectileSpawner GetProyectileSpawner()
@@ -320,7 +313,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     }
     #endregion
 
-    #region Testing   
+    #region Setters
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            isDashing = false;
+        }
+    }
+
     public void SetGrabbing(bool b)
     {
         _isGrabbing = b;

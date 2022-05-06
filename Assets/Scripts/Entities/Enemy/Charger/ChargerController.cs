@@ -41,6 +41,8 @@ public class ChargerController : BaseBossController
         canBoost = true;
         speedBoosted = false;
         hasAttacked = false;
+
+        bossNumber = 2;
     }
 
     public override void OnUpdate()

@@ -23,6 +23,7 @@ public class WeakpointsBossController : BaseBossController
         _target = FindObjectOfType<PlayerController>();
 
         readyToAttack = true;
+        bossNumber = 0;
     }
 
     protected override void LoadUI()

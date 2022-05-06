@@ -10,15 +10,16 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
 
     //Attack
     float timer, cooldown = 4.2f;
-    BaseProyectileSpawner _ps;
+    [SerializeField] List<BaseProyectileSpawner> spawners = new List<BaseProyectileSpawner>();
 
+    #region SetUp
     protected override void LoadComponents()
     {
         base.LoadComponents();
 
-        _ps = GetComponentInChildren<BaseProyectileSpawner>();
+        bossNumber = 3;
 
-        stunTime = 3f;
+        stunTime = 7f;
     }
 
     protected override void LoadUI()
@@ -32,6 +33,7 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
         base.Start();
         ChangePosition();
     }
+    #endregion
 
     public override void OnUpdate()
     {
@@ -40,9 +42,17 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
         timer += 1 * Time.deltaTime;
         if (timer > cooldown)
         {
-           _ps.Shoot();
-           timer = 0;
+            Attack();
         }        
+    }
+
+    protected override void Attack()
+    {
+        foreach (BaseProyectileSpawner spawner in spawners)
+        {
+            spawner.Shoot();
+        }
+        timer = 0;
     }
 
     #region HealthManagement
@@ -89,9 +99,18 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     }
     #endregion
 
+    #region StunManagement
     protected override void StunConfiguration()
     {
         timer = 0;
         _rb.useGravity = true;
     }
+
+    protected override void StunComeback()
+    {
+        base.StunComeback();
+        _rb.useGravity = false;
+    }
+    #endregion
 }
+

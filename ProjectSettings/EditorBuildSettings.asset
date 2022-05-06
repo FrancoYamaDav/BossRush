@@ -12,20 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 76ca3ad51e998b340b6b94a1146c9f3c
   - enabled: 1
-    path: Assets/Scenes/DodgeBoss.unity
-    guid: 8670d115873ae834c99378b6639ecf4d
-  - enabled: 1
-    path: Assets/Scenes/ChargeBoss.unity
-    guid: 4d757361d5ab9894d8f02f7776e66e01
-  - enabled: 1
     path: Assets/Scenes/WeakpointsBoss.unity
     guid: 63c45db76f096c4469bb4ae4c212da04
   - enabled: 1
     path: Assets/Scenes/BatteryBossTest.unity
     guid: 8c05ebb1d5089aa4d9709f0522eeb117
   - enabled: 1
-    path: Assets/Scenes/BulletHellBoss.unity
-    guid: def11cfb97303f84bad0425fbaecb8d8
+    path: Assets/Scenes/ChargeBoss.unity
+    guid: 4d757361d5ab9894d8f02f7776e66e01
+  - enabled: 1
+    path: Assets/Scenes/DodgeBoss.unity
+    guid: eed8742be38fe0d499ba585f2464d956
   - enabled: 1
     path: Assets/Scenes/TestingGrounds/visualtestscene.unity
     guid: 695b00da382efb54ba271e96f83d11a9

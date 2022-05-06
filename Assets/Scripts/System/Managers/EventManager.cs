@@ -15,14 +15,6 @@ public class EventManager
 
         //Boss
         Event_Boss_CurrentDefeated,
-
-        Event_Boss_DodgeDefeated,
-        Event_Boss_BatteryDefeated,
-        Event_Boss_ChargerDefeated,
-        Event_Boss_BulletHellDefeated,
-        Event_Boss_WeakpointsDefeated,
-
-        Event_Boss_PuzzleCompleted,
         
         //Canvas
         Event_HUD_PlayerLife,
@@ -45,6 +37,10 @@ public class EventManager
 
         //Game
         Event_Game_Lose,
+
+        //Save
+        Event_System_SaveFile,
+        Event_System_LoadFile,
     }
 
     #region SubscribeUnsubscribe
