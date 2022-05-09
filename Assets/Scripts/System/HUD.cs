@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     public Slider chargeSlider;
-    public GameObject chargeContainer;
 
     private void Awake()
     {
@@ -24,7 +23,7 @@ public class HUD : MonoBehaviour
 
     void OnChargeActivate(params object[] param)
     {
-        if (chargeContainer == null) return;
-        chargeContainer.SetActive((bool)param[0]);
+        if (chargeSlider == null) return;
+        chargeSlider.gameObject.SetActive((bool)param[0]);
     }
 }
