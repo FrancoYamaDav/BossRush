@@ -15,7 +15,7 @@ public class Turret : MonoBehaviour, IActivable
 
     public void Activate()
     {
-        //Debug.Log("Turret: Activated but not implemented");
+        Debug.Log("Turret: Activated but not implemented");
         if (_pps != null) Shoot();
     }
 
