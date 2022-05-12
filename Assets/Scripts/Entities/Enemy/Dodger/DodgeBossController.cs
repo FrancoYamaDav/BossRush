@@ -21,7 +21,7 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
 
         bossNumber = 3;
 
-        stunTime = 7f;
+        stunTime = 8f;
 
         SetArray();
     }

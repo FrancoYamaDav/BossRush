@@ -241,7 +241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27642106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 14.57, z: 6.38}
+  m_LocalPosition: {x: 8, y: 18.74, z: 6.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 881485589}
@@ -258,8 +258,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.28355283, g: 0.8174754, b: 0.8490566, a: 1}
+  m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -325,7 +325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &32885939
 Transform:
   m_ObjectHideFlags: 0
@@ -705,7 +705,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beccf63a88bd89641bc08c62f53aac02, type: 2}
+  - {fileID: 2100000, guid: 5e26d3e3aa9120a44a9b49cb99c4b4cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1003,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270930051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 14.57, z: -15.5}
+  m_LocalPosition: {x: 8, y: 18.74, z: -15.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 881485589}
@@ -1020,8 +1020,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.28355283, g: 0.8174754, b: 0.8490566, a: 1}
+  m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1131,7 +1131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290697842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 14.57, z: -15.5}
+  m_LocalPosition: {x: -6.5, y: 18.74, z: -15.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 881485589}
@@ -1148,8 +1148,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.28355283, g: 0.8174754, b: 0.8490566, a: 1}
+  m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1307,7 +1307,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beccf63a88bd89641bc08c62f53aac02, type: 2}
+  - {fileID: 2100000, guid: 5e26d3e3aa9120a44a9b49cb99c4b4cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1463,7 +1463,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 1
+  m_Intensity: 7.5
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1589,7 +1589,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 1
+  m_Intensity: 7.5
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2003,7 +2003,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 1
+  m_Intensity: 7.5
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2481,7 +2481,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 1
+  m_Intensity: 7.5
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2547,7 +2547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &902077786
 Transform:
   m_ObjectHideFlags: 0
@@ -2626,7 +2626,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beccf63a88bd89641bc08c62f53aac02, type: 2}
+  - {fileID: 2100000, guid: 5e26d3e3aa9120a44a9b49cb99c4b4cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2884,7 +2884,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beccf63a88bd89641bc08c62f53aac02, type: 2}
+  - {fileID: 2100000, guid: 5e26d3e3aa9120a44a9b49cb99c4b4cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3099,7 +3099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beccf63a88bd89641bc08c62f53aac02, type: 2}
+  - {fileID: 2100000, guid: 5e26d3e3aa9120a44a9b49cb99c4b4cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3211,7 +3211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207601074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 14.57, z: 6.38}
+  m_LocalPosition: {x: -6.5, y: 18.74, z: 6.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 881485589}
@@ -3228,8 +3228,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9433962, g: 0.91790193, b: 0.4663581, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.28355283, g: 0.8174754, b: 0.8490566, a: 1}
+  m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3416,7 +3416,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: beccf63a88bd89641bc08c62f53aac02, type: 2}
+  - {fileID: 2100000, guid: 5e26d3e3aa9120a44a9b49cb99c4b4cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3503,9 +3503,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0.9811321, b: 0.6340784, a: 1}
-  m_Intensity: 1
+  m_Intensity: 15
   m_Range: 10
-  m_SpotAngle: 75
+  m_SpotAngle: 47.5
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
@@ -3894,9 +3894,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0.9811321, b: 0.6340784, a: 1}
-  m_Intensity: 1
+  m_Intensity: 15
   m_Range: 10
-  m_SpotAngle: 75
+  m_SpotAngle: 47.5
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
@@ -3987,9 +3987,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0.9811321, b: 0.6340784, a: 1}
-  m_Intensity: 1
+  m_Intensity: 15
   m_Range: 10
-  m_SpotAngle: 75
+  m_SpotAngle: 47.5
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
@@ -4266,9 +4266,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0.9811321, b: 0.6340784, a: 1}
-  m_Intensity: 1
+  m_Intensity: 15
   m_Range: 10
-  m_SpotAngle: 75
+  m_SpotAngle: 47.5
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
@@ -4479,7 +4479,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

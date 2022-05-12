@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public PlayerView ViewHandler => _view;
 
-    float staminaRate = 3f;
+    float staminaRate = 5.5f;
     int _currentHealth, _currentStamina;
     bool _isDead, _isGrabbing;
     public bool isDashing;
