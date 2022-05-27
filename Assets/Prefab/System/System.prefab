@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressList: 
-  lastPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &-7650966282419635957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d0767b0bced4a4b9723d8e8feb0065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 0}
 --- !u!1 &1769628647451136306
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,10 +175,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3622448990415616224}
     m_Modifications:
-    - target: {fileID: 594409508007200222, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4032813473881498405, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
       propertyPath: m_Name
       value: Canvas
