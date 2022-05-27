@@ -32,5 +32,7 @@ Material:
     - _NoiseIntensity: -0.6075119
     - _NoiseScale: 3.52504
     - __dirty: 0
-    m_Colors: []
+    m_Colors:
+    - _AccentColor: {r: 0.042052336, g: 0.12944642, b: 0.1981132, a: 0}
+    - _HoloColor: {r: 0, g: 1, b: 0.68218017, a: 0}
   m_BuildTextureStacks: []

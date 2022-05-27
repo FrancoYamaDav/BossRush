@@ -66,7 +66,7 @@ public class MagnetGrabable : BaseMagnetMove
 
             if (collisionInterface != null && !(collision.gameObject.GetComponent<IDamageable>() == _owner))
             {
-                collisionInterface.ReceiveDamage(ProyectileValues.Throwable.dmg);
+                //collisionInterface.ReceiveDamage(ProyectileValues.Throwable.dmg);
             }
         }
 

@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class OnEnterExit : MonoBehaviour
 {
     [SerializeField] int sceneNumber;
+    [SerializeField] Vector3 newPos;
     private void OnCollisionEnter(Collision collision)
     {
-        EventManager.TriggerEvent(EventManager.EventsType.Event_System_ChangeScene);
         StartCoroutine(ChangeLevel());
     }
 
@@ -21,7 +19,8 @@ public class OnEnterExit : MonoBehaviour
     IEnumerator ChangeLevel()
     {
         yield return new WaitForSeconds(0.25f);
-        SceneManager.LoadScene(sceneNumber);
+        EventManager.TriggerEvent(EventManager.EventsType.Event_System_EnterPortal, sceneNumber, newPos);
+        EventManager.TriggerEvent(EventManager.EventsType.Event_System_ChangeScene);
         StopCoroutine(ChangeLevel());
     }
 }

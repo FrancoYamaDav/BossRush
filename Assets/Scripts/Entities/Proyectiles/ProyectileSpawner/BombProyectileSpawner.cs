@@ -13,4 +13,10 @@ public class BombProyectileSpawner : BaseProyectileSpawner
 
         if (_proyectileSpawn == null) _proyectileSpawn = this.transform;
     }
+
+    protected override void ExtendShoot(BaseProyectile basep)
+    {
+        base.ExtendShoot(basep);
+        basep.GetComponent<BoxCollider>().isTrigger = false;
+    }
 }

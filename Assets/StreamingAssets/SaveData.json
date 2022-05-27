@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"bosses":[false,false,false,false]}
+=======
+{"bosses":[false,false,true,false],"lastPos":{"x":0.0,"y":1.0,"z":19.0}}
+>>>>>>> Stashed changes

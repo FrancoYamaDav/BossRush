@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargerController : BaseBossController
+public class ChargerController : BaseBossController, IPenetrate
 {
     PlayerController _target;
 
@@ -17,7 +17,7 @@ public class ChargerController : BaseBossController
     float chargeTime = 3.2f, currentCharge;
 
     //Speed
-    float defaultModifier = 1, chargedModifier = 3.2f;
+    float defaultModifier = 1, chargedModifier = 4f;
     float currentModifier;
 
     //Timer
@@ -26,6 +26,9 @@ public class ChargerController : BaseBossController
     ChargerBossView _view;
 
     bool cueView;
+
+    bool activated;
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
@@ -38,8 +41,6 @@ public class ChargerController : BaseBossController
         speedBoosted = false;
         hasAttacked = false;
         cueView = false;
-
-        bossNumber = 2;
     }
 
     protected override void LoadUI()
@@ -62,6 +63,10 @@ public class ChargerController : BaseBossController
         if (_target != null) distance = Vector3.Distance(this.transform.position, _target.transform.position);
         else return;
 
+        if (distance < distanceLimit) activated = true;
+
+        if (!activated) return;
+
         if (isStunned) return;
 
         if (CanIMove())
@@ -77,7 +82,7 @@ public class ChargerController : BaseBossController
 
     bool CanIMove()
     {
-        if (!isCharging && distance < distanceLimit && !hasAttacked && !isStunned) return true;
+        if (!isCharging && !hasAttacked && !isStunned) return true;
 
         return false;
     }
@@ -188,6 +193,8 @@ public class ChargerController : BaseBossController
         if (isStunned) tempdmg = dmgVal;
         else tempdmg = 5;
 
+        if (currentModifier == chargedModifier) currentModifier = 2.4f;
+
         base.DamageReceived(tempdmg);
         TriggerSound(4);
     }
@@ -201,6 +208,13 @@ public class ChargerController : BaseBossController
         else StunProperties();
 
         TriggerSound(3);
+    }
+
+    public override void OnNoLife()
+    {
+        base.OnNoLife();
+
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, BossValues.Charger.bossNumber);
     }
     #endregion
 

@@ -6,7 +6,9 @@ public class FlyweightBoss
 {
     public float speed;
 
-    public int maxHealth, damage;
+    public int maxHealth, damage, bossNumber;
 
     public string bossName;
+
+    public Vector3 lastPos;
 }

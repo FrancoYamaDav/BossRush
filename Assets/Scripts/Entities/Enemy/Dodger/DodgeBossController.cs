@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DodgeBossController : BaseBossController, IUpdate, IDamageable
+public class DodgeBossController : BaseBossController, IPenetrate
 {
     //Movement
     [SerializeField] List<Transform> currentWaypoints = new List<Transform>();
@@ -19,11 +19,14 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     {
         base.LoadComponents();
 
-        bossNumber = 3;
-
         stunTime = 8f;
 
         SetArray();
+    }
+    protected override void LoadUI()
+    {
+        var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
+        _view = new DodgeBossView(temp, GetComponent<AudioSource>());
     }
 
     void SetArray()
@@ -44,13 +47,7 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
         temp.Add(baseList[i + 1]);
         temp.Add(baseList[i + 2]);
         return temp;
-    }
-
-    protected override void LoadUI()
-    {
-        var temp = Instantiate(Resources.Load<Canvas>("UI/UIBoss"));
-        _view = new DodgeBossView(temp, GetComponent<AudioSource>());
-    }
+    }   
 
     protected override void Start()
     {
@@ -89,6 +86,13 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
             base.DamageReceived(dmgVal);
         }
     }
+
+    public override void OnNoLife()
+    {
+        base.OnNoLife();
+
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, BossValues.Dodge.bossNumber);
+    }
     #endregion
 
     #region DamageManagement
@@ -109,17 +113,13 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
         }
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    public void PenetrationDamage(int dmgVal)
     {
-        Debug.Log("Hola, colisioné con " + collision.gameObject.name);
-        base.OnCollisionEnter(collision);
-
-        var temp = collision.gameObject.GetComponent<PlayerController>();
-        if (temp)
-        {
-            if (!temp.isDashing) return;
-            OnStun();            
-        }
+        Debug.Log("Penetration damage");
+        if (isStunned)
+            currentHealth -= dmgVal/2;
+        else
+            OnStun();
     }
     #endregion
 
@@ -128,13 +128,18 @@ public class DodgeBossController : BaseBossController, IUpdate, IDamageable
     {
         timer = 0;
         _rb.useGravity = true;
+        _rb.constraints = RigidbodyConstraints.None;
+        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
     }
 
     protected override void StunComeback()
     {
         base.StunComeback();
-        //currentWaypoints = allWaypoints[Random.Range(0, allWaypoints.Count)];
+        currentWaypoints = allWaypoints[Random.Range(0, allWaypoints.Count)];
+        transform.rotation = currentWaypoints[0].transform.rotation;
         _rb.useGravity = false;
+        ChangePosition();
+        _rb.constraints = RigidbodyConstraints.FreezeAll;
     }
     #endregion
 }

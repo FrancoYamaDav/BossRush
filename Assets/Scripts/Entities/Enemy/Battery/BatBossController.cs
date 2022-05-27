@@ -26,8 +26,6 @@ public class BatBossController : BaseBossController
         _ps = GetComponent<BombProyectileSpawner>();
         _bat = GetComponent<BatteryManager>();
 
-        bossNumber = 1;
-
         RollNewPosition();
     }
 
@@ -113,6 +111,12 @@ public class BatBossController : BaseBossController
             base.DamageReceived(dmgVal);
             TriggerSound(1);
         }
+    }
+
+    public override void OnNoLife()
+    {
+        base.OnNoLife();
+        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, BossValues.Battery.bossNumber);
     }
     #endregion
 }

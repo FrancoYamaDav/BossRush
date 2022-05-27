@@ -204,6 +204,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
             if (_currentMagnetable != null && _currentMagnetable.interactable == true)
             {
                 magnetDetected = true;
+                EventManager.TriggerEvent(EventManager.EventsType.Event_HUD_RequestMagnetableUI, _currentMagnetable.gameObject);
             }
             else
                 magnetDetected = false;

@@ -23,9 +23,9 @@ public class BaseProyectile : MonoBehaviour, IUpdate
     bool _explodes;
     delegate void DeathDelegate();
 
-    Transform _target;
+    public IDamageable exception;
     #region SetUp
-    public void SetStats(BaseProyectileSpawner ps, IDamageable owner, float speed, float lifeTime, int dmg, int moveID, Vector3 sizeTrans, string path, bool gravity, bool explodes, Transform target = null)
+    public void SetStats(BaseProyectileSpawner ps, IDamageable owner, float speed, float lifeTime, int dmg, int moveID, Vector3 sizeTrans, string path, bool gravity, bool explodes)
     {
         _ps = ps;
         _owner = owner;
@@ -45,8 +45,6 @@ public class BaseProyectile : MonoBehaviour, IUpdate
         
         _rb.useGravity = gravity;
         _explodes = explodes;
-
-        _target = target;
     }
 
     private void Awake()
@@ -55,6 +53,8 @@ public class BaseProyectile : MonoBehaviour, IUpdate
         _mr = GetComponent<MeshRenderer>();
         _as = GetComponent<AudioSource>();
         MoveAdd();
+
+        _as.volume = 0.5f;
     }
 
     void MoveAdd()
@@ -67,7 +67,7 @@ public class BaseProyectile : MonoBehaviour, IUpdate
 
     public virtual void OnUpdate()
     {
-       if (_currentMoveType != null) _currentMoveType.Move(_speed, _target);
+       if (_currentMoveType != null) _currentMoveType.Move(_speed);
 
        if (currentLifeTime >= _maxLifeTime)
             OnDeath();
@@ -86,6 +86,8 @@ public class BaseProyectile : MonoBehaviour, IUpdate
         {
             collisionInterface.ReceiveDamage(_dmg);
         }
+
+        OnDeath();
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -128,11 +130,11 @@ public class BaseProyectile : MonoBehaviour, IUpdate
 
     protected virtual bool DamageException(IDamageable collisionInterface)
     {
-        
-        if (collisionInterface != null)
-            return true;
-        else
-            return false;
+        if (exception == null && collisionInterface != null) return true;
+
+        if (collisionInterface == exception) return false;
+
+        return false;
     }
 
     float  radius = 3.5f;
@@ -170,6 +172,30 @@ public class BaseProyectile : MonoBehaviour, IUpdate
     {
         UpdateManager.Instance.RemoveFromUpdate(e);
         e.gameObject.SetActive(false);
+    }
+    #endregion
+
+    #region Builder
+    public BaseProyectile SetException(IDamageable damageable)
+    {
+        Debug.Log("Set Exception: Executed");
+        exception = damageable; 
+
+        return this;
+    }
+
+    public BaseProyectile SetMove(int i)
+    {
+       _currentMoveType = moveTypes[i];
+       _currentMoveType.SetTransform(transform);
+        return this;
+    }
+
+    public BaseProyectile SetHomingTarget(GameObject go)
+    {
+        moveTypes[1] = new MoveHoming().SetTarget(go);
+
+        return this;
     }
     #endregion
 }

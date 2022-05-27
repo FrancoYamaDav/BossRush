@@ -54,7 +54,11 @@ public class BaseProyectileSpawner : MonoBehaviour
 
         if (rotationTransform != null) p.transform.rotation = rotationTransform.rotation;
         else p.transform.rotation = _proyectileSpawn.rotation;
+
+        ExtendShoot(p);        
     }
+
+    protected virtual void ExtendShoot(BaseProyectile basep) { }
 
     protected IEnumerator ShootCooldown()
     {

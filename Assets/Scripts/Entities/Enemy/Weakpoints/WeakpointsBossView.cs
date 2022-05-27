@@ -8,7 +8,7 @@ public class WeakpointsBossView : BaseBossView
     {
         SetUp(ba,a);
 
-        a.volume = 0.2f;
+        if (a != null) a.volume = 0.2f;
     }
     protected override void ChangeName()
     {

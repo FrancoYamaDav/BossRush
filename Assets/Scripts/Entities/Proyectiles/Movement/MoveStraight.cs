@@ -6,9 +6,7 @@ public class MoveStraight : IMove
 {
     Transform transform;
 
-    //Vector3 direction = new Vector3(0,0,1);
-
-    public void Move(float speed, Transform target = null)
+    public void Move(float speed)
     {
         transform.position += transform.forward * speed * Time.deltaTime;
     }

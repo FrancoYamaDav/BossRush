@@ -9,6 +9,18 @@ public class Launcher : MonoBehaviour
         SceneLoader.Instance.LoadLevel(sceneName);
     }
 
+    public void NewGame()
+    {
+        CleanValues();
+        GoToScene("Lobby");
+    }
+
+
+    void CleanValues()
+    {
+
+    }
+
     public void QuitGame()
     {
         Application.Quit();

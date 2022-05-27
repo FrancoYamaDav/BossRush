@@ -13,13 +13,16 @@ public class EventManager
         Event_Player_Death,
         Event_Player_StaminaChange,
 
+        Event_Player_EnterPortal,
+
         //Boss
         Event_Boss_CurrentDefeated,
+        Event_Boss_FinalDefeated,
         
         //Canvas
         Event_HUD_PlayerLife,
         Event_HUD_PlayerStamina,
-        Event_HUD_PlayerMagnet,
+        Event_HUD_PlayerMagnet, //Ya no es de player
         Event_HUD_PlayerProyectile,
         Event_HUD_PlayerChargerHide,
 
@@ -29,6 +32,8 @@ public class EventManager
 
         Event_HUD_ItemCharge,
         Event_HUD_ShowCharger,
+        Event_HUD_HideCharger,
+        Event_HUD_RequestMagnetableUI,
         
         //Sound
         Event_Sound_Trigger,
@@ -39,6 +44,8 @@ public class EventManager
         Event_System_SaveFile,
         Event_System_LoadFile,
         Event_System_ChangeScene,
+
+        Event_System_EnterPortal,
     }
 
     #region SubscribeUnsubscribe

@@ -37,6 +37,8 @@ public class LobbyProgressionManager : MonoBehaviour
             }
         }
 
+        pos = man.GetPosition();
+
         player.transform.position = pos;
     }
 }

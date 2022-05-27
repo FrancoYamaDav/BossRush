@@ -18,8 +18,6 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable, 
 
     protected float stunTime;
 
-    protected int bossNumber;
-
     #region SetUp
     protected void Awake()
     {
@@ -87,7 +85,6 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable, 
     public virtual void OnNoLife()
     {
         TriggerSound(2);
-        EventManager.TriggerEvent(EventManager.EventsType.Event_Boss_CurrentDefeated, bossNumber);
     }
 
     protected virtual void UpdateHealthBar()

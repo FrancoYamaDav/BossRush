@@ -8,7 +8,7 @@ public class HomingProyectileSpawner : BaseProyectileSpawner
 
     protected override void Awake()
     {
-        prefab = Resources.Load<BaseProyectile>("BaseProyectile");
+        prefab = Resources.Load<BaseProyectile>("Proyectiles/ProyectileHoming");
 
         currentWeapon = new WeaponHoming();
         cooldown = currentWeapon.GetCooldown();
@@ -16,8 +16,18 @@ public class HomingProyectileSpawner : BaseProyectileSpawner
         if (_proyectileSpawn == null) _proyectileSpawn = this.transform;
     }
 
+    protected override void ExtendShoot(BaseProyectile basep)
+    {
+        basep.SetHomingTarget(FindObjectOfType<PlayerController>().gameObject).SetMove(1);
+    }
+
     protected void SetTransform(Transform t)
     {
         target = t;
     }
+    /*
+    public override void Shoot(float multiplier = 1)
+    {
+        Debug.Log("HPS: Eliminate this later");
+    }*/
 }
