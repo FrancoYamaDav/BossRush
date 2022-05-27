@@ -24,9 +24,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Bosses/WeakpointsBoss.unity
     guid: 63c45db76f096c4469bb4ae4c212da04
   - enabled: 1
-    path: Assets/Scenes/MenuEndBoss.unity
-    guid: 138d505bf41c778479b0505d5052a2b7
-  - enabled: 1
     path: Assets/Scenes/TestingGrounds/visualtestscene.unity
     guid: 695b00da382efb54ba271e96f83d11a9
   - enabled: 1
