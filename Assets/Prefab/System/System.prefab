@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8860339531777619967}
+  - {fileID: 4984142288954895297}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,12 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9102dfaad79eaf642abb8c581b45c622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-  chargeSlider: {fileID: 3039662800677310006}
---- !u!114 &6267512387355234832
-=======
 --- !u!114 &1642143908146035992
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,9 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d0767b0bced4a4b9723d8e8feb0065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-  progressList: 
-=======
 --- !u!1 &1769628647451136306
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +168,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
->>>>>>> Stashed changes
 --- !u!1001 &5548805967575585958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,20 +274,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4032813473881498457, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
   m_PrefabInstance: {fileID: 5548805967575585958}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
---- !u!114 &3039662800677310006 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7434981837098588816, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
-  m_PrefabInstance: {fileID: 5548805967575585958}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-=======
->>>>>>> Stashed changes
 --- !u!1 &5527700957614592809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 123575327654758287, guid: 711d2f62e040a3f49a6b9ca1f311d4a4, type: 3}
