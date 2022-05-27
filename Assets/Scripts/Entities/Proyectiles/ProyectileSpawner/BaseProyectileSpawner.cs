@@ -6,7 +6,7 @@ using System.Linq;
 public class BaseProyectileSpawner : MonoBehaviour
 {   
     protected Pool<BaseProyectile> _pool;
-    protected BaseProyectile prefab;
+    [SerializeField] protected BaseProyectile prefab;
 
     protected bool _canShoot = true;
     public bool canShoot { get { return _canShoot; } }
@@ -20,7 +20,7 @@ public class BaseProyectileSpawner : MonoBehaviour
     #region SetUp
     protected virtual void Awake()
     {
-        prefab = Resources.Load<BaseProyectile>("BaseProyectile");     
+        if(prefab == null) prefab = Resources.Load<BaseProyectile>("BaseProyectile");     
         
         currentWeapon = new WeaponDefault();
         cooldown = currentWeapon.GetCooldown();
@@ -44,10 +44,10 @@ public class BaseProyectileSpawner : MonoBehaviour
 
         var p = _pool.SendFromPool();
 
-        var build = new ProyectileBuilder(currentWeapon.GetProyectileStats())
+        new ProyectileBuilder(currentWeapon.GetProyectileStats())
                                                        .SetOwner(this.gameObject.GetComponent<IDamageable>())
                                                        .SetSpawner(this)
-                                                       .SetMultiplier(multiplier)
+                                                       //.SetMultiplier(multiplier)
                                                        .SendStats(p);
 
         p.transform.position = _proyectileSpawn.position; 

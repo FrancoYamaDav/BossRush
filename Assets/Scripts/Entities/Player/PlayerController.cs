@@ -7,27 +7,14 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockeable, IUpdate, ISoundable
 {
-    [SerializeField] private AnimatorHandler _animatorHandler;
-
     [SerializeField] private PostProcessVolume myPostProcessVolume;
     
     [Header("Raycast Properties")]
     [SerializeField] private Transform cameraObject;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayDistance = 25;
-    public Vector3 moveDirection;
-
-    [Header("Fall Properties")] 
-    [SerializeField] private float groundDetectionRayStartPoint = 0.5f;
-    [SerializeField] private float minimumDistanceToStartFall = 1f;
-    [SerializeField] private float groundDirectionRayDistance = 0.2f;
-    [SerializeField] private float fallSpeed = 0.5f;
-    [SerializeField] private LayerMask ignoreFallLayers; 
+ 
     
-    [Header("Player Flags")] 
-    public bool isFalling = false;
-    public bool isGrounded = true;    
-    private Transform myTransform; 
     
     //Hidden Variables
     private Rigidbody _rb;
@@ -61,7 +48,6 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         _currentHealth = _m.maxHealth;
         _currentStamina = _m.maxStamina;
-        myTransform = transform;
 
         EventManager.SubscribeToEvent(EventManager.EventsType.Event_Player_StaminaChange, StaminaModify);
 
@@ -75,7 +61,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     void ComponentChecker()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponentInChildren<Rigidbody>();
         if (_rb == null)
             Debug.Log("Controller: RB missing");
 
@@ -97,108 +83,15 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         if (CanIMove())
         {
-            _brain.Brain(cameraObject);
-            Movement(Time.fixedDeltaTime);
+           _brain.Brain();
         }
 
         Raycast();
         
-        HandleFalling(Time.deltaTime, moveDirection);
-
         if (_currentStamina < _m.maxStamina)
             StaminaCharge();
     }
     
-    //TODO: Cambiar todo el brain para que se mueva via deltas.
-    #region New Rotattion&Movement
-    Vector3 normalVector;
-    Vector3 targetPosition;
-    private void Rotation(float _delta)
-    {
-        Vector3 targetDir = Vector3.zero;
-        targetDir = cameraObject.forward * Input.GetAxis("Vertical");
-        targetDir += cameraObject.right * Input.GetAxis("Horizontal");
-        targetDir.Normalize();
-        targetDir.y = 0;
-
-        if (targetDir == Vector3.zero)
-        {
-            targetDir = myTransform.forward;     
-        }
-
-        float rs = 25f;
-        Quaternion tr = Quaternion.LookRotation(targetDir);
-        Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * _delta);
-
-        myTransform.rotation = targetRotation;
-    }
-
-    public void HandleFalling(float delta, Vector3 moveDir)
-    {
-        isGrounded = false;
-        Vector3 origin = transform.position;
-        origin.y += groundDetectionRayStartPoint;
-
-        if (Physics.Raycast(origin, transform.forward, out var hit, 0.4f))
-        {
-            moveDirection = Vector3.zero;
-        }
-
-        if (isFalling)
-        {
-            _rb.AddForce(-Vector3.up * fallSpeed);
-            _rb.AddForce(moveDirection * fallSpeed / 10f);
-        }
-
-        Vector3 dir = moveDirection;
-        dir.Normalize();
-        origin += dir * groundDirectionRayDistance;
-
-        targetPosition = myTransform.position;
-
-        if (Physics.Raycast(origin, -Vector3.up, out hit, minimumDistanceToStartFall, ignoreFallLayers))
-        {
-            normalVector = hit.normal;
-            Vector3 tp = hit.point;
-            isGrounded = true;
-            //targetPosition.y = tp.y;
-
-            if (isFalling)
-            {
-                //isFalling = false;
-            }
-        }
-        else
-        {
-            if (isGrounded)
-            {
-                //isGrounded = false;
-            }
-        }
-    }    
-    private void Movement(float _delta)
-    {
-        moveDirection = cameraObject.forward * Input.GetAxis("Vertical");
-        moveDirection += cameraObject.right * Input.GetAxis("Horizontal");
-        moveDirection.Normalize();
-        moveDirection.y = 0;
-
-        float speed = 10f;
-        moveDirection *= speed;
-        
-        Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-        _rb.velocity = projectedVelocity;
-        
-        float moveAmount = Mathf.Clamp01(Mathf.Abs(moveDirection.x)) + Mathf.Abs(moveDirection.z);
-        
-        _animatorHandler.AnimatorValues(moveAmount, 0);
-
-        if (_animatorHandler.canRotate)
-        {
-            Rotation(_delta);
-        }
-    }  
-    #endregion
 
     bool CanIMove()
     {
@@ -211,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     {
         //Debug.Log("Player: Received Damage");
         _currentHealth -= dmgVal;
-        _view.SetAudioSourceClipBeIndexAndPlay(0);
+        _view.SetAudioSourceClipByIndexAndPlayIt(0);
         UpdateHealthBar();
         if (_currentHealth <= 0) OnNoLife();
         StartCoroutine(FlashCorruptionScreen(0.1f, 0.1f));
@@ -238,7 +131,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     {
         //Debug.Log("Player: No life points remaining");
         _isDead = true;
-        _view.SetAudioSourceClipBeIndexAndPlay(5);
+        _view.SetAudioSourceClipByIndexAndPlayIt(5);
         EventManager.TriggerEvent(EventManager.EventsType.Event_Player_Death);
     }
 
@@ -253,7 +146,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
         if (newHealth >= _m.maxHealth)  newHealth = _m.maxHealth;
         
-        _view.SetAudioSourceClipBeIndexAndPlay(1);
+        _view.SetAudioSourceClipByIndexAndPlayIt(1);
 
         _currentHealth = newHealth;
 
@@ -300,7 +193,7 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
     {
         bool magnetDetected;
 
-        Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta);
+        //Debug.DrawRay(cameraObject.position, cameraObject.forward, Color.magenta);
         
         if (Physics.Raycast(cameraObject.position, cameraObject.forward, out var lookingAt, rayDistance, layerMask))
         {
@@ -358,6 +251,8 @@ public class PlayerController : MonoBehaviour, IDamageable, IHealeable, IKnockea
 
     public bool ShouldPlaySound()
     {
-        return (rb.velocity.x > 0.5f || rb.velocity.z > 0.5f);
+        var velocity = rb.velocity;
+        
+        return (velocity.x > 0.5f || velocity.z > 0.5f);
     }
 }

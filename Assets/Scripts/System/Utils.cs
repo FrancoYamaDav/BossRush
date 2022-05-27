@@ -14,6 +14,8 @@ namespace Utils
 namespace Enums
 {
     public enum PuzzleType { Sequence, Symbols }
+    
+    public enum EntityType { Hostile, Allied, Neutral  }
 
 }
 

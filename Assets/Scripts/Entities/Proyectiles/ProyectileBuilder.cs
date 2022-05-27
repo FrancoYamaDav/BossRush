@@ -16,7 +16,6 @@ public class ProyectileBuilder
         if (fw != null) _fw = fw;
         else _fw = ProyectileValues.Default;
     }
-
     public ProyectileBuilder SetSpawner(BaseProyectileSpawner ps)
     {
         _ps = ps;
@@ -27,7 +26,6 @@ public class ProyectileBuilder
         _owner = owner;
         return this;
     }
-
     public ProyectileBuilder SetMultiplier(float multiplier = 1)
     {
         _multiplier = multiplier;

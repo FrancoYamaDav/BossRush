@@ -54,7 +54,7 @@ public class PlayerView
         _audioSource.Stop();
     }
     
-    public void SetAudioSourceClipBeIndexAndPlay(int index)
+    public void SetAudioSourceClipByIndexAndPlayIt(int index)
     {
         if (_audioSource.isPlaying) return;
 

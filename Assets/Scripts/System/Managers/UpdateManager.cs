@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NC.ThirdPersonController.Scripts;
 using UnityEngine;
 
 public class UpdateManager : MonoBehaviour
@@ -15,8 +16,6 @@ public class UpdateManager : MonoBehaviour
         get { return _instance; }
     }
 
-    bool pause;
-
     private void Awake()
     {
         _instance = this;
@@ -28,13 +27,11 @@ public class UpdateManager : MonoBehaviour
     #region Update
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) PauseUnpause();           
-
         if (pauseUI != null) PauseScreen();
 
         LockCursor();
 
-        if (pause) return;
+        if (InputManager.Instance.pauseInput) return;
 
         if (_subscribers.Count > 0) AllUpdates();
     }
@@ -63,29 +60,18 @@ public class UpdateManager : MonoBehaviour
 
     void PauseScreen()
     {
-        if (pause)
-            pauseUI.SetActive(true);
-        else
-            pauseUI.SetActive(false);
+        pauseUI.SetActive(InputManager.Instance.pauseInput);
     }
 
-    void LockCursor()
+    private void LockCursor()
     {
-        if (pause)
-            Cursor.lockState = CursorLockMode.Confined;
-        else
-            Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void PauseUnpause()
-    {
-        pause = !pause;
+        Cursor.lockState = InputManager.Instance.pauseInput ? CursorLockMode.Confined : CursorLockMode.Locked;
     }
 
     #region FixedUpdate
     void FixedUpdate()
     {
-        if (pause)
+        if (InputManager.Instance.pauseInput)
             return;
 
         if (_subscribers.Count > 0) AllFixedUpdates();
@@ -94,9 +80,7 @@ public class UpdateManager : MonoBehaviour
     void AllFixedUpdates()
     {
         for (int i = 0; i < _subscribersFix.Count; i++)
-        {
             _subscribersFix[i].OnFixedUpdate();
-        }
     }
 
     public void AddToFixedUpdate(IFixedUpdate element)

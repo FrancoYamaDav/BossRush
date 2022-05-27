@@ -22,7 +22,7 @@ public class HitDistance : HoldCommand
     {
         if (!CanIShoot()) return;
         
-        _pc.ViewHandler.SetAudioSourceClipBeIndexAndPlay(3);
+        _pc.ViewHandler.SetAudioSourceClipByIndexAndPlayIt(3);
 
         base.Execute();
 
@@ -35,7 +35,7 @@ public class HitDistance : HoldCommand
         if (!CanIShoot()) return;
         
         _pc.ViewHandler.StopAudioSource();
-        _pc.ViewHandler.SetAudioSourceClipBeIndexAndPlay(4);
+        _pc.ViewHandler.SetAudioSourceClipByIndexAndPlayIt(4);
 
         if (counter < 0.50f) counter = 0.50f;        
         if (counter > timeNeeded) counter = timeNeeded;        
@@ -51,6 +51,7 @@ public class HitDistance : HoldCommand
     bool CanIShoot()
     {
         if (_ps == null || _pc.currentStamina < staminaCost || !_ps.canShoot) return false;
-        else return true;
+        
+        return true;
     }
 }

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using NC.ThirdPersonController.Interfaces;
 using UnityEngine;
 
-public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
+public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable, ILockable<Transform>
 {
+    [SerializeField] private Transform cameraLockPivot;
+    
     protected BaseBossModel _bm;
     protected BaseBossView _view;
     protected Rigidbody _rb;
@@ -124,5 +127,10 @@ public abstract class BaseBossController : MonoBehaviour, IUpdate, IDamageable
     protected virtual void TriggerSound(int val)
     {
         EventManager.TriggerEvent(EventManager.EventsType.Event_Sound_Boss, val);
+    }
+
+    public Transform GetLockPivot()
+    {
+        return cameraLockPivot;
     }
 }
